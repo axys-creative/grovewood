@@ -1,0 +1,62 @@
+{
+	"eyebrowText": "COME SEE FOR YOURSELF",
+	"title": "Schedule a no-cost consultation today",
+	"cta": {
+		"primary": {
+			"text": "Call (801) 785-4622",
+			"textDescription": "Call us to schedule an appointment",
+			"url": "tel:8017854622",
+			"newTab": false,
+			"iconStart": "phone"
+		},
+		"secondary": {
+			"text": "Email us",
+			"textDescription": "Send us an email",
+			"url": "mailto:info@grovewoodutah.com",
+			"newTab": false,
+			"type": "secondary"
+		}
+	},
+	"slides": [
+		{
+			"title": "Individual talk therapy",
+			"description": "One-on-one sessions focused on identifying patterns and building practical coping strategies.",
+			"image": {
+				"src": "/images/talk-therapy-carousel-1.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Couples Counseling",
+			"description": "We are trained in marital therapy",
+			"image": {
+				"src": "/images/talk-therapy-carousel-2.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Family Therapy",
+			"description": "We are trained in family therapy",
+			"image": {
+				"src": "/images/talk-therapy-carousel-3.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Teen Talk",
+			"description": "We know how to talk with teens.",
+			"image": {
+				"src": "/images/talk-therapy-carousel-4.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Anxiety and depression",
+			"description": "Targeted treatment plans that address root causes, not just surface-level symptoms.",
+			"image": {
+				"src": "/images/talk-therapy-carousel-4.webp",
+				"alt": ""
+			}
+		}
+	]
+}

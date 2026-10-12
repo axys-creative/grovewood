@@ -814,6 +814,1039 @@
 			]
 		},
 		{
+			"name": "page_talk_therapy",
+			"label": "Page - Talk Therapy",
+			"files": [
+				{
+					"name": "hero_simple",
+					"label": "Hero",
+					"file": "src/lib/content/page_talk_therapy/hero-simple.json",
+					"preview_path": "#hero",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "eyebrowDot",
+							"label": "Eyebrow status dot",
+							"widget": "select",
+							"options": [
+								{
+									"label": "None",
+									"value": "none"
+								},
+								{
+									"label": "Pulse",
+									"value": "pulse"
+								},
+								{
+									"label": "Sonar",
+									"value": "sonar"
+								}
+							],
+							"default": "none",
+							"required": false,
+							"hint": "A green dot before the eyebrow, such as for \"available for freelance\"."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": true,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string"
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string"
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "image",
+							"label": "Picture",
+							"widget": "object",
+							"required": false,
+							"hint": "Shown beside the text on wide screens, below it on small ones.",
+							"fields": [
+								{
+									"name": "src",
+									"label": "Image",
+									"widget": "image"
+								},
+								{
+									"name": "alt",
+									"label": "Alt text",
+									"widget": "string",
+									"required": false,
+									"hint": "Leave empty for a decorative picture."
+								}
+							]
+						},
+						{
+							"name": "direction",
+							"label": "Layout",
+							"widget": "select",
+							"required": false,
+							"options": [
+								{
+									"label": "Column (centered)",
+									"value": "column"
+								},
+								{
+									"label": "Row (text left)",
+									"value": "row"
+								}
+							],
+							"default": "column"
+						}
+					]
+				},
+				{
+					"name": "text_stack",
+					"label": "Text Stack",
+					"file": "src/lib/content/page_talk_therapy/text-stack.json",
+					"preview_path": "#text-stack",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						}
+					]
+				},
+				{
+					"name": "carousel_spotlight",
+					"label": "Carousel",
+					"file": "src/lib/content/page_talk_therapy/carousel-spotlight.json",
+					"preview_path": "#carousel-spotlight",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "slides",
+							"label": "Slides",
+							"label_singular": "Slide",
+							"widget": "list",
+							"summary": "{{fields.title}}",
+							"min": 2,
+							"fields": [
+								{
+									"name": "title",
+									"label": "Title",
+									"widget": "string"
+								},
+								{
+									"name": "description",
+									"label": "Description",
+									"widget": "text",
+									"required": false
+								},
+								{
+									"name": "image",
+									"label": "Picture",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "src",
+											"label": "Image",
+											"widget": "image"
+										},
+										{
+											"name": "alt",
+											"label": "Alt text",
+											"widget": "string",
+											"required": false,
+											"hint": "Leave empty for a decorative picture."
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "carousel_testimonials",
+					"label": "Testimonials",
+					"file": "src/lib/content/page_talk_therapy/carousel-testimonials.json",
+					"preview_path": "#testimonials",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "label",
+							"label": "Carousel accessible name",
+							"widget": "string",
+							"required": false,
+							"hint": "Defaults to Testimonials."
+						},
+						{
+							"name": "testimonials",
+							"label": "Testimonials",
+							"label_singular": "Testimonial",
+							"widget": "list",
+							"summary": "{{fields.name}}",
+							"fields": [
+								{
+									"name": "quote",
+									"label": "Quote",
+									"widget": "text"
+								},
+								{
+									"name": "name",
+									"label": "Name",
+									"widget": "string"
+								},
+								{
+									"name": "role",
+									"label": "Role or description",
+									"widget": "string",
+									"required": false
+								},
+								{
+									"name": "image",
+									"label": "Portrait",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "src",
+											"label": "Image",
+											"widget": "image"
+										},
+										{
+											"name": "alt",
+											"label": "Alt text",
+											"widget": "string",
+											"required": false
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "common_questions",
+					"label": "Common Questions",
+					"file": "src/lib/content/page_talk_therapy/common-questions.json",
+					"preview_path": "#common-questions",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "icon",
+							"label": "Question icon",
+							"widget": "string",
+							"required": false,
+							"hint": "Icon file name without .svg (e.g. chevron-down)."
+						},
+						{
+							"name": "singleOpen",
+							"label": "Only one open at a time",
+							"widget": "boolean",
+							"required": false,
+							"default": true
+						},
+						{
+							"name": "items",
+							"label": "Questions",
+							"label_singular": "Question",
+							"widget": "list",
+							"summary": "{{fields.title}}",
+							"fields": [
+								{
+									"name": "title",
+									"label": "Question",
+									"widget": "string"
+								},
+								{
+									"name": "content",
+									"label": "Answer",
+									"widget": "text"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "text_stack_invite",
+					"label": "Text Stack (invite)",
+					"file": "src/lib/content/page_talk_therapy/text-stack-invite.json",
+					"preview_path": "#text-invite",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "page_blog",
 			"label": "Page - Blog",
 			"hide": true,
@@ -935,205 +1968,6 @@
 							"options": ["start", "center"],
 							"default": "center",
 							"required": false
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "page_sections",
-			"label": "Page - Sections",
-			"files": [
-				{
-					"name": "carousel_spotlight",
-					"label": "Carousel Spotlight",
-					"file": "src/lib/content/page_sections/carousel-spotlight.json",
-					"preview_path": "sections#carousel-spotlight",
-					"fields": [
-						{
-							"name": "eyebrowText",
-							"label": "Eyebrow text",
-							"widget": "string",
-							"required": false
-						},
-						{
-							"name": "eyebrowIcon",
-							"label": "Eyebrow icon",
-							"widget": "image",
-							"required": false,
-							"hint": "An SVG icon; it takes the eyebrow color."
-						},
-						{
-							"name": "eyebrowDot",
-							"label": "Eyebrow status dot",
-							"widget": "select",
-							"options": [
-								{
-									"label": "None",
-									"value": "none"
-								},
-								{
-									"label": "Pulse",
-									"value": "pulse"
-								},
-								{
-									"label": "Sonar",
-									"value": "sonar"
-								}
-							],
-							"default": "none",
-							"required": false,
-							"hint": "A green dot before the eyebrow, such as for \"available for freelance\"."
-						},
-						{
-							"name": "title",
-							"label": "Title",
-							"widget": "string",
-							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
-						},
-						{
-							"name": "description",
-							"label": "Description",
-							"widget": "text",
-							"required": false,
-							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
-						},
-						{
-							"name": "cta",
-							"label": "Call to action",
-							"widget": "object",
-							"fields": [
-								{
-									"name": "primary",
-									"label": "Primary button",
-									"widget": "object",
-									"required": false,
-									"fields": [
-										{
-											"name": "text",
-											"label": "Text",
-											"widget": "string",
-											"required": false
-										},
-										{
-											"name": "textDescription",
-											"label": "Accessible description",
-											"widget": "string",
-											"required": false,
-											"hint": "Optional aria-label for screen readers"
-										},
-										{
-											"name": "url",
-											"label": "URL",
-											"widget": "string",
-											"required": false
-										},
-										{
-											"name": "newTab",
-											"label": "Open in new tab",
-											"widget": "boolean",
-											"default": false,
-											"required": false
-										},
-										{
-											"name": "iconEnd",
-											"label": "Icon after text",
-											"widget": "string",
-											"required": false,
-											"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
-										}
-									]
-								},
-								{
-									"name": "secondary",
-									"label": "Secondary button",
-									"widget": "object",
-									"required": false,
-									"fields": [
-										{
-											"name": "text",
-											"label": "Text",
-											"widget": "string",
-											"required": false
-										},
-										{
-											"name": "textDescription",
-											"label": "Accessible description",
-											"widget": "string",
-											"required": false,
-											"hint": "Optional aria-label for screen readers"
-										},
-										{
-											"name": "url",
-											"label": "URL",
-											"widget": "string",
-											"required": false
-										},
-										{
-											"name": "newTab",
-											"label": "Open in new tab",
-											"widget": "boolean",
-											"default": false,
-											"required": false
-										},
-										{
-											"name": "iconEnd",
-											"label": "Icon after text",
-											"widget": "string",
-											"required": false,
-											"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
-										}
-									]
-								}
-							]
-						},
-						{
-							"name": "pauseOnHover",
-							"label": "Pause on hover",
-							"widget": "boolean",
-							"default": false,
-							"required": false,
-							"hint": "Holds the autoplay while the mouse is over the carousel. It always holds while a slide has keyboard focus."
-						},
-						{
-							"name": "slides",
-							"label": "Slides",
-							"widget": "list",
-							"min": 2,
-							"summary": "{{fields.title}}",
-							"fields": [
-								{
-									"name": "title",
-									"label": "Title",
-									"widget": "string"
-								},
-								{
-									"name": "description",
-									"label": "Description",
-									"widget": "text",
-									"required": false,
-									"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
-								},
-								{
-									"name": "image",
-									"label": "Image",
-									"widget": "object",
-									"fields": [
-										{
-											"name": "src",
-											"label": "Image",
-											"widget": "image"
-										},
-										{
-											"name": "alt",
-											"label": "Alt text",
-											"widget": "string",
-											"required": false,
-											"hint": "Leave empty if the picture is decorative."
-										}
-									]
-								}
-							]
 						}
 					]
 				}
@@ -1576,365 +2410,6 @@
 					]
 				},
 				{
-					"name": "header_island",
-					"label": "Header (island)",
-					"file": "src/lib/content/global/header-island.json",
-					"fields": [
-						{
-							"name": "glass",
-							"label": "Glass background",
-							"widget": "boolean",
-							"default": true,
-							"required": false,
-							"hint": "Frosted glass with refracting edges in Chrome. Other browsers get the blur."
-						},
-						{
-							"name": "blur",
-							"label": "Blur background",
-							"widget": "boolean",
-							"default": false,
-							"required": false,
-							"hint": "A plain translucent, blurred background. Ignored when Glass is on."
-						},
-						{
-							"name": "hideOnScroll",
-							"label": "Hide on scroll down",
-							"widget": "boolean",
-							"default": true,
-							"required": false
-						},
-						{
-							"name": "showSkipLink",
-							"label": "Show skip to content link",
-							"widget": "boolean",
-							"default": true,
-							"required": false,
-							"hint": "Accessibility. Leave on."
-						},
-						{
-							"name": "navButton",
-							"label": "Menu button",
-							"widget": "object",
-							"fields": [
-								{
-									"name": "symbol",
-									"label": "Symbol",
-									"widget": "select",
-									"options": ["burger", "oreo", "stairs", "chocolate", "kebab"],
-									"default": "burger",
-									"hint": "Burger is two lines, oreo is two lines with rounded outer corners that twirl into the X, stairs is three stepped lines (short, long, short) that form the X, chocolate is nine dots, kebab is three vertical dots."
-								},
-								{
-									"name": "shape",
-									"label": "Shape",
-									"widget": "select",
-									"options": ["square", "round"],
-									"default": "square"
-								},
-								{
-									"name": "type",
-									"label": "Style",
-									"widget": "select",
-									"options": ["icon", "button"],
-									"default": "icon",
-									"hint": "Button puts the symbol in a bordered box."
-								},
-								{
-									"name": "text",
-									"label": "Text beside the symbol",
-									"widget": "string",
-									"required": false,
-									"hint": "Optional, e.g. menu."
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "header_absolute",
-					"label": "Header (absolute)",
-					"file": "src/lib/content/global/header-absolute.json",
-					"fields": [
-						{
-							"name": "logoPlacement",
-							"label": "Logo placement",
-							"widget": "select",
-							"options": ["start", "center", "end"],
-							"default": "start",
-							"hint": "Where the logo sits along the top."
-						},
-						{
-							"name": "controlsPlacement",
-							"label": "Buttons placement",
-							"widget": "select",
-							"options": ["start", "center", "end"],
-							"default": "end",
-							"hint": "Where the buttons and menu button sit. Not the same side as the logo, or they overlap."
-						},
-						{
-							"name": "position",
-							"label": "Position",
-							"widget": "select",
-							"options": [
-								{
-									"label": "Fixed (stays on screen)",
-									"value": "fixed"
-								},
-								{
-									"label": "Absolute (scrolls away with the page)",
-									"value": "absolute"
-								}
-							],
-							"default": "fixed"
-						},
-						{
-							"name": "hideOnScroll",
-							"label": "Hide on scroll down",
-							"widget": "boolean",
-							"default": false,
-							"required": false,
-							"hint": "Only with Fixed."
-						},
-						{
-							"name": "blend",
-							"label": "Invert colors over the page",
-							"widget": "boolean",
-							"default": false,
-							"required": false,
-							"hint": "Keeps the logo and buttons readable over any picture or color. Works best with text or underline buttons."
-						},
-						{
-							"name": "desktopLayout",
-							"label": "Large screen layout",
-							"widget": "select",
-							"options": [
-								{
-									"label": "Links in the middle, with a strap",
-									"value": "links"
-								},
-								{
-									"label": "Buttons and menu button",
-									"value": "controls"
-								}
-							],
-							"default": "links",
-							"hint": "Links shows the navigation in the middle and a strap of social links in the corner, and the menu button only on small screens."
-						},
-						{
-							"name": "mobileNav",
-							"label": "Small screen menu",
-							"widget": "select",
-							"options": [
-								{
-									"label": "Slide-out panel from the right",
-									"value": "slide"
-								},
-								{
-									"label": "Full-screen overlay",
-									"value": "overlay"
-								}
-							],
-							"default": "slide",
-							"hint": "The slide-out covers about three quarters of the screen, with no backdrop, and all of it on the smallest screens."
-						},
-						{
-							"name": "navSurface",
-							"label": "Menu background",
-							"widget": "select",
-							"options": [
-								{
-									"label": "Solid",
-									"value": "solid"
-								},
-								{
-									"label": "Blur",
-									"value": "blur"
-								},
-								{
-									"label": "Glass",
-									"value": "glass"
-								}
-							],
-							"default": "solid",
-							"hint": "Solid is the page color. Blur is translucent and blurred. Glass adds refracting edges in Chrome, and blur elsewhere."
-						},
-						{
-							"name": "strapIcon",
-							"label": "Strap icon",
-							"widget": "string",
-							"required": false,
-							"default": "orbit",
-							"hint": "An icon name from the icons folder. A placeholder for now. Leave empty for none."
-						},
-						{
-							"name": "showCtas",
-							"label": "Show buttons beside the menu button",
-							"widget": "boolean",
-							"default": true,
-							"required": false,
-							"hint": "From the large breakpoint up. Only with the Buttons and menu button layout."
-						},
-						{
-							"name": "showSkipLink",
-							"label": "Show skip to content link",
-							"widget": "boolean",
-							"default": true,
-							"required": false,
-							"hint": "Accessibility. Leave on."
-						},
-						{
-							"name": "navButton",
-							"label": "Menu button",
-							"widget": "object",
-							"fields": [
-								{
-									"name": "symbol",
-									"label": "Symbol",
-									"widget": "select",
-									"options": ["burger", "oreo", "stairs", "chocolate", "kebab"],
-									"default": "burger",
-									"hint": "Burger is two lines, oreo is two lines with rounded outer corners that twirl into the X, stairs is three stepped lines (short, long, short) that form the X, chocolate is nine dots, kebab is three vertical dots."
-								},
-								{
-									"name": "shape",
-									"label": "Shape",
-									"widget": "select",
-									"options": ["square", "round"],
-									"default": "square"
-								},
-								{
-									"name": "type",
-									"label": "Style",
-									"widget": "select",
-									"options": ["icon", "button"],
-									"default": "icon",
-									"hint": "Button puts the symbol in a bordered box."
-								},
-								{
-									"name": "text",
-									"label": "Text beside the symbol",
-									"widget": "string",
-									"required": false,
-									"hint": "Optional, e.g. menu."
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "header_basic",
-					"label": "Header (basic)",
-					"file": "src/lib/content/global/header-basic.json",
-					"fields": [
-						{
-							"name": "position",
-							"label": "Position",
-							"widget": "select",
-							"options": [
-								{
-									"label": "Fixed (stays on screen)",
-									"value": "fixed"
-								},
-								{
-									"label": "Absolute (scrolls away with the page)",
-									"value": "absolute"
-								}
-							],
-							"default": "fixed"
-						},
-						{
-							"name": "hideOnScroll",
-							"label": "Hide on scroll down",
-							"widget": "boolean",
-							"default": false,
-							"required": false,
-							"hint": "Only with Fixed."
-						},
-						{
-							"name": "blend",
-							"label": "Invert colors over the page",
-							"widget": "boolean",
-							"default": false,
-							"required": false,
-							"hint": "Keeps the logo and buttons readable over any picture or color. Works best with text or underline buttons."
-						},
-						{
-							"name": "navSurface",
-							"label": "Menu background",
-							"widget": "select",
-							"options": [
-								{
-									"label": "Solid",
-									"value": "solid"
-								},
-								{
-									"label": "Blur",
-									"value": "blur"
-								},
-								{
-									"label": "Glass",
-									"value": "glass"
-								}
-							],
-							"default": "solid",
-							"hint": "Solid is the page color. Blur is translucent and blurred. Glass adds refracting edges in Chrome, and blur elsewhere."
-						},
-						{
-							"name": "socialSolid",
-							"label": "Social links as buttons",
-							"widget": "boolean",
-							"default": false,
-							"required": false,
-							"hint": "Puts each social icon in a box in the solid button style."
-						},
-						{
-							"name": "showSkipLink",
-							"label": "Show skip to content link",
-							"widget": "boolean",
-							"default": true,
-							"required": false,
-							"hint": "Accessibility. Leave on."
-						},
-						{
-							"name": "navButton",
-							"label": "Menu button",
-							"widget": "object",
-							"fields": [
-								{
-									"name": "symbol",
-									"label": "Symbol",
-									"widget": "select",
-									"options": ["burger", "oreo", "stairs", "chocolate", "kebab"],
-									"default": "burger",
-									"hint": "Burger is two lines, oreo is two lines with rounded outer corners that twirl into the X, stairs is three stepped lines (short, long, short) that form the X, chocolate is nine dots, kebab is three vertical dots."
-								},
-								{
-									"name": "shape",
-									"label": "Shape",
-									"widget": "select",
-									"options": ["square", "round"],
-									"default": "square"
-								},
-								{
-									"name": "type",
-									"label": "Style",
-									"widget": "select",
-									"options": ["icon", "button"],
-									"default": "icon",
-									"hint": "Button puts the symbol in a bordered box."
-								},
-								{
-									"name": "text",
-									"label": "Text beside the symbol",
-									"widget": "string",
-									"required": false,
-									"hint": "Optional, e.g. menu."
-								}
-							]
-						}
-					]
-				},
-				{
 					"name": "footer_simple",
 					"label": "Footer",
 					"file": "src/lib/content/global/footer-simple.json",
@@ -2258,312 +2733,6 @@
 					]
 				},
 				{
-					"name": "footer_scroll_reveal",
-					"label": "Footer (scroll reveal)",
-					"file": "src/lib/content/global/footer-scroll-reveal.json",
-					"fields": [
-						{
-							"name": "title",
-							"label": "Title",
-							"widget": "string",
-							"required": false
-						},
-						{
-							"name": "cta",
-							"label": "Buttons",
-							"widget": "object",
-							"required": false,
-							"fields": [
-								{
-									"name": "primary",
-									"label": "Primary button",
-									"widget": "object",
-									"fields": [
-										{
-											"name": "text",
-											"label": "Text",
-											"widget": "string"
-										},
-										{
-											"name": "textDescription",
-											"label": "Accessible description",
-											"widget": "string",
-											"required": false
-										},
-										{
-											"name": "url",
-											"label": "URL",
-											"widget": "string"
-										},
-										{
-											"name": "newTab",
-											"label": "Open in new tab",
-											"widget": "boolean",
-											"default": false,
-											"required": false
-										}
-									]
-								},
-								{
-									"name": "secondary",
-									"label": "Secondary button",
-									"widget": "object",
-									"required": false,
-									"fields": [
-										{
-											"name": "text",
-											"label": "Text",
-											"widget": "string"
-										},
-										{
-											"name": "url",
-											"label": "URL",
-											"widget": "string"
-										},
-										{
-											"name": "newTab",
-											"label": "Open in new tab",
-											"widget": "boolean",
-											"default": false,
-											"required": false
-										}
-									]
-								}
-							]
-						},
-						{
-							"name": "message",
-							"label": "Message",
-							"widget": "text",
-							"required": false
-						},
-						{
-							"name": "bigLink",
-							"label": "Large link",
-							"widget": "object",
-							"required": false,
-							"hint": "A big link beside the title, such as an email address.",
-							"fields": [
-								{
-									"name": "text",
-									"label": "Text",
-									"widget": "string"
-								},
-								{
-									"name": "textDescription",
-									"label": "Accessible description",
-									"widget": "string",
-									"required": false
-								},
-								{
-									"name": "url",
-									"label": "URL",
-									"widget": "string"
-								},
-								{
-									"name": "newTab",
-									"label": "Open in new tab",
-									"widget": "boolean",
-									"default": false,
-									"required": false
-								}
-							]
-						},
-						{
-							"name": "showThemeToggle",
-							"label": "Show theme toggle",
-							"widget": "boolean",
-							"default": true,
-							"required": false
-						},
-						{
-							"name": "copyright",
-							"label": "Copyright text",
-							"widget": "string",
-							"required": false,
-							"hint": "Leave empty for the year and the site name."
-						},
-						{
-							"name": "credit",
-							"label": "Credit line",
-							"widget": "object",
-							"required": false,
-							"fields": [
-								{
-									"name": "text",
-									"label": "Text",
-									"widget": "string"
-								},
-								{
-									"name": "linkText",
-									"label": "Link text",
-									"widget": "string"
-								},
-								{
-									"name": "url",
-									"label": "URL",
-									"widget": "string"
-								}
-							]
-						},
-						{
-							"name": "parallax",
-							"label": "Rise into place",
-							"widget": "boolean",
-							"default": true,
-							"required": false,
-							"hint": "The content rises and grows into place as the footer is revealed."
-						}
-					]
-				},
-				{
-					"name": "footer_gnomon",
-					"label": "Footer (gnomon)",
-					"file": "src/lib/content/global/footer-gnomon.json",
-					"fields": [
-						{
-							"name": "title",
-							"label": "Title",
-							"widget": "string",
-							"required": false,
-							"hint": "The heading at the top left."
-						},
-						{
-							"name": "level",
-							"label": "Heading level",
-							"widget": "select",
-							"options": [
-								{
-									"label": "H2",
-									"value": 2
-								},
-								{
-									"label": "H3",
-									"value": 3
-								}
-							],
-							"default": 2,
-							"value_type": "int",
-							"required": false
-						},
-						{
-							"name": "cta",
-							"label": "Button",
-							"widget": "object",
-							"required": false,
-							"fields": [
-								{
-									"name": "text",
-									"label": "Text",
-									"widget": "string"
-								},
-								{
-									"name": "url",
-									"label": "URL",
-									"widget": "string",
-									"required": false,
-									"hint": "Page path (/about), anchor (#contact), or full URL."
-								},
-								{
-									"name": "newTab",
-									"label": "Open in new tab",
-									"widget": "boolean",
-									"default": false,
-									"required": false
-								},
-								{
-									"name": "textDescription",
-									"label": "Accessible description",
-									"widget": "string",
-									"required": false
-								},
-								{
-									"name": "type",
-									"label": "Style",
-									"widget": "select",
-									"options": ["solid", "outline", "underline", "text"],
-									"default": "outline",
-									"required": false
-								}
-							]
-						},
-						{
-							"name": "linksets",
-							"label": "Link columns",
-							"widget": "list",
-							"label_singular": "Column",
-							"summary": "{{fields.title}}",
-							"fields": [
-								{
-									"name": "title",
-									"label": "Title",
-									"widget": "string",
-									"required": false
-								},
-								{
-									"name": "links",
-									"label": "Links",
-									"widget": "list",
-									"label_singular": "Link",
-									"summary": "{{fields.text}}",
-									"fields": [
-										{
-											"name": "text",
-											"label": "Text",
-											"widget": "string"
-										},
-										{
-											"name": "url",
-											"label": "URL",
-											"widget": "string",
-											"hint": "Page path (/about), anchor (#contact), or full URL."
-										},
-										{
-											"name": "newTab",
-											"label": "Open in new tab",
-											"widget": "boolean",
-											"default": false,
-											"required": false
-										},
-										{
-											"name": "textDescription",
-											"label": "Accessible description",
-											"widget": "string",
-											"required": false,
-											"hint": "Optional aria-label for screen readers"
-										}
-									]
-								}
-							],
-							"max": 3,
-							"min": 1,
-							"hint": "Up to three columns of links, each with its own title."
-						},
-						{
-							"name": "socialSolid",
-							"label": "Social links as buttons",
-							"widget": "boolean",
-							"default": false,
-							"required": false,
-							"hint": "Puts each social icon in a box in the solid button style."
-						},
-						{
-							"name": "copyright",
-							"label": "Copyright",
-							"widget": "string",
-							"required": false,
-							"hint": "Leave empty for the year, the site name and \"All rights reserved.\""
-						},
-						{
-							"name": "fullScreen",
-							"label": "Full screen height",
-							"widget": "boolean",
-							"default": false,
-							"required": false
-						}
-					]
-				},
-				{
 					"name": "logo",
 					"label": "Logo",
 					"file": "src/lib/content/global/logo.json",
@@ -2674,52 +2843,6 @@
 							"label": "URL",
 							"widget": "string",
 							"hint": "The full address of the live site, without an end slash. Used for canonical links."
-						},
-						{
-							"name": "footerTemplate",
-							"label": "Footer template",
-							"widget": "select",
-							"options": [
-								{
-									"label": "Simple",
-									"value": "simple"
-								},
-								{
-									"label": "Scroll reveal",
-									"value": "scroll-reveal"
-								},
-								{
-									"label": "Gnomon",
-									"value": "gnomon"
-								}
-							],
-							"default": "simple",
-							"hint": "Which footer the site uses. Each is edited in its own Footer entry under Global."
-						},
-						{
-							"name": "headerTemplate",
-							"label": "Header template",
-							"widget": "select",
-							"options": [
-								{
-									"label": "Simple",
-									"value": "simple"
-								},
-								{
-									"label": "Island",
-									"value": "island"
-								},
-								{
-									"label": "Absolute",
-									"value": "absolute"
-								},
-								{
-									"label": "Basic",
-									"value": "basic"
-								}
-							],
-							"default": "simple",
-							"hint": "Which header the site uses. The links and buttons are shared, under Navigation. The look is edited in each header's own entry."
 						},
 						{
 							"name": "author",

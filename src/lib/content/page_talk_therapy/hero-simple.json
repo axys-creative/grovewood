@@ -1,0 +1,27 @@
+{
+	"eyebrowText": "WHY TALK THERAPY FROM GROVEWOOD MENTAL HEALTH?",
+	"title": "Since 2009, we've helped thousands along the Wasatch Front get the change they wanted",
+	"description": "Grovewood Mental Health (formerly known as Giles & Associates Family Psychology) was formed in 2009. Since then we've helped thousands of individuals, couples, families, and teens all along the Wasatch Front. We take our role as a change agent very seriously and are honored to be trusted by so many.",
+	"direction": "row",
+	"image": {
+		"src": "/images/talk-therapy-hero.webp",
+		"alt": ""
+	},
+	"cta": {
+		"primary": {
+			"text": "Frequently Asked Questions",
+			"textDescription": "Jump to the frequently asked questions",
+			"url": "#common-questions",
+			"newTab": false,
+			"iconStart": "check-circle"
+		},
+		"secondary": {
+			"text": "Call (801) 785-4622",
+			"textDescription": "Call us to schedule an appointment",
+			"url": "tel:8017854622",
+			"newTab": false,
+			"iconStart": "phone",
+			"type": "secondary"
+		}
+	}
+}

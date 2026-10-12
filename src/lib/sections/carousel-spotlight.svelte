@@ -21,7 +21,7 @@
 		autoplay?: boolean;
 		/** Holds autoplay while the mouse is over the carousel. Focus inside it always holds it. Defaults to `false`. */
 		pauseOnHover?: boolean;
-		/** Milliseconds between slides when it plays. Defaults to `2400`. */
+		/** Milliseconds between slides when it plays. Defaults to `3200`. */
 		interval?: number;
 		/** At least the height of the screen, with the content centered. Taller content still grows past it. */
 		fullScreen?: boolean;
@@ -47,7 +47,7 @@
 		loop = true,
 		autoplay = true,
 		pauseOnHover = false,
-		interval = 2400,
+		interval = 3200,
 		fullScreen = false,
 		id,
 		class: className,
@@ -205,7 +205,7 @@
 							/>
 						{/if}
 						<div class="panel">
-							<h3 class="h4">{slide.title}</h3>
+							<h3>{slide.title}</h3>
 							{#if slide.description}<p><RichText text={slide.description} /></p>{/if}
 						</div>
 					</div>
@@ -229,19 +229,27 @@
 
 <style lang="scss">
 	@use 'base/mixins';
+	@use 'base/variables';
 
 	.carousel-spotlight {
-		--slide-width: clamp(280px, 75vw, 1100px);
-		--slide-gap: 24px;
-		--slide-radius: 32px;
-		--slide-aspect: 16 / 10;
+		--slide-width: 86vw;
+		--slide-gap: 12px;
 		--inactive-opacity: 0.4;
-		--panel-offset: 24px;
-		--panel-radius: 20px;
-		--panel-width: 440px;
+		--panel-offset: 16px;
 		--content: min(var(--content-width), 100% - var(--body-padding) * 2);
 
 		overflow-x: clip;
+
+		@include mixins.min-md {
+			--slide-width: 68vw;
+			--slide-gap: 16px;
+		}
+
+		@include mixins.min-lg {
+			--slide-width: min(60rem, 60vw);
+			--slide-gap: 24px;
+			--panel-offset: 24px;
+		}
 	}
 
 	.full-screen {
@@ -253,14 +261,23 @@
 	.inner {
 		display: flex;
 		flex-direction: column;
-		gap: 48px;
+		gap: 40px;
 		width: 100%;
 		padding-block: var(--body-padding-double);
+
+		@include mixins.min-lg {
+			gap: 48px;
+		}
 	}
 
 	.header {
 		width: var(--content);
 		margin-inline: auto;
+		margin-block-end: 24px;
+
+		@include mixins.min-lg {
+			margin-block-end: 48px;
+		}
 	}
 
 	.track {
@@ -292,16 +309,18 @@
 
 	.slide {
 		position: relative;
+		display: flex;
 		flex: 0 0 var(--slide-width);
-		aspect-ratio: var(--slide-aspect);
+		align-items: flex-start;
+		min-height: clamp(520px, 56vh, 720px);
 		overflow: clip;
-		border-radius: var(--slide-radius);
+		border-radius: var(--radius-lg);
 		background: var(--color-surface);
 		opacity: var(--inactive-opacity);
 		scroll-snap-align: center;
 
 		@include mixins.mq-motion-allow {
-			transition: opacity 0.5s var(--ease);
+			transition: opacity 0.24s ease;
 		}
 
 		&.active {
@@ -309,29 +328,39 @@
 		}
 
 		img {
+			position: absolute;
+			inset: 0;
 			display: block;
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			pointer-events: none;
 		}
 	}
 
 	.panel {
-		position: absolute;
-		inset: auto auto var(--panel-offset) var(--panel-offset);
-		width: min(var(--panel-width), 100% - var(--panel-offset) * 2);
-		padding: 20px 24px;
-		border-radius: var(--panel-radius);
-		background: var(--color-glass);
-		backdrop-filter: blur(20px) saturate(1.4);
+		@include variables.theme(dark);
+
+		position: relative;
+		width: min(100%, 75%);
+		margin: var(--panel-offset);
+		padding: var(--panel-offset);
+		border-radius: var(--radius);
+		background: rgb(0 0 0 / 0.75);
+		backdrop-filter: blur(8px);
 
 		h3,
 		p {
 			margin: 0;
 		}
 
+		h3 {
+			@include mixins.h3;
+			margin-block-end: 16px;
+		}
+
 		p {
-			margin-block-start: 8px;
+			@include mixins.body-small;
 		}
 	}
 
@@ -339,7 +368,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 8px;
+		gap: 4px;
+
+		@include mixins.min-lg {
+			gap: 8px;
+		}
 
 		&[hidden] {
 			display: none;
@@ -352,15 +385,15 @@
 		padding: 0;
 		border: 0;
 		border-radius: 12px;
-		background: var(--color-accent);
-		opacity: 0.3;
+		background: var(--color-text);
+		opacity: 0.25;
 		cursor: pointer;
 
 		@include mixins.mq-motion-allow {
 			transition:
-				width 0.4s var(--ease),
-				opacity var(--duration) var(--ease),
-				var(--transition-scale);
+				width 0.24s ease,
+				opacity 0.24s ease,
+				scale 0.24s ease;
 		}
 
 		&[aria-current='true'] {
@@ -377,6 +410,10 @@
 		@include mixins.mq-mouse {
 			&:hover {
 				scale: 1.25;
+
+				&[aria-current='true'] {
+					scale: 1.125;
+				}
 			}
 		}
 	}

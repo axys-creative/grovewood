@@ -130,6 +130,7 @@
 
 	.body {
 		gap: var(--space-paragraph-cta-group);
+		width: 100%;
 	}
 
 	.description {

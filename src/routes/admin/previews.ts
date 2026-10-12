@@ -2,6 +2,7 @@ import type { Component } from 'svelte';
 import globalCss from '../../styles/styles.scss?inline';
 import CarouselSpotlight from '$lib/sections/carousel-spotlight.svelte';
 import CarouselTestimonials from '$lib/sections/carousel-testimonials.svelte';
+import CommonQuestions from '$lib/sections/common-questions.svelte';
 import HeroSimple from '$lib/sections/hero-simple.svelte';
 import ImageGrid from '$lib/sections/image-grid.svelte';
 import Stats from '$lib/sections/stats.svelte';
@@ -45,6 +46,14 @@ const previews: Record<string, Preview> = {
 				autoplay: false
 			};
 		}
+	},
+	common_questions: {
+		component: CommonQuestions as unknown as Section,
+		props: (data) => ({
+			...data,
+			cta: data.cta ? withCta(data) : undefined,
+			items: data.items ?? []
+		})
 	},
 	carousel_testimonials: {
 		component: CarouselTestimonials as unknown as Section,

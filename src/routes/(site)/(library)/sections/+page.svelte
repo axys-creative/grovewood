@@ -22,7 +22,6 @@
 	} from '$lib/library/component-props';
 	import LibrarySection from '$lib/library/library-section.svelte';
 	import CircleHighlight from '$lib/sections/circle-highlight.svelte';
-	import carouselSpotlight from '$lib/content/page_sections/carousel-spotlight.json';
 	import CarouselSpotlight from '$lib/sections/carousel-spotlight.svelte';
 	import CarouselTestimonials from '$lib/sections/carousel-testimonials.svelte';
 	import CarouselTunnel from '$lib/sections/carousel-tunnel.svelte';
@@ -314,6 +313,64 @@
 			newTab: true,
 			iconEnd: 'chevron-right'
 		}
+	};
+
+	const carouselSpotlight = {
+		eyebrowText: 'Featured',
+		eyebrowIcon: '',
+		title: 'Work worth a closer look',
+		description: 'Swipe, drag or use the dots to move between projects.',
+		cta: {
+			primary: {
+				text: '',
+				textDescription: '',
+				url: '',
+				newTab: false,
+				iconEnd: ''
+			},
+			secondary: {
+				text: '',
+				textDescription: '',
+				url: '',
+				newTab: false,
+				iconEnd: ''
+			}
+		},
+		pauseOnHover: false,
+		slides: [
+			{
+				title: 'Discover',
+				description: 'Workshops and research to understand the real problem.',
+				image: {
+					src: '/images/img-sample-1.jpg',
+					alt: 'Sample image 1'
+				}
+			},
+			{
+				title: 'Define',
+				description: 'Turning research into a clear, scoped brief.',
+				image: {
+					src: '/images/img-sample-2.jpg',
+					alt: 'Sample image 2'
+				}
+			},
+			{
+				title: 'Design',
+				description: 'Exploring directions and refining the chosen one.',
+				image: {
+					src: '/images/img-sample-3.jpg',
+					alt: 'Sample image 3'
+				}
+			},
+			{
+				title: 'Build',
+				description: 'Engineering the approved design into a real product.',
+				image: {
+					src: '/images/img-sample-4.jpg',
+					alt: 'Sample image 4'
+				}
+			}
+		]
 	};
 </script>
 

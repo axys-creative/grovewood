@@ -123,11 +123,25 @@
 			transition: border-color var(--duration) var(--ease);
 		}
 
+		&:first-of-type {
+			border-block-start: 1px solid var(--color-border);
+		}
+
 		&:has(.trigger:hover),
 		&:has(.trigger:focus-visible) {
 			@media (hover: hover) and (pointer: fine) {
 				border-color: var(--color-accent);
+
+				.title {
+					color: var(--color-accent);
+				}
 			}
+		}
+	}
+
+	.title {
+		@include mixins.mq-motion-allow {
+			transition: color var(--duration) var(--ease);
 		}
 	}
 
@@ -137,13 +151,14 @@
 	}
 
 	.trigger {
-		@include mixins.body-large;
+		@include mixins.body;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 24px;
 		width: 100%;
-		padding: 12px 0;
+		padding: 32px 0;
+		font-weight: 600;
 		border: 0;
 		background: none;
 		color: inherit;
@@ -157,7 +172,7 @@
 
 	.trigger :global(.marker),
 	.plus {
-		--icon-size: 2.5ch;
+		--icon-size: 1.2em;
 
 		flex-shrink: 0;
 
@@ -217,7 +232,7 @@
 		&:not([inert]) {
 			grid-template-rows: 1fr;
 			visibility: visible;
-			padding-block-end: 12px;
+			padding-block-end: 32px;
 		}
 	}
 
