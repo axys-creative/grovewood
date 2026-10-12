@@ -147,16 +147,16 @@
 	.solid,
 	.outline {
 		padding: var(--btn-padding);
-		border: 1px solid var(--color-accent);
+		border: 1px solid var(--btn-bg);
 	}
 
 	.solid {
-		background: var(--color-accent);
-		color: var(--color-on-accent);
+		background: var(--btn-bg);
+		color: var(--btn-text);
 
 		@include mixins.desktop-hover {
 			background: transparent;
-			color: var(--color-accent-text);
+			color: var(--btn-hover-text);
 		}
 	}
 
@@ -164,11 +164,8 @@
 		color: var(--color-text);
 
 		@include mixins.desktop-hover {
-			color: var(--color-accent-text);
-
-			@include mixins.mq-motion-allow {
-				scale: 0.96;
-			}
+			background: var(--btn-bg);
+			color: var(--btn-text);
 		}
 	}
 
@@ -224,6 +221,7 @@
 
 	.underline {
 		color: var(--color-text);
+		font-weight: var(--btn-font-weight-link);
 
 		.label::before {
 			content: '';
@@ -249,10 +247,11 @@
 	}
 
 	.text {
-		color: var(--color-accent-text);
+		color: var(--btn-link);
+		font-weight: var(--btn-font-weight-link);
 
 		@include mixins.desktop-hover {
-			color: var(--color-text);
+			color: var(--btn-link-hover);
 		}
 	}
 

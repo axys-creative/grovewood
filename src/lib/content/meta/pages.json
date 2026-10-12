@@ -3,14 +3,49 @@
 		{
 			"path": "/",
 			"title": "Home",
-			"description": "",
-			"ogImage": "",
+			"description": "Home page description",
+			"ogImage": "/images/og-image.png",
+			"crawlPage": true
+		},
+		{
+			"path": "/talk-therapy",
+			"title": "Talk Therapy",
+			"description": "Talk therapy page description",
+			"ogImage": "/images/og-image.png",
+			"crawlPage": true
+		},
+		{
+			"path": "/medication-management",
+			"title": "Medication Management",
+			"description": "Medication management page description",
+			"ogImage": "/images/og-image.png",
+			"crawlPage": true
+		},
+		{
+			"path": "/neurostar-tms",
+			"title": "NeuroStar TMS",
+			"description": "NeuroStar TMS page description",
+			"ogImage": "/images/og-image.png",
+			"crawlPage": true
+		},
+		{
+			"path": "/assessment",
+			"title": "Psychological Assessment",
+			"description": "Psychological assessment page description",
+			"ogImage": "/images/og-image.png",
+			"crawlPage": true
+		},
+		{
+			"path": "/team",
+			"title": "Our Team",
+			"description": "Meet the clinicians and staff at Grovewood Mental Health.",
+			"ogImage": "/images/og-image.png",
 			"crawlPage": true
 		},
 		{
 			"path": "/blog",
-			"title": "Blog",
-			"description": "",
+			"title": "Blog Archive",
+			"description": "Blog archive description here",
 			"ogImage": "",
 			"crawlPage": true
 		},
@@ -73,7 +108,7 @@
 		{
 			"path": "/404",
 			"title": "Page Not Found",
-			"description": "The page you are looking for cannot be found. Check the address or return to the home page.",
+			"description": "The page you are looking for cannot be found. Please check the URL or return to the home page.",
 			"ogImage": "",
 			"crawlPage": false
 		}

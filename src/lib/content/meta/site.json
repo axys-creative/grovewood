@@ -1,13 +1,13 @@
 {
-	"siteName": "axys template",
-	"url": "https://axys-template.netlify.app",
-	"headerTemplate": "absolute",
+	"siteName": "Grovewood Mental Health",
+	"url": "https://grovewood.netlify.app",
+	"headerTemplate": "simple",
 	"footerTemplate": "simple",
-	"author": "Sample Author",
-	"contactEmail": "info@sample.com",
-	"themeColor": "#0a0a0a",
-	"faviconLight": "/images/favicon-light-theme.svg",
-	"faviconDark": "/images/favicon-dark-theme.svg",
-	"description": "",
-	"ogImage": ""
+	"author": "Grovewood Mental Health",
+	"contactEmail": "info@grovewoodutah.com",
+	"themeColor": "#e9f4ea",
+	"faviconLight": "/images/favicon-dark.svg",
+	"faviconDark": "/images/favicon-light.svg",
+	"description": "Open Graph Description Here",
+	"ogImage": "/images/og-image.png"
 }

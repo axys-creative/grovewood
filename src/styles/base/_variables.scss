@@ -1,16 +1,17 @@
-$font-heading: 'Funnel Display', system-ui, sans-serif;
-$font-body: 'Funnel Display', system-ui, sans-serif;
+$font-heading: 'Rethink Sans', system-ui, sans-serif;
+$font-body: 'Commissioner', system-ui, sans-serif;
 $font-mono: 'Geist Mono', ui-monospace, Menlo, monospace;
 
-$black: #0a0a0a;
+$black: #0f0f0f;
 $grey-darker: #1a1a1a;
 $grey-dark: #292929;
-$grey-light: #ececec;
-$grey-lighter: #f1f1f1;
-$white: #fafafa;
-$coral: #e48c66;
+$grey-green: #a9b2aa;
+$grey-light: #e0e9e0;
+$white: #fbfcfd;
+$green: #00bc7f;
+$green-soft: #e9f4ea;
+$green-heavy: #00483b;
 $blue: #ada4e3;
-$green: #a4d1a2;
 
 // `--display-light` and `--display-dark` are the `display` of an element shown only in that theme (a logo file).
 @mixin dark-tokens {
@@ -23,7 +24,7 @@ $green: #a4d1a2;
 	--color-text: #{$white};
 	--color-text-muted: #{$grey-light};
 	--color-border: #{$grey-dark};
-	--color-accent-text: #{$coral};
+	--color-accent-text: #{$green};
 	--color-error: #dc143c;
 	--color-glass: rgb(0 0 0 / 0.25);
 }
@@ -33,12 +34,12 @@ $green: #a4d1a2;
 	--display-light: block;
 	--display-dark: none;
 
-	--color-bg: #{$white};
-	--color-surface: #{$grey-lighter};
+	--color-bg: #{$green-soft};
+	--color-surface: #{$grey-light};
 	--color-text: #{$black};
 	--color-text-muted: #{$grey-dark};
-	--color-border: #{$grey-light};
-	--color-accent-text: #b3501f;
+	--color-border: #{$grey-green};
+	--color-accent-text: #{$green-heavy};
 	--color-error: #dc143c;
 	--color-glass: rgb(255 255 255 / 0.25);
 }
@@ -66,45 +67,54 @@ $green: #a4d1a2;
 	}
 }
 
+// Grovewood is a light site: `data-theme="light"` is set on `<html>` in app.html and there is no toggle.
 :root {
-	@include dark-tokens;
+	@include light-tokens;
 
 	--font-heading: #{$font-heading};
 	--font-body: #{$font-body};
 	--font-mono: #{$font-mono};
 
-	--color-accent: #{$coral};
+	--color-accent: #{$green};
 	// Text and icons on an accent background are the same in both themes.
-	--color-on-accent: #{$white};
+	--color-on-accent: #{$black};
 	--color-secondary: #{$blue};
 	--color-tertiary: #{$green};
 	--color-success: #{$green};
 	--color-info: #{$blue};
 	--color-warning: #e8b84f;
 
-	--content-width: 1280px;
+	--content-width: 1440px;
 
-	--body-padding: 64px;
+	--body-padding: 48px;
 	--body-padding-double: calc(var(--body-padding) * 2);
 
 	--cta-group-gap: 24px;
 
-	--radius: 8px;
-	--radius-btn: 4px;
+	--radius: 16px;
+	--radius-btn: 24px;
 
 	--btn-font-size: 16px;
-	--btn-font-weight: 500;
-	--btn-padding: 8px 16px;
-	--btn-padding-sm: 6px 12px;
-	--btn-padding-lg: 12px 24px;
+	--btn-font-weight: 600;
+	--btn-font-weight-link: 450; // underline and text buttons
+	--btn-padding: 15px 30px;
+	--btn-padding-sm: 12px 18px;
+	--btn-padding-lg: 18px 36px;
 	--btn-padding-icon: 8px;
 	--btn-gap: 0.5ch;
 
-	--space-eyebrow-title: 4px;
-	--space-title-paragraph: 24px;
-	--space-paragraph-cta-group: 12px;
+	// Solid and outline buttons, plus the text button. Grovewood's buttons are black, not the brand green.
+	--btn-bg: #{$black};
+	--btn-text: #{$white};
+	--btn-hover-text: #{$black};
+	--btn-link: var(--color-text);
+	--btn-link-hover: var(--color-accent-text);
+
+	--space-eyebrow-title: 16px;
+	--space-title-paragraph: 32px;
+	--space-paragraph-cta-group: 48px;
 	--space-copy-columns: 48px; // between the heading and the description in a row layout
-	--max-width-text: 650px;
+	--max-width-text: 750px;
 
 	--float-offset: 16px;
 	--z-nav: 3;
@@ -118,30 +128,19 @@ $green: #a4d1a2;
 	--transition-scale: scale var(--duration) var(--ease);
 }
 
-@media (max-width: 1152px) {
+@media (max-width: 1440px) {
 	:root {
-		--body-padding: 48px;
+		--body-padding: 24px;
 	}
 }
 
 @media (max-width: 1024px) {
 	:root {
-		--body-padding: 24px;
+		--body-padding: 16px;
 		--float-offset: 12px;
 	}
 }
 
-// Without JS, follow the OS; the inline script in app.html sets data-theme otherwise.
-@media (prefers-color-scheme: light) {
-	:root:not([data-theme]) {
-		@include light-tokens;
-	}
-}
-
-:root[data-theme='light'] {
-	@include light-tokens;
-}
-
 :root[data-theme='dark'] {
-	color-scheme: dark;
+	@include dark-tokens;
 }

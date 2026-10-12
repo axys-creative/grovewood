@@ -38,6 +38,10 @@
 		align-items: center;
 		gap: 8px;
 		color: var(--color-accent-text);
+		font-size: 14px;
+		font-weight: 500;
+		letter-spacing: 0;
+		text-transform: uppercase;
 	}
 
 	.eyebrow.column {

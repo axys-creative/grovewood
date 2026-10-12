@@ -3,13 +3,13 @@
 	"backend": {
 		"name": "git-gateway",
 		"branch": "main",
-		"repo": "https://github.com/axys-creative/axys-template.git"
+		"repo": "https://github.com/AXYS-Creative/grovewood.git"
 	},
 	"local_backend": true,
 	"media_folder": "static/uploads",
 	"public_folder": "/uploads",
-	"site_url": "https://axys-template.netlify.app",
-	"display_url": "https://axys-template.netlify.app",
+	"site_url": "https://grovewood.netlify.app",
+	"display_url": "https://grovewood.netlify.app",
 	"logo_url": "/images/admin/admin-logo.svg",
 	"collections": [
 		{
