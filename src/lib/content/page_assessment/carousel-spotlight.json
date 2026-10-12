@@ -1,0 +1,56 @@
+{
+	"eyebrowText": "ASSESSMENT SERVICES",
+	"title": "We offer a wide range of assessments for a variety of questions",
+	"description": "There are many reasons to seek assessment. Below are some of the common categories of assessment we offer. Call us today if you don't see the type of testing you are looking for.",
+	"cta": {
+		"primary": {
+			"text": "Schedule an assessment",
+			"textDescription": "Call to schedule an assessment",
+			"url": "tel:8017854622",
+			"newTab": false,
+			"iconStart": "phone"
+		}
+	},
+	"slides": [
+		{
+			"title": "Initial clinical interview",
+			"description": "A detailed conversation to map your history, current symptoms, and what you want out of the assessment. No shortcuts.",
+			"image": {
+				"src": "/images/assessment-carousel-1.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Standardized testing",
+			"description": "Validated instruments selected for your specific referral question — mood, cognition, personality, or neuropsychological functioning.",
+			"image": {
+				"src": "/images/assessment-carousel-2.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Behavioral observation",
+			"description": "In-session observation of how you approach tasks, handle frustration, and organize your thinking. These patterns rarely show up on a self-report.",
+			"image": {
+				"src": "/images/assessment-carousel-3.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Collateral review",
+			"description": "We review previous records, school reports, or input from family when you authorize it — every data point that builds a complete picture.",
+			"image": {
+				"src": "/images/assessment-carousel-4.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Integrated report & feedback",
+			"description": "A written report with clear diagnostic findings, recommendations, and a feedback session where we walk through results and answer every question.",
+			"image": {
+				"src": "/images/assessment-carousel-5.webp",
+				"alt": ""
+			}
+		}
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"title": "The best time to get assessed was a month ago. The second best time is today.",
+	"description": "No referral required, no waitlist games. Call or email Grovewood Mental Health, and we'll set your consultation within the week.",
+	"cta": {
+		"primary": {
+			"text": "Call (801) 785-4622",
+			"textDescription": "Call (801) 785-4622 to schedule",
+			"url": "tel:8017854622",
+			"newTab": false,
+			"iconStart": "phone"
+		},
+		"secondary": {
+			"text": "Email us",
+			"textDescription": "Send us an email",
+			"url": "mailto:info@grovewoodutah.com",
+			"newTab": false,
+			"type": "secondary",
+			"iconStart": "mail"
+		}
+	}
+}
