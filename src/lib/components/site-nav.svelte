@@ -26,6 +26,10 @@
 		strapIcon?: string;
 		/** The panel's background: a solid color, a translucent blur, or the glass attachment (refraction in Chrome, blur elsewhere). */
 		surface?: 'solid' | 'blur' | 'glass';
+		/** The `slide` variant starts this far from the top of the screen (a CSS length), so a bar above it stays in view. */
+		top?: string;
+		/** Keeps the `slide` variant a rounded panel on small screens too, instead of covering the whole width. */
+		rounded?: boolean;
 		/** Called when a link inside is chosen. */
 		onlink?: () => void;
 	};
@@ -57,6 +61,8 @@
 		strapIcon = 'orbit',
 		socialLabel = 'Connect with us',
 		surface = 'solid',
+		top,
+		rounded = false,
 		onlink
 	}: SiteNavProps = $props();
 
@@ -104,6 +110,9 @@
 <nav
 	{id}
 	class="site-nav {variant}"
+	class:rounded
+	style:--nav-top={top}
+	style:--nav-pad-top={top ? '40px' : undefined}
 	class:open
 	class:always
 	class:blur={surface === 'blur'}
@@ -499,7 +508,7 @@
 
 	// The slide variant: a panel from the right with rounded left corners, over the page and not over a backdrop.
 	.slide {
-		inset: 0 0 0 auto;
+		inset: var(--nav-top, 0) 0 0 auto;
 		width: min(75vw, 640px);
 		overflow: hidden;
 		border-radius: 28px 0 0 28px;
@@ -518,6 +527,12 @@
 			width: 100%;
 			border-radius: 0;
 			border-inline-start: 0;
+
+			&.rounded {
+				width: min(88vw, 640px);
+				border-radius: 28px 0 0 28px;
+				border-inline-start: 1px solid var(--color-border);
+			}
 		}
 
 		&.open {
@@ -532,7 +547,7 @@
 		align-items: flex-start;
 		gap: 32px;
 		min-height: 0;
-		padding: 112px var(--body-padding) 24px;
+		padding: var(--nav-pad-top, 112px) var(--body-padding) 24px;
 		overflow: auto;
 
 		@include mixins.max-md {
@@ -574,8 +589,10 @@
 	.corner {
 		display: flex;
 		flex: none;
+		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
+		gap: 16px;
 		padding-block-end: 24px;
 		padding-inline-start: var(--body-padding);
 
@@ -591,7 +608,8 @@
 	// Pushed past the panel's right edge by the strap's own bleed, which the panel then clips. It slides in a moment
 	// after the panel, from beyond that edge.
 	.corner :global(.strap) {
-		margin-inline-end: -40px;
+		flex: none;
+		margin-inline: auto -40px;
 		translate: 100% 0;
 
 		@include mixins.mq-motion-allow {

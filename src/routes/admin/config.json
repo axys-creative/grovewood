@@ -6020,6 +6020,30 @@
 							"hint": "The style of the header links and the mobile menu links."
 						},
 						{
+							"name": "mobileNav",
+							"label": "Mobile menu",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Slide-in panel (rounded, from the right)",
+									"value": "slide"
+								},
+								{
+									"label": "Full screen",
+									"value": "overlay"
+								}
+							],
+							"default": "overlay",
+							"hint": "How the menu opens on small screens."
+						},
+						{
+							"name": "strapIcon",
+							"label": "Strap icon",
+							"widget": "string",
+							"required": false,
+							"hint": "Icon file name without .svg, shown in the round cut-out of the slide-in panel's social strap (e.g. orbit)."
+						},
+						{
 							"name": "navButton",
 							"label": "Mobile menu button",
 							"widget": "object",

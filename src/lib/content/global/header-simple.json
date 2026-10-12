@@ -11,5 +11,7 @@
 		"symbol": "burger",
 		"shape": "square",
 		"type": "button"
-	}
+	},
+	"mobileNav": "slide",
+	"strapIcon": "orbit"
 }

@@ -4,6 +4,10 @@
 
 	export type HeaderSimpleProps = HeaderNavProps & {
 		linkPlacement?: 'start' | 'center' | 'end';
+		/** `overlay` fills the screen. `slide` is a rounded panel from the right, under the header, with the social links in a strap. */
+		mobileNav?: 'overlay' | 'slide';
+		/** The icon in the strap's loop, for the `slide` navigation. */
+		strapIcon?: string;
 		/** The button type of the header and mobile navigation links. Defaults to `underline`. */
 		linkType?: ButtonProps['type'];
 		float?: boolean;
@@ -33,6 +37,8 @@
 		socialLinks = [],
 		linkPlacement = 'end',
 		linkType = 'underline',
+		mobileNav = 'overlay',
+		strapIcon = 'orbit',
 		float = false,
 		blur = false,
 		glass = false,
@@ -51,9 +57,23 @@
 
 	let open = $state(false);
 	let buttonWrapper = $state<HTMLElement>();
+	let headerElement = $state<HTMLElement>();
+	// Where the sliding panel starts: just under the bar, wherever the bar is when it opens.
+	let navTop = $state('0px');
 
-	const toggle = () => (open = !open);
+	const toggle = () => {
+		if (!open && headerElement)
+			navTop = `${Math.round(headerElement.getBoundingClientRect().bottom)}px`;
+		open = !open;
+	};
 	const close = () => (open = false);
+
+	// The sliding panel has no backdrop, so a press anywhere beside it closes it.
+	const onPointerdown = (event: PointerEvent) => {
+		if (!open || mobileNav !== 'slide') return;
+		const target = event.target as Element | null;
+		if (!target?.closest('.site-nav, .nav-button')) close();
+	};
 
 	$effect(() => {
 		const query = matchMedia('(min-width: 1024px)');
@@ -69,7 +89,7 @@
 	};
 </script>
 
-<svelte:window onkeydown={onKeydown} />
+<svelte:window onkeydown={onKeydown} onpointerdown={onPointerdown} />
 
 <header
 	class="header page-grid {linkPlacement}"
@@ -77,6 +97,7 @@
 	class:blur={blur && !glass}
 	class:has-glass={glass}
 	data-nav-open={open || undefined}
+	bind:this={headerElement}
 	{@attach hideOnScroll ? watchScroll() : undefined}
 >
 	{#if glass}<div class="glass-layer" aria-hidden="true" {@attach glassEffect()}></div>{/if}
@@ -124,6 +145,10 @@
 	{socialLinks}
 	{linkType}
 	socialLabel="Connect with us!"
+	variant={mobileNav}
+	{strapIcon}
+	top={mobileNav === 'slide' ? navTop : undefined}
+	rounded={mobileNav === 'slide'}
 	onlink={close}
 />
 
