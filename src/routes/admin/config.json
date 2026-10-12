@@ -313,7 +313,7 @@
 							"label": "Picture",
 							"widget": "object",
 							"required": false,
-							"hint": "Shown beside the text on wide screens, below it on small ones.",
+							"hint": "Beside the text on wide screens with the Row layout; below the text at full width with the Column layout.",
 							"fields": [
 								{
 									"name": "src",
@@ -336,11 +336,11 @@
 							"required": false,
 							"options": [
 								{
-									"label": "Column (centered)",
+									"label": "Column (centered copy, picture full width below)",
 									"value": "column"
 								},
 								{
-									"label": "Row (text left)",
+									"label": "Row (text left, picture right)",
 									"value": "row"
 								}
 							],
@@ -1034,7 +1034,7 @@
 							"label": "Picture",
 							"widget": "object",
 							"required": false,
-							"hint": "Shown beside the text on wide screens, below it on small ones.",
+							"hint": "Beside the text on wide screens with the Row layout; below the text at full width with the Column layout.",
 							"fields": [
 								{
 									"name": "src",
@@ -1057,11 +1057,11 @@
 							"required": false,
 							"options": [
 								{
-									"label": "Column (centered)",
+									"label": "Column (centered copy, picture full width below)",
 									"value": "column"
 								},
 								{
-									"label": "Row (text left)",
+									"label": "Row (text left, picture right)",
 									"value": "row"
 								}
 							],
@@ -2067,7 +2067,7 @@
 							"label": "Picture",
 							"widget": "object",
 							"required": false,
-							"hint": "Shown beside the text on wide screens, below it on small ones.",
+							"hint": "Beside the text on wide screens with the Row layout; below the text at full width with the Column layout.",
 							"fields": [
 								{
 									"name": "src",
@@ -2090,11 +2090,11 @@
 							"required": false,
 							"options": [
 								{
-									"label": "Column (centered)",
+									"label": "Column (centered copy, picture full width below)",
 									"value": "column"
 								},
 								{
-									"label": "Row (text left)",
+									"label": "Row (text left, picture right)",
 									"value": "row"
 								}
 							],
@@ -3187,7 +3187,7 @@
 							"label": "Picture",
 							"widget": "object",
 							"required": false,
-							"hint": "Shown beside the text on wide screens, below it on small ones.",
+							"hint": "Beside the text on wide screens with the Row layout; below the text at full width with the Column layout.",
 							"fields": [
 								{
 									"name": "src",
@@ -3210,11 +3210,11 @@
 							"required": false,
 							"options": [
 								{
-									"label": "Column (centered)",
+									"label": "Column (centered copy, picture full width below)",
 									"value": "column"
 								},
 								{
-									"label": "Row (text left)",
+									"label": "Row (text left, picture right)",
 									"value": "row"
 								}
 							],
@@ -4220,7 +4220,7 @@
 							"label": "Picture",
 							"widget": "object",
 							"required": false,
-							"hint": "Shown beside the text on wide screens, below it on small ones.",
+							"hint": "Beside the text on wide screens with the Row layout; below the text at full width with the Column layout.",
 							"fields": [
 								{
 									"name": "src",
@@ -4243,11 +4243,11 @@
 							"required": false,
 							"options": [
 								{
-									"label": "Column (centered)",
+									"label": "Column (centered copy, picture full width below)",
 									"value": "column"
 								},
 								{
-									"label": "Row (text left)",
+									"label": "Row (text left, picture right)",
 									"value": "row"
 								}
 							],

@@ -14,13 +14,14 @@
 		id?: string;
 		compact?: boolean;
 		fullScreen?: boolean;
-		/** A picture beside the copy (below it on small screens). */
+		/** A picture beside the copy (below it on small screens), or below it at full width with `column`. */
 		image?: { src: string; alt?: string };
-		/** `column` centers the copy. `row` aligns it to the start, with the picture beside it from `lg` up. */
+		/** `column` centers the copy, with a picture below it at full width. `row` aligns it to the start, with the picture beside it from `lg` up. */
 		direction?: 'column' | 'row';
 	} = $props();
 
-	const row = $derived(direction === 'row' || !!image);
+	const row = $derived(direction === 'row');
+	const stacked = $derived(!!image && !row);
 </script>
 
 <section
@@ -29,6 +30,7 @@
 	class:compact
 	class:full-screen={fullScreen && !compact}
 	class:row
+	class:stacked
 	class:has-image={!!image}
 >
 	<div class="inner">
@@ -39,7 +41,9 @@
 		{#if image?.src}
 			<div class="media">
 				<img
-					{...imageProps(image.src, { sizes: '(min-width: 1024px) 50vw, 100vw' })}
+					{...imageProps(image.src, {
+						sizes: stacked ? '(min-width: 1440px) 1344px, 100vw' : '(min-width: 1024px) 50vw, 100vw'
+					})}
 					alt={image.alt ?? ''}
 					loading="eager"
 					fetchpriority="high"
@@ -95,7 +99,7 @@
 		width: 100%;
 	}
 
-	.has-image .copy {
+	.row.has-image .copy {
 		margin-block: 64px;
 	}
 
@@ -116,6 +120,26 @@
 		}
 	}
 
+	// Centered copy with room around it, then the picture across the whole width. It may run past the bottom of the
+	// screen; the top of it shows.
+	.stacked {
+		align-items: start;
+		min-height: 0;
+		padding-block: clamp(96px, 14vh, 176px) var(--body-padding-double);
+
+		.inner {
+			gap: clamp(64px, 9vh, 112px);
+		}
+
+		.media {
+			max-height: none;
+
+			img {
+				height: auto;
+			}
+		}
+	}
+
 	@include mixins.min-lg {
 		.row .inner {
 			flex-direction: row;
@@ -123,14 +147,14 @@
 			justify-content: flex-start;
 		}
 
-		.has-image .copy,
-		.has-image .media {
+		.row.has-image .copy,
+		.row.has-image .media {
 			flex: 1 1 auto;
 			width: 100%;
 			max-width: 50%;
 		}
 
-		.has-image.full-screen .media {
+		.row.has-image.full-screen .media {
 			height: min(var(--media-max), calc(var(--section-height) - var(--body-padding-double) * 2));
 		}
 	}
