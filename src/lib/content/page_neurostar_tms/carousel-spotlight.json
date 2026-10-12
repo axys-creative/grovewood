@@ -1,0 +1,71 @@
+{
+	"eyebrowText": "TMS CONSULTATIONS",
+	"title": "Get the full picture of TMS at Grovewood Mental Health",
+	"description": "We break down what transcranial magnetic stimulation involves, from the initial consultation, benefits investigation, securing prior authorization, through the full treatment course.",
+	"cta": {
+		"primary": {
+			"text": "Call for a consultation",
+			"textDescription": "Call to schedule a TMS consultation",
+			"url": "tel:8017854622",
+			"newTab": false,
+			"iconStart": "phone"
+		}
+	},
+	"slides": [
+		{
+			"title": "Precision targeting",
+			"description": "Our coil placement targets the left prefrontal cortex using evidence-based protocols, not guesswork.",
+			"image": {
+				"src": "/images/neurostar-tms-carousel-1.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Session structure",
+			"description": "Each session lasts about 20 minutes. You sit in a chair, awake and alert, with no sedation needed.",
+			"image": {
+				"src": "/images/neurostar-tms-carousel-2.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Full treatment course",
+			"description": "A standard course runs five days a week for four to six weeks, with tapering sessions as response stabilizes.",
+			"image": {
+				"src": "/images/neurostar-tms-carousel-3.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "No recovery time",
+			"description": "You drive yourself to and from appointments. There is no downtime, no needles, and no systemic side effects.",
+			"image": {
+				"src": "/images/neurostar-tms-carousel-4.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Ongoing monitoring",
+			"description": "We track your PHQ-9 scores weekly and adjust parameters based on your response data.",
+			"image": {
+				"src": "/images/neurostar-tms-carousel-5.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Treating Depression Where It Starts",
+			"description": "There are specific areas in your brain that control mood. When synapses in those mood-regulating areas are underactive, connections are broken and depression can result. NeuroStar revitalizes those dormant synapses, \"waking up\" the brain to function as it was meant to.",
+			"image": {
+				"src": "/images/neurostar-tms-carousel-6.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "TMS by the numbers",
+			"image": {
+				"src": "/images/neurostar-tms-carousel-7.webp",
+				"alt": ""
+			}
+		}
+	]
+}

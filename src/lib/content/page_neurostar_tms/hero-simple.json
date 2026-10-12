@@ -1,0 +1,27 @@
+{
+	"eyebrowText": "WHY NEUROSTAR TMS FROM GROVEWOOD MENTAL HEALTH?",
+	"title": "NeuroStar TMS: Relief when meds don’t work",
+	"description": "Here’s the good news we love to share: 83% of patients who complete treatment with NeuroStar TMS report a reduction of their depression symptoms. A whopping 62% report a REMISSION of their symptoms, which mean they no longer meet the diagnostic criteria for depression! With outcomes like these, we can’t stay quiet.{.br}{.br}Does it hurt? Does it work? Will my insurance pay for it?",
+	"direction": "row",
+	"image": {
+		"src": "/images/neurostar-tms-hero.webp",
+		"alt": ""
+	},
+	"cta": {
+		"primary": {
+			"text": "See if you qualify",
+			"textDescription": "Take the depression screening to see if you qualify for TMS",
+			"url": "https://phq9web.azurewebsites.net/PHQ9/Survey/86472",
+			"newTab": true,
+			"iconStart": "check-circle"
+		},
+		"secondary": {
+			"text": "Call Grovewood",
+			"textDescription": "Call Grovewood to schedule an appointment",
+			"url": "tel:8017854622",
+			"newTab": false,
+			"type": "secondary",
+			"iconStart": "phone"
+		}
+	}
+}

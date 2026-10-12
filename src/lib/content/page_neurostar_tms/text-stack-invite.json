@@ -1,0 +1,21 @@
+{
+	"title": "Schedule a TMS consultation at Grovewood Mental Health",
+	"description": "We’ll answer your questions, explain the protocol, and help you decide if TMS is the right next step for you–no pressure, just answers",
+	"cta": {
+		"primary": {
+			"text": "Call (801) 785-4622",
+			"textDescription": "Call (801) 785-4622 to schedule",
+			"url": "tel:8017854622",
+			"newTab": false,
+			"iconStart": "phone"
+		},
+		"secondary": {
+			"text": "Email us",
+			"textDescription": "Send us an email",
+			"url": "mailto:info@grovewoodutah.com",
+			"newTab": false,
+			"type": "secondary",
+			"iconStart": "mail"
+		}
+	}
+}
