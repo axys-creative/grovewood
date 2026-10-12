@@ -15,6 +15,7 @@
 		{
 			"name": "blog",
 			"label": "Blog",
+			"hide": true,
 			"label_singular": "Post",
 			"description": "Each post is one file in src/lib/content/blog. The file name becomes the address: /blog/the-file-name.",
 			"folder": "src/lib/content/blog",
@@ -815,6 +816,7 @@
 		{
 			"name": "page_blog",
 			"label": "Page - Blog",
+			"hide": true,
 			"files": [
 				{
 					"name": "hero_simple",
@@ -848,6 +850,7 @@
 		{
 			"name": "page_form_submit",
 			"label": "Page - Form Submitted",
+			"hide": true,
 			"files": [
 				{
 					"name": "hero_simple",
