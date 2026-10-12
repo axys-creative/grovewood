@@ -4,10 +4,10 @@
 
 	export type HeaderSimpleProps = HeaderNavProps & {
 		linkPlacement?: 'start' | 'center' | 'end';
-		/** `overlay` fills the screen. `slide` is a rounded panel from the right, under the header, with the social links in a strap. */
+		/** `overlay` fills the screen. `slide` is a rounded panel from the right, under the header, with the social links in the corner. */
 		mobileNav?: 'overlay' | 'slide';
-		/** The icon in the strap's loop, for the `slide` navigation. */
-		strapIcon?: string;
+		/** A line along the bottom edge of the header (all the way round when it floats). Defaults to `true`. */
+		border?: boolean;
 		/** The button type of the header and mobile navigation links. Defaults to `underline`. */
 		linkType?: ButtonProps['type'];
 		float?: boolean;
@@ -38,7 +38,7 @@
 		linkPlacement = 'end',
 		linkType = 'underline',
 		mobileNav = 'overlay',
-		strapIcon = 'orbit',
+		border = true,
 		float = false,
 		blur = false,
 		glass = false,
@@ -94,6 +94,7 @@
 <header
 	class="header page-grid {linkPlacement}"
 	class:float
+	class:bordered={border}
 	class:blur={blur && !glass}
 	class:has-glass={glass}
 	data-nav-open={open || undefined}
@@ -146,7 +147,7 @@
 	{linkType}
 	socialLabel="Connect with us!"
 	variant={mobileNav}
-	{strapIcon}
+	strap={false}
 	top={mobileNav === 'slide' ? navTop : undefined}
 	rounded={mobileNav === 'slide'}
 	onlink={close}
@@ -159,7 +160,6 @@
 		position: sticky;
 		top: 0;
 		z-index: var(--z-header);
-		border-block-end: 1px solid var(--color-border);
 		background: var(--color-bg);
 
 		@include mixins.mq-motion-allow {
@@ -171,18 +171,25 @@
 		}
 	}
 
+	.bordered {
+		border-block-end: 1px solid var(--color-border);
+	}
+
 	.float {
 		top: var(--float-offset);
 		width: calc(100% - var(--float-offset) * 2);
 		max-width: var(--content-width);
 		margin: var(--float-offset) auto 0;
 		display: block;
-		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
 
 		&:global([data-scroll-down]):not(:focus-within):not([data-nav-open]) {
 			translate: 0 calc(-100% - var(--float-offset) * 2);
 		}
+	}
+
+	.float.bordered {
+		border: 1px solid var(--color-border);
 	}
 
 	// The blur sits on a pseudo-element, and glass on its own layer, so dropdown panels can still blur the page behind them.

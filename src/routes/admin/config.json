@@ -5957,6 +5957,14 @@
 					"file": "src/lib/content/global/header-simple.json",
 					"fields": [
 						{
+							"name": "border",
+							"label": "Border",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "A line along the bottom edge of the header."
+						},
+						{
 							"name": "float",
 							"label": "Floating",
 							"widget": "boolean",
@@ -6037,13 +6045,6 @@
 							"hint": "How the menu opens on small screens."
 						},
 						{
-							"name": "strapIcon",
-							"label": "Strap icon",
-							"widget": "string",
-							"required": false,
-							"hint": "Icon file name without .svg, shown in the round cut-out of the slide-in panel's social strap (e.g. orbit)."
-						},
-						{
 							"name": "navButton",
 							"label": "Mobile menu button",
 							"widget": "object",
@@ -6087,6 +6088,14 @@
 					"label": "Footer",
 					"file": "src/lib/content/global/footer-simple.json",
 					"fields": [
+						{
+							"name": "border",
+							"label": "Border",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "A line along the top edge of the footer."
+						},
 						{
 							"name": "float",
 							"label": "Floating",

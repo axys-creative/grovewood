@@ -13,5 +13,5 @@
 		"type": "button"
 	},
 	"mobileNav": "slide",
-	"strapIcon": "orbit"
+	"border": false
 }

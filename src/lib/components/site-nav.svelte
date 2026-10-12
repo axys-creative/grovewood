@@ -24,6 +24,8 @@
 		socialLabel?: string;
 		/** The icon in the strap's loop, for the `slide` variant. */
 		strapIcon?: string;
+		/** The `slide` variant puts the social links in the strap. Without it they sit in place as plain icons. Defaults to `true`. */
+		strap?: boolean;
 		/** The panel's background: a solid color, a translucent blur, or the glass attachment (refraction in Chrome, blur elsewhere). */
 		surface?: 'solid' | 'blur' | 'glass';
 		/** The `slide` variant starts this far from the top of the screen (a CSS length), so a bar above it stays in view. */
@@ -59,6 +61,7 @@
 		always = false,
 		variant = 'overlay',
 		strapIcon = 'orbit',
+		strap = true,
 		socialLabel = 'Connect with us',
 		surface = 'solid',
 		top,
@@ -147,7 +150,11 @@
 				</ul>
 			{/if}
 
-			<Strap icon={strapIcon} bleed={40}><SocialLinks links={socialLinks} /></Strap>
+			{#if strap}
+				<Strap icon={strapIcon} bleed={40}><SocialLinks links={socialLinks} /></Strap>
+			{:else if socialLinks.length}
+				<div class="social"><SocialLinks links={socialLinks} /></div>
+			{/if}
 		</div>
 	{:else if variant === 'center'}
 		<div class="previews" aria-hidden="true">
@@ -603,6 +610,16 @@
 
 	.slide .footer-links {
 		flex-direction: column;
+	}
+
+	.corner .social {
+		flex: none;
+		margin-inline-start: auto;
+		padding-inline-end: var(--body-padding);
+
+		@include mixins.max-md {
+			padding-inline-end: 24px;
+		}
 	}
 
 	// Pushed past the panel's right edge by the strap's own bleed, which the panel then clips. It slides in a moment

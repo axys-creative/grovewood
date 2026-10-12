@@ -25,6 +25,8 @@
 		returnToTop?: BackToTopProps;
 		copyright?: string;
 		showThemeToggle?: boolean;
+		/** A line along the top edge of the footer (all the way round when it floats). Defaults to `true`. */
+		border?: boolean;
 		includeTop?: boolean;
 		includeBottom?: boolean;
 		divider?: boolean;
@@ -58,6 +60,7 @@
 		returnToTop,
 		copyright,
 		showThemeToggle = false,
+		border = true,
 		includeTop = true,
 		includeBottom = true,
 		divider = true,
@@ -82,6 +85,7 @@
 <footer
 	class="footer page-grid"
 	class:float
+	class:bordered={border}
 	class:blur={blur && !glass}
 	{@attach glass ? glassEffect() : undefined}
 >
@@ -152,8 +156,11 @@
 
 	.footer {
 		margin-block-start: auto;
-		border-block-start: 1px solid var(--color-border);
 		background: var(--color-bg);
+	}
+
+	.bordered {
+		border-block-start: 1px solid var(--color-border);
 	}
 
 	.float {
@@ -161,8 +168,11 @@
 		max-width: var(--content-width);
 		margin: auto auto var(--float-offset);
 		display: block;
-		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
+	}
+
+	.float.bordered {
+		border: 1px solid var(--color-border);
 	}
 
 	.blur {
