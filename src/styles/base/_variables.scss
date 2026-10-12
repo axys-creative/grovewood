@@ -37,7 +37,7 @@ $blue: #ada4e3;
 	--color-bg: #{$green-soft};
 	--color-surface: #{$grey-light};
 	--color-text: #{$black};
-	--color-text-muted: #{$grey-dark};
+	--color-text-muted: #{$black};
 	--color-border: #{$grey-green};
 	--color-accent-text: #{$green-heavy};
 	--color-error: #dc143c;
@@ -92,6 +92,7 @@ $blue: #ada4e3;
 	--cta-group-gap: 24px;
 
 	--radius: 16px;
+	--radius-lg: 24px;
 	--radius-xs: 4px;
 	--box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
 	--radius-btn: 24px;
@@ -109,6 +110,9 @@ $blue: #ada4e3;
 	--btn-bg: #{$black};
 	--btn-text: #{$white};
 	--btn-hover-text: #{$black};
+	--btn-secondary-bg: #{$grey-green};
+	--btn-secondary-text: #{$black};
+
 	--nav-button-bg: var(--btn-bg);
 	--nav-button-text: var(--btn-text);
 	--nav-button-radius: 12px;
@@ -153,6 +157,7 @@ $blue: #ada4e3;
 @media (max-width: 1024px) {
 	:root {
 		--body-padding: 16px;
+		--cta-group-gap: 16px;
 		--logo-width: 96px;
 		--float-offset: 12px;
 	}

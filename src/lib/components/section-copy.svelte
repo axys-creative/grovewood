@@ -1,5 +1,6 @@
 <script module lang="ts">
 	import type { ComponentProps, Snippet } from 'svelte';
+	import type { Attachment } from 'svelte/attachments';
 	import type CtaGroup from './cta-group.svelte';
 
 	export type SectionCopyProps = {
@@ -26,6 +27,8 @@
 		showTitle?: boolean;
 		showDescription?: boolean;
 		showCta?: boolean;
+		/** An attachment for the title, such as a text effect. */
+		titleAttach?: Attachment<HTMLElement>;
 	};
 </script>
 
@@ -50,7 +53,8 @@
 		showEyebrow = true,
 		showTitle = true,
 		showDescription = true,
-		showCta = true
+		showCta = true,
+		titleAttach
 	}: SectionCopyProps = $props();
 
 	const hasEyebrow = $derived(showEyebrow && !!(eyebrowText || eyebrowIcon));
@@ -72,7 +76,7 @@
 					/>
 				{/if}
 				{#if hasTitle}
-					<svelte:element this={`h${level}`} class={titleStyle}
+					<svelte:element this={`h${level}`} class={titleStyle} {@attach titleAttach}
 						><RichText text={title ?? ''} /></svelte:element
 					>
 				{/if}

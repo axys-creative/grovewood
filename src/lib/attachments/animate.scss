@@ -8,9 +8,9 @@
 
 		opacity: 0;
 		transition:
-			opacity var(--animate-duration) var(--ease) var(--animate-delay),
-			translate var(--animate-duration) var(--ease) var(--animate-delay),
-			scale var(--animate-duration) var(--ease) var(--animate-delay);
+			opacity var(--animate-duration) var(--animate-ease, var(--ease)) var(--animate-delay),
+			translate var(--animate-duration) var(--animate-ease, var(--ease)) var(--animate-delay),
+			scale var(--animate-duration) var(--animate-ease, var(--ease)) var(--animate-delay);
 
 		&--up {
 			translate: 0 24px;
@@ -29,7 +29,7 @@
 		}
 
 		&--scale {
-			scale: 0.9;
+			scale: var(--animate-scale, 0.9);
 		}
 	}
 

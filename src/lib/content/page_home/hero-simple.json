@@ -1,21 +1,26 @@
 {
-	"eyebrowText": "axys-template",
-	"title": "Welcome to the axys template",
-	"description": "A fast, accessible starting point built with SvelteKit, SCSS and JSON content, edited through Decap CMS.",
+	"eyebrowText": "THE GROVEWOOD DIFFERENCE",
+	"title": "We help people change.",
+	"description": "It's a four-word mission statement backed by a team with decades of experience and a love for the work we do. Everything about our practice, from the office layout to the services we provide, is designed to provide maximum therapeutic benefit. We call it the \"Grovewood Difference.\" Hundreds of new clients each year can tell you what that means to them and how it has helped them reach their goals.",
+	"direction": "row",
+	"image": {
+		"src": "/images/home-hero.jpg",
+		"alt": ""
+	},
 	"cta": {
 		"primary": {
-			"text": "View Style Guide",
-			"textDescription": "View the style guide",
-			"url": "/style-guide",
-			"newTab": false,
-			"iconEnd": ""
+			"text": "How to Begin",
+			"textDescription": "Learn how to begin at Grovewood",
+			"url": "/assessment",
+			"newTab": false
 		},
 		"secondary": {
-			"text": "Get Started",
-			"textDescription": "Get started with AXYS Creative",
-			"url": "https://axyscreative.com",
-			"newTab": true,
-			"iconEnd": "chevron-right"
+			"text": "Call (801) 785-4622",
+			"textDescription": "Call us to schedule an appointment",
+			"url": "tel:8017854622",
+			"newTab": false,
+			"type": "secondary",
+			"iconStart": "phone"
 		}
 	}
 }

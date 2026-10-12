@@ -183,7 +183,7 @@ $breakpoints: (
 	font-family: var(--font-body);
 	font-size: 20px;
 	font-weight: 400;
-	line-height: 1.4;
+	line-height: normal;
 	letter-spacing: -0.25px;
 
 	@include max-md {

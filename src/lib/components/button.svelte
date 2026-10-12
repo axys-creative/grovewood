@@ -7,7 +7,7 @@
 		textDescription?: string;
 		url?: string;
 		newTab?: boolean;
-		type?: 'solid' | 'outline' | 'underline' | 'text';
+		type?: 'solid' | 'secondary' | 'outline' | 'underline' | 'text';
 		htmlType?: 'button' | 'submit' | 'reset';
 		size?: 'sm' | 'md' | 'lg';
 		disabled?: boolean;
@@ -150,6 +150,18 @@
 		border: 1px solid var(--btn-bg);
 	}
 
+	.secondary {
+		padding: var(--btn-padding);
+		border: 1px solid var(--btn-secondary-bg);
+		background: var(--btn-secondary-bg);
+		color: var(--btn-secondary-text);
+
+		@include mixins.desktop-hover {
+			border-color: var(--btn-bg);
+			background: transparent;
+		}
+	}
+
 	.solid {
 		background: var(--btn-bg);
 		color: var(--btn-text);
@@ -264,11 +276,13 @@
 	}
 
 	.solid.sm,
+	.secondary.sm,
 	.outline.sm {
 		padding: var(--btn-padding-sm);
 	}
 
 	.solid.lg,
+	.secondary.lg,
 	.outline.lg {
 		padding: var(--btn-padding-lg);
 	}

@@ -18,6 +18,12 @@
 		once?: boolean;
 		/** Roll each digit up a column instead of counting. */
 		ticker?: boolean;
+		/** Where the number and label sit. Defaults to `center`. */
+		align?: 'start' | 'center';
+		/** A line between the number and its label that draws in when it scrolls into view. */
+		divider?: boolean;
+		/** `lg` is the size of a section title. Defaults to `md`. */
+		size?: 'md' | 'lg';
 		class?: string;
 	};
 </script>
@@ -35,6 +41,9 @@
 		duration = 2400,
 		once = false,
 		ticker = false,
+		align = 'center',
+		divider = false,
+		size = 'md',
 		class: className
 	}: CounterProps = $props();
 
@@ -56,6 +65,7 @@
 	let shown = $state(0);
 	let ready = $state(false);
 	let played = $state(false);
+	let viewed = $state(false);
 
 	// Without script the final number shows; with it, the count starts from zero once it scrolls into view.
 	const display = $derived(ready ? format(shown) : finalText);
@@ -83,11 +93,13 @@
 
 		const observer = new IntersectionObserver(([entry]) => {
 			if (entry.isIntersecting) {
+				viewed = true;
 				if (once && hasPlayed) return;
 				hasPlayed = true;
 				if (ticker) played = true;
 				else play();
 			} else if (!once) {
+				viewed = false;
 				cancelAnimationFrame(frame);
 				shown = 0;
 				played = false;
@@ -106,7 +118,9 @@
 
 <div
 	bind:this={el}
-	class="counter {className ?? ''}"
+	class="counter {align} {size} {className ?? ''}"
+	class:armed={ready}
+	class:viewed
 	role="img"
 	aria-label={spoken}
 	style="--width: {prefix.length + finalText.length + suffix.length + 0.25}ch"
@@ -134,6 +148,7 @@
 		{/if}
 		<span>{suffix}</span>
 	</span>
+	{#if divider}<span class="divider" aria-hidden="true"></span>{/if}
 	{#if label}<span class="label" aria-hidden="true">{label}</span>{/if}
 </div>
 
@@ -144,6 +159,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		width: 100%;
+	}
+
+	.start {
+		align-items: flex-start;
 	}
 
 	.value {
@@ -151,6 +171,36 @@
 		display: inline-flex;
 		justify-content: center;
 		width: var(--width);
+	}
+
+	.lg {
+		--row: 2ch;
+	}
+
+	.lg .value {
+		@include mixins.h2;
+		font-family: var(--font-body);
+		line-height: 1.2;
+	}
+
+	.divider {
+		display: block;
+		width: 100%;
+		height: 1px;
+		margin-block: 48px 24px;
+		background: var(--color-border);
+	}
+
+	.armed .divider {
+		width: 0;
+
+		@include mixins.mq-motion-allow {
+			transition: width 1.24s var(--ease) 0.24s;
+		}
+	}
+
+	.armed.viewed .divider {
+		width: 100%;
 	}
 
 	.number {
@@ -163,7 +213,7 @@
 
 	.ticker {
 		display: flex;
-		height: 1lh;
+		height: var(--row, 1lh);
 		overflow: hidden;
 		font-variant-numeric: tabular-nums;
 	}
@@ -184,12 +234,12 @@
 		translate: 0 0;
 
 		span {
-			height: 1lh;
+			height: var(--row, 1lh);
 		}
 	}
 
 	.played .sequence {
-		translate: 0 calc(var(--value) * -1lh);
+		translate: 0 calc(var(--value) * var(--row, 1lh) * -1);
 
 		@include mixins.mq-motion-allow {
 			transition: translate 1.24s cubic-bezier(0.8, 0, 0.3, 1.05) calc(var(--i) * 0.16s);

@@ -1,0 +1,40 @@
+{
+	"eyebrowText": "HOW TO BEGIN",
+	"title": "Four interconnected services, one point of contact",
+	"description": "We offer talk therapy, medication management, TMS, and psychological assessments — administered by skilled professionals and supported by our outstanding office team. So whether you are ready to talk about what's bothering you, or you think you need medication, or you want treatment for persistent depression, or you need a psychological evaluation, we can help you. Our goal is simple: to help you achieve lasting wellness with the right treatment—not just more treatment.{.br}{.br}Just call our main number to get started. Our friendly staff can answer your questions and help you navigate payment options, including how to access available insurance benefits. Our providers are accepted by all major insurance carriers. If you don't see your insurance listed, ask our helpful staff about your insurance company.",
+	"columns": 4,
+	"images": [
+		{
+			"src": "/images/logo-emi-health.svg",
+			"alt": "Emi Health"
+		},
+		{
+			"src": "/images/logo-select-health.svg",
+			"alt": "Select Health"
+		},
+		{
+			"src": "/images/logo-pehp.svg",
+			"alt": "PEHP Health and Benefits"
+		},
+		{
+			"src": "/images/logo-united-healthcare.svg",
+			"alt": "United Healthcare"
+		},
+		{
+			"src": "/images/logo-regence-bcbs.png",
+			"alt": "Regence BCBS"
+		},
+		{
+			"src": "/images/logo-dmba.png",
+			"alt": "DMBA"
+		},
+		{
+			"src": "/images/logo-tricare.svg",
+			"alt": "TRICARE"
+		},
+		{
+			"src": "/images/logo-aetna.svg",
+			"alt": "Aetna"
+		}
+	]
+}

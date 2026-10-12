@@ -1,46 +1,137 @@
 <script lang="ts">
 	import SectionCopy, { type SectionCopyProps } from '$lib/components/section-copy.svelte';
+	import { imageProps } from '$lib/utils/image';
 
 	let {
 		id,
 		compact = false,
 		fullScreen = true,
+		image,
+		direction = 'column',
 		...props
 	}: SectionCopyProps & {
 		/** The section's anchor, so a link or the CMS preview can point to `#id`. */
 		id?: string;
 		compact?: boolean;
 		fullScreen?: boolean;
+		/** A picture beside the copy (below it on small screens). */
+		image?: { src: string; alt?: string };
+		/** `column` centers the copy. `row` aligns it to the start, with the picture beside it from `lg` up. */
+		direction?: 'column' | 'row';
 	} = $props();
+
+	const row = $derived(direction === 'row' || !!image);
 </script>
 
-<section {id} class="hero-simple" class:compact class:full-screen={fullScreen && !compact}>
+<section
+	{id}
+	class="hero-simple"
+	class:compact
+	class:full-screen={fullScreen && !compact}
+	class:row
+	class:has-image={!!image}
+>
 	<div class="inner">
-		<SectionCopy level={1} align="center" {...props} />
+		<div class="copy">
+			<SectionCopy level={1} align={row ? 'start' : 'center'} {...props} />
+		</div>
+
+		{#if image?.src}
+			<div class="media">
+				<img
+					{...imageProps(image.src, { sizes: '(min-width: 1024px) 50vw, 100vw' })}
+					alt={image.alt ?? ''}
+					loading="eager"
+					fetchpriority="high"
+				/>
+			</div>
+		{/if}
 	</div>
 </section>
 
 <style lang="scss">
+	@use 'base/mixins';
+
 	.hero-simple {
+		--section-height: clamp(625px, 90vh, 1100px);
+		--media-max: 650px;
+
 		display: grid;
 		place-items: center;
 		min-height: 80lvh;
 		padding: var(--body-padding-double) var(--body-padding);
+
+		@include mixins.min-xxl {
+			--section-height: clamp(750px, 90vh, 1250px);
+			--media-max: 750px;
+		}
 	}
 
 	.compact {
 		min-height: 40lvh;
 	}
 
-	// At least the screen's height: short content is centered, and long content still grows past it.
 	.full-screen {
-		min-height: 100lvh;
+		min-height: var(--section-height);
+
+		@include mixins.max-lg {
+			min-height: 500px;
+		}
 	}
 
 	.inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 64px;
 		width: 100%;
 		max-width: var(--content-width);
+	}
+
+	.copy {
 		display: flex;
 		justify-content: center;
+		width: 100%;
+	}
+
+	.has-image .copy {
+		margin-block: 64px;
+	}
+
+	.row .copy {
+		justify-content: flex-start;
+	}
+
+	.media {
+		width: 100%;
+		max-height: var(--media-max);
+		border-radius: var(--radius);
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	@include mixins.min-lg {
+		.row .inner {
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+		}
+
+		.has-image .copy,
+		.has-image .media {
+			flex: 1 1 auto;
+			width: 100%;
+			max-width: 50%;
+		}
+
+		.has-image.full-screen .media {
+			height: min(var(--media-max), calc(var(--section-height) - var(--body-padding-double) * 2));
+		}
 	}
 </style>

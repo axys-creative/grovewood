@@ -1,7 +1,11 @@
 import type { Component } from 'svelte';
 import globalCss from '../../styles/styles.scss?inline';
 import CarouselSpotlight from '$lib/sections/carousel-spotlight.svelte';
+import CarouselTestimonials from '$lib/sections/carousel-testimonials.svelte';
 import HeroSimple from '$lib/sections/hero-simple.svelte';
+import ImageGrid from '$lib/sections/image-grid.svelte';
+import Stats from '$lib/sections/stats.svelte';
+import TextStack from '$lib/sections/text-stack.svelte';
 import { mountPreview, type PreviewHost } from './preview-host.svelte';
 
 type Data = Record<string, unknown>;
@@ -20,6 +24,15 @@ type CreateClass = (spec: Record<string, unknown>) => unknown;
 type H = (tag: string, props?: Record<string, unknown>) => unknown;
 
 // Keyed by the file's `name` in config.json; `props` mirrors what the real page passes.
+const withCta = (data: Data) => {
+	const cta = (data.cta ?? {}) as { primary?: { text?: string }; secondary?: { text?: string } };
+	return {
+		...cta,
+		primary: cta.primary,
+		secondary: cta.secondary?.text ? cta.secondary : undefined
+	};
+};
+
 const previews: Record<string, Preview> = {
 	carousel_spotlight: {
 		component: CarouselSpotlight as unknown as Section,
@@ -32,6 +45,26 @@ const previews: Record<string, Preview> = {
 				autoplay: false
 			};
 		}
+	},
+	carousel_testimonials: {
+		component: CarouselTestimonials as unknown as Section,
+		props: (data) => ({ ...data, testimonials: data.testimonials ?? [] })
+	},
+	image_grid: {
+		component: ImageGrid as unknown as Section,
+		props: (data) => ({ ...data, images: data.images ?? [], static: true })
+	},
+	stats: {
+		component: Stats as unknown as Section,
+		props: (data) => ({ ...data, stats: data.stats ?? [], static: true })
+	},
+	text_stack: {
+		component: TextStack as unknown as Section,
+		props: (data) => ({ ...data, cta: data.cta ? withCta(data) : undefined, static: true })
+	},
+	text_stack_invite: {
+		component: TextStack as unknown as Section,
+		props: (data) => ({ ...data, cta: data.cta ? withCta(data) : undefined, static: true })
 	},
 	hero_simple: {
 		component: HeroSimple as unknown as Section,

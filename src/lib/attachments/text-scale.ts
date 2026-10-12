@@ -6,6 +6,8 @@ export type TextScaleOptions = TextScrollOptions & {
 	type?: 'chars' | 'words';
 	/** Scale the pieces in random order or from first to last. */
 	style?: 'random' | 'linear';
+	/** The scale each piece starts from. Defaults to `0`. */
+	from?: number;
 	/** Seconds each piece takes to scale. */
 	duration?: number;
 	/** Seconds between each piece starting. */
@@ -18,6 +20,7 @@ export type TextScaleOptions = TextScrollOptions & {
 export function textScale({
 	type = 'words',
 	style = 'random',
+	from = 0,
 	duration = 0.25,
 	stagger = 0.0125,
 	ease = 'linear',
@@ -38,7 +41,7 @@ export function textScale({
 				.timeline({ scrollTrigger })
 				.fromTo(
 					style === 'random' ? gsap.utils.shuffle([...targets]) : targets,
-					{ scale: 0, opacity: 0 },
+					{ scale: from, opacity: 0 },
 					{ scale: 1, opacity: 1, duration, stagger, ease }
 				);
 		});

@@ -28,6 +28,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { carouselDrag } from '$lib/attachments/carousel-drag';
+	import { magnet } from '$lib/attachments/magnet';
 	import Button from '$lib/components/button.svelte';
 	import RichText from '$lib/components/rich-text.svelte';
 	import SectionCopy from '$lib/components/section-copy.svelte';
@@ -62,6 +63,9 @@
 		canNext = track.scrollLeft < max - 1;
 	}
 
+	const arrowPull = () =>
+		magnet({ x: 0.32, y: 0.32, returnEase: 'cubic-bezier(0, 1.64, 0.63, 1.92)' });
+
 	const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	function goTo(index: number) {
@@ -90,22 +94,6 @@
 	<div class="inner">
 		<header class="header">
 			<SectionCopy {...copy} />
-
-			<div class="controls" hidden={!overflowing}>
-				<Button
-					class="prev"
-					iconStart="chevron-right"
-					textDescription="Previous testimonial"
-					disabled={!canPrev}
-					onclick={() => move(-1)}
-				/>
-				<Button
-					iconStart="chevron-right"
-					textDescription="Next testimonial"
-					disabled={!canNext}
-					onclick={() => move(1)}
-				/>
-			</div>
 		</header>
 
 		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -123,21 +111,41 @@
 				<figure class="card">
 					<blockquote><p><RichText text={item.quote} /></p></blockquote>
 					<figcaption>
+						<span class="who">
+							<span class="name">{item.name}</span>
+							{#if item.role}<span class="role">{item.role}</span>{/if}
+						</span>
 						{#if item.image?.src}
 							<img
-								{...imageProps(item.image.src, { sizes: '56px' })}
+								{...imageProps(item.image.src, { sizes: '64px' })}
 								alt={item.image.alt ?? ''}
 								loading="lazy"
 								draggable="false"
 							/>
 						{/if}
-						<span class="who">
-							<span class="name">{item.name}</span>
-							{#if item.role}<span class="role">{item.role}</span>{/if}
-						</span>
 					</figcaption>
 				</figure>
 			{/each}
+		</div>
+
+		<div class="controls" hidden={!overflowing}>
+			<Button
+				class="prev"
+				type="secondary"
+				iconStart="chevron-right"
+				textDescription="Previous testimonial"
+				disabled={!canPrev}
+				onclick={() => move(-1)}
+				{@attach arrowPull()}
+			/>
+			<Button
+				type="secondary"
+				iconStart="chevron-right"
+				textDescription="Next testimonial"
+				disabled={!canNext}
+				onclick={() => move(1)}
+				{@attach arrowPull()}
+			/>
 		</div>
 	</div>
 </section>
@@ -147,12 +155,20 @@
 
 	.carousel-testimonials {
 		// The first card lines up with the copy, and the row runs on past the right edge.
-		--content: min(var(--content-width), 100% - var(--body-padding) * 2);
+		--content: min(var(--content-width), 100vw - var(--body-padding) * 2);
 		--start: calc((100% - var(--content)) / 2);
-		--card-width: clamp(280px, 80vw, 440px);
-		--card-gap: 24px;
+		--card-width: calc(var(--content) * 0.85);
+		--card-gap: 16px;
 
 		overflow-x: clip;
+
+		@include mixins.min-md {
+			--card-width: calc(var(--content) * 0.6);
+		}
+
+		@include mixins.min-lg {
+			--card-gap: 24px;
+		}
 	}
 
 	.full-screen {
@@ -161,31 +177,62 @@
 		min-height: 100lvh;
 	}
 
+	// Small screens: copy, cards, then arrows. From `lg` the arrows sit on the title's row.
 	.inner {
 		display: flex;
 		flex-direction: column;
-		gap: 48px;
+		gap: 40px;
 		width: 100%;
 		padding-block: var(--body-padding-double);
+
+		@include mixins.min-lg {
+			display: grid;
+			grid-template-columns: var(--start) 1fr auto var(--start);
+			column-gap: 0;
+			row-gap: 96px;
+			align-items: end;
+		}
 	}
 
 	.header {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-end;
-		justify-content: space-between;
-		gap: 24px;
 		width: var(--content);
 		margin-inline: auto;
+
+		@include mixins.min-lg {
+			grid-column: 2;
+			grid-row: 1;
+			width: auto;
+			max-width: 50%;
+			margin-inline: 0;
+		}
 	}
 
 	.controls {
 		display: flex;
+		justify-content: center;
 		gap: 12px;
-		margin-inline-start: auto;
+		width: var(--content);
+		margin-inline: auto;
+
+		@include mixins.min-lg {
+			grid-column: 3;
+			grid-row: 1;
+			justify-content: flex-start;
+			width: auto;
+			margin: 0;
+			gap: 16px;
+		}
 
 		&[hidden] {
 			display: none;
+		}
+
+		:global(.button) {
+			padding: 20px;
+		}
+
+		:global(.button .icon) {
+			--icon-size: 1.5em;
 		}
 
 		:global(.prev .icon) {
@@ -206,6 +253,11 @@
 		cursor: grab;
 		user-select: none;
 
+		@include mixins.min-lg {
+			grid-column: 1 / -1;
+			grid-row: 2;
+		}
+
 		&::-webkit-scrollbar {
 			display: none;
 		}
@@ -225,49 +277,65 @@
 		display: flex;
 		flex: 0 0 var(--card-width);
 		flex-direction: column;
-		justify-content: space-between;
-		gap: 32px;
+		gap: 40px;
+		min-height: clamp(320px, 40vh, 460px);
 		margin: 0;
-		padding: 32px;
-		border-radius: var(--radius);
+		padding: 40px;
+		border-radius: var(--radius-lg);
 		background: var(--color-surface);
 		scroll-snap-align: start;
+
+		@include mixins.min-lg {
+			gap: 48px;
+			padding: 48px;
+		}
 
 		blockquote,
 		p {
 			margin: 0;
 		}
 
+		blockquote {
+			flex: 1;
+		}
+
 		p {
-			@include mixins.body-large;
+			@include mixins.body;
+			text-wrap: pretty;
+
+			@include mixins.min-md {
+				@include mixins.body-large;
+			}
 		}
 	}
 
 	figcaption {
 		display: flex;
 		align-items: center;
-		gap: 16px;
+		gap: 48px;
+		width: 100%;
 
 		img {
 			flex-shrink: 0;
-			width: 56px;
-			height: 56px;
-			border-radius: 50%;
+			width: 64px;
+			height: 64px;
+			border-radius: 12px;
 			object-fit: cover;
 		}
 	}
 
 	.who {
 		display: flex;
+		flex: 1;
 		flex-direction: column;
+		gap: 8px;
 	}
 
 	.name {
-		font-weight: 700;
+		font-weight: 600;
 	}
 
 	.role {
-		color: var(--color-text-muted);
 		font-size: 14px;
 	}
 </style>

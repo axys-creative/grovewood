@@ -115,9 +115,10 @@
 	}
 
 	.eyebrow-text {
-		font-family: var(--font-mono);
+		font-family: var(--font-body);
 		font-size: 14px;
-		letter-spacing: 0.08em;
+		font-weight: 500;
+		letter-spacing: 0;
 		text-transform: uppercase;
 	}
 </style>

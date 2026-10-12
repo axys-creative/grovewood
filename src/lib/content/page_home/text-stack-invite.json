@@ -1,0 +1,14 @@
+{
+	"title": "Contact a real person about real change today",
+	"description": "When you call our office, a real person will answer the phone and give you real answers. Because we know that's what real people really want.",
+	"cta": {
+		"primary": {
+			"text": "Call a real person for real answers",
+			"textDescription": "Call our office to speak with a real person",
+			"url": "tel:8017854622",
+			"newTab": false,
+			"type": "secondary",
+			"iconStart": "phone"
+		}
+	}
+}

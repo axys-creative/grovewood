@@ -1,0 +1,42 @@
+{
+	"eyebrowText": "PATIENT OUTCOMES",
+	"title": "What our clients are saying about \"The Grovewood Difference\"",
+	"testimonials": [
+		{
+			"quote": "After two years of medication that barely worked, TMS at Grovewood changed my baseline. The team was precise, patient, and clear about what to expect at every session.",
+			"name": "David Chen",
+			"role": "TMS PATIENT, COMPLETED PROTOCOL",
+			"image": {
+				"src": "/images/portrait-david-chen.webp",
+				"alt": "David Chen"
+			}
+		},
+		{
+			"quote": "I was nervous about starting TMS. The clinical team explained the evidence behind the protocol and walked me through each session. I noticed real improvement by week four.",
+			"name": "Megan Foster",
+			"role": "TMS PATIENT",
+			"image": {
+				"src": "/images/portrait-megan-foster.webp",
+				"alt": "Megan Foster"
+			}
+		},
+		{
+			"quote": "The psychological assessment gave me a clearer picture of what I was dealing with. The treatment plan that followed was specific to my results — not a generic approach.",
+			"name": "Jordan Ruiz",
+			"role": "TALK THERAPY PATIENT",
+			"image": {
+				"src": "/images/portrait-jordan-ruiz.webp",
+				"alt": "Jordan Ruiz"
+			}
+		},
+		{
+			"quote": "Coming here after trying three different therapists elsewhere. The difference is the structure — from the initial assessment to the follow-through. I finally feel like treatment is working.",
+			"name": "Elena Vasquez",
+			"role": "THERAPY AND ASSESSMENT PATIENT",
+			"image": {
+				"src": "/images/portrait-elena-vasquez.webp",
+				"alt": "Elena Vasquez"
+			}
+		}
+	]
+}
