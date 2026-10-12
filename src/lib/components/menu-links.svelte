@@ -92,6 +92,6 @@
 	.column {
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 12px;
+		gap: var(--links-gap, 12px);
 	}
 </style>

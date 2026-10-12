@@ -1436,10 +1436,120 @@
 							"required": false
 						},
 						{
+							"name": "linkType",
+							"label": "Link style",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Underline",
+									"value": "underline"
+								},
+								{
+									"label": "Text",
+									"value": "text"
+								}
+							],
+							"default": "underline",
+							"hint": "The style of the link columns and legal links."
+						},
+						{
 							"name": "message",
 							"label": "Message",
 							"widget": "text",
 							"required": false
+						},
+						{
+							"name": "contact",
+							"label": "Contact",
+							"widget": "object",
+							"required": false,
+							"hint": "Shown under the logo. Leave a part empty to hide it.",
+							"fields": [
+								{
+									"name": "address",
+									"label": "Address",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false,
+											"hint": "Use {.br} for a line break."
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										}
+									]
+								},
+								{
+									"name": "phone",
+									"label": "Phone",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false,
+											"hint": "Use {.br} for a line break."
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										}
+									]
+								},
+								{
+									"name": "email",
+									"label": "Email",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false,
+											"hint": "Use {.br} for a line break."
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										}
+									]
+								}
+							]
 						},
 						{
 							"name": "linksets",

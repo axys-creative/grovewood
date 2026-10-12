@@ -4,13 +4,24 @@
 	import type { LogoProps } from './logo.svelte';
 	import type { SocialLink } from './social-links.svelte';
 
+	export type FooterContactLink = {
+		/** `{.br}` is a line break. */
+		text: string;
+		url: string;
+		newTab?: boolean;
+	};
+
 	export type FooterSimpleProps = {
 		logo?: LogoProps;
 		message?: string;
+		/** Address, phone and email, shown under the logo with a label each. */
+		contact?: Partial<Record<'address' | 'phone' | 'email', FooterContactLink>>;
 		socialLinks?: SocialLink[];
 		/** Up to three columns of links. */
 		linksets?: { title?: string; links: ButtonProps[] }[];
 		legalLinks?: ButtonProps[];
+		/** The button type of the link columns and legal links. Defaults to `underline`. */
+		linkType?: ButtonProps['type'];
 		returnToTop?: BackToTopProps;
 		copyright?: string;
 		showThemeToggle?: boolean;
@@ -32,15 +43,18 @@
 	import BackToTop from './back-to-top.svelte';
 	import Logo from './logo.svelte';
 	import MenuLinks from './menu-links.svelte';
+	import RichText from './rich-text.svelte';
 	import SocialLinks from './social-links.svelte';
 	import ThemeToggle from './theme-toggle.svelte';
 
 	let {
 		logo,
 		message,
+		contact,
 		socialLinks = [],
 		linksets = [],
 		legalLinks = [],
+		linkType = 'underline',
 		returnToTop,
 		copyright,
 		showThemeToggle = false,
@@ -53,7 +67,15 @@
 	}: FooterSimpleProps = $props();
 
 	const copyrightText = $derived(
-		copyright || `© ${new Date().getFullYear()} ${site.siteName}. All rights reserved.`
+		copyright || `©${new Date().getFullYear()} ${site.siteName}. All rights reserved`
+	);
+
+	const contactRows = $derived(
+		[
+			{ label: 'Address:', link: contact?.address },
+			{ label: 'Phone:', link: contact?.phone },
+			{ label: 'Email:', link: contact?.email }
+		].flatMap(({ label, link }) => (link?.text && link.url ? [{ label, link }] : []))
 	);
 </script>
 
@@ -69,15 +91,36 @@
 				<div class="top-left">
 					{#if logo}<Logo {...logo} url="/" />{/if}
 					{#if message}<p class="message">{message}</p>{/if}
+					{#if contactRows.length}
+						<div class="contact">
+							{#each contactRows as { label, link } (label)}
+								<strong>{label}</strong>
+								<a
+									class="contact-link"
+									href={link.url}
+									target={link.newTab ? '_blank' : undefined}
+									rel={link.newTab ? 'noopener noreferrer' : undefined}
+								>
+									<RichText text={link.text} />
+								</a>
+							{/each}
+						</div>
+					{/if}
 					<SocialLinks links={socialLinks} />
 				</div>
 
 				{#if linksets.length}
 					<div class="linksets">
-						{#each linksets.slice(0, 3) as { title, links } (title ?? links[0]?.url)}
+						{#each linksets.slice(0, 3) as { title, links } (`${title}|${links[0]?.url}`)}
 							<div class="linkset">
 								{#if title}<strong>{title}</strong>{/if}
-								<MenuLinks {links} label={title ?? 'Footer'} direction="column" />
+								<MenuLinks
+									class="links"
+									{links}
+									type={linkType}
+									label={title ?? 'Footer'}
+									direction="column"
+								/>
 							</div>
 						{/each}
 					</div>
@@ -88,13 +131,15 @@
 		{#if divider && includeTop && includeBottom}<hr />{/if}
 
 		{#if includeBottom}
-			<div class="bottom">
-				<div class="bottom-start">
-					{#if returnToTop}<BackToTop {...returnToTop} {@attach textRoll()} />{/if}
-				</div>
+			<div class="bottom" class:has-start={returnToTop}>
+				{#if returnToTop}
+					<div class="bottom-start">
+						<BackToTop {...returnToTop} {@attach textRoll()} />
+					</div>
+				{/if}
 				<p class="copyright">{copyrightText}</p>
 				<div class="bottom-end">
-					<MenuLinks links={legalLinks} label="Legal" />
+					<MenuLinks class="legal" links={legalLinks} type={linkType} label="Legal" />
 					{#if showThemeToggle}<ThemeToggle />{/if}
 				</div>
 			</div>
@@ -125,7 +170,7 @@
 	}
 
 	.inner {
-		padding-block: 48px;
+		padding-block: 64px;
 	}
 
 	.float .inner {
@@ -136,10 +181,11 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		gap: 48px;
+		gap: 40px;
 
 		@include mixins.min-lg {
 			flex-direction: row;
+			gap: 48px;
 		}
 	}
 
@@ -147,7 +193,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 24px;
+		gap: 40px;
+
+		@include mixins.min-lg {
+			gap: 24px;
+		}
 	}
 
 	.message {
@@ -155,28 +205,74 @@
 		color: var(--color-text-muted);
 	}
 
-	.linksets {
-		display: grid;
-		grid-template-columns: repeat(3, max-content);
-		gap: 32px 64px;
+	.contact {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		max-width: 420px;
 
-		@include mixins.max-md {
-			grid-template-columns: repeat(2, max-content);
-		}
-
-		@include mixins.max-xs {
-			grid-template-columns: max-content;
+		strong {
+			font-size: 16px;
+			font-weight: 700;
+			line-height: normal;
 		}
 	}
 
-	.linkset strong {
-		display: block;
-		margin-block-end: 12px;
-		color: var(--color-text-muted);
+	.contact-link {
+		margin-block: 4px 24px;
+		color: var(--btn-link);
+		font-size: 16px;
+		font-weight: var(--btn-font-weight-link);
+		line-height: normal;
+
+		@include mixins.desktop-hover {
+			color: var(--btn-link-hover);
+		}
+
+		@include mixins.mq-motion-allow {
+			transition: color var(--duration) var(--ease);
+		}
+	}
+
+	.linksets {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 40px 96px;
+
+		@include mixins.max-xl {
+			gap: 40px 48px;
+		}
+
+		@include mixins.max-lg {
+			column-gap: 40px;
+		}
+	}
+
+	.linkset {
+		strong {
+			display: block;
+			margin-block-end: 1ch;
+			color: var(--color-accent-text);
+		}
+
+		:global(.links) {
+			--links-gap: 1ch;
+
+			font-size: 16px;
+		}
+
+		:global(li) {
+			@include mixins.min-md {
+				align-items: flex-start;
+				min-height: 24px;
+				padding-top: 4px;
+			}
+		}
 	}
 
 	hr {
-		margin-block: 48px;
+		margin-block: 64px 63px;
 		border: 0;
 		height: 1px;
 		background: var(--color-border);
@@ -188,31 +284,59 @@
 		align-items: flex-start;
 		gap: 24px;
 
-		@include mixins.min-xl {
-			display: grid;
-			grid-template-columns: 1fr auto 1fr;
+		@include mixins.min-lg {
+			flex-direction: row;
 			align-items: center;
+			justify-content: space-between;
+			gap: 48px;
+		}
+
+		&.has-start {
+			@include mixins.min-xl {
+				display: grid;
+				grid-template-columns: 1fr auto 1fr;
+			}
 		}
 	}
 
 	.copyright {
 		order: 1;
-		color: var(--color-text-muted);
-		font-size: 14px;
+		color: var(--color-text);
+		font-size: 16px;
+		line-height: normal;
 
-		@include mixins.min-xl {
+		@include mixins.min-lg {
 			order: 0;
 		}
 	}
 
 	.bottom-end {
 		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
+		flex-direction: column;
+		align-items: flex-start;
 		gap: 16px;
+
+		@include mixins.min-lg {
+			flex-direction: row;
+			align-items: center;
+		}
 
 		@include mixins.min-xl {
 			justify-self: end;
+		}
+
+		:global(.legal) {
+			--links-gap: 1ch;
+
+			font-size: 16px;
+		}
+
+		:global(li) {
+			@include mixins.min-md {
+				align-items: flex-start;
+				min-height: 24px;
+				padding-top: 4px;
+			}
 		}
 	}
 </style>

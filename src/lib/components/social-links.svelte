@@ -62,6 +62,12 @@
 		}
 	}
 
+	// The picture fills its 24px link, as it does in the legacy footer.
+	.social-links:not(.solid) a :global(.icon) {
+		width: 100%;
+		height: 100%;
+	}
+
 	// Each icon in a box, in the solid Button style: the accent color with the on-accent icon, which empties to an
 	// outline on hover.
 	.solid a {

@@ -5,11 +5,28 @@
 	"includeTop": true,
 	"includeBottom": true,
 	"divider": true,
-	"showThemeToggle": true,
-	"message": "A simple footer with a wide range of configuration options.",
+	"showThemeToggle": false,
+	"linkType": "text",
+	"contact": {
+		"address": {
+			"text": "233 South Pleasant Grove Boulevard, Suite 203,{.br}Pleasant Grove, Utah 84062",
+			"url": "https://maps.app.goo.gl/AoxHGurDNWnvuKB48",
+			"newTab": false
+		},
+		"phone": {
+			"text": "(801) 785-4622",
+			"url": "tel:+8017854622",
+			"newTab": false
+		},
+		"email": {
+			"text": "info@grovewoodutah.com",
+			"url": "mailto:info@grovewoodutah.com",
+			"newTab": false
+		}
+	},
 	"linksets": [
 		{
-			"title": "Explore",
+			"title": "",
 			"links": [
 				{
 					"text": "Home",
@@ -17,74 +34,49 @@
 					"newTab": false
 				},
 				{
-					"text": "Blog",
-					"url": "/blog",
+					"text": "Talk Therapy",
+					"url": "/talk-therapy",
 					"newTab": false
 				},
 				{
-					"text": "Style Guide",
-					"url": "/style-guide",
+					"text": "Medication Management",
+					"url": "/medication-management",
 					"newTab": false
 				}
 			]
 		},
 		{
-			"title": "Library",
+			"title": "",
 			"links": [
 				{
-					"text": "Advanced",
-					"url": "/advanced",
+					"text": "NeuroStar TMS",
+					"url": "/neurostar-tms",
 					"newTab": false
 				},
 				{
-					"text": "Attachments",
-					"url": "/attachments",
+					"text": "Assessment",
+					"url": "/assessment",
 					"newTab": false
 				},
 				{
-					"text": "Components",
-					"url": "/components",
+					"text": "Team",
+					"url": "/team",
 					"newTab": false
-				},
-				{
-					"text": "Combos",
-					"url": "/combos",
-					"newTab": false
-				},
-				{
-					"text": "Sections",
-					"url": "/sections",
-					"newTab": false
-				},
-				{
-					"text": "Transitions",
-					"url": "/transitions",
-					"newTab": false
-				}
-			]
-		},
-		{
-			"title": "axys creative",
-			"links": [
-				{
-					"text": "Website",
-					"url": "https://axyscreative.com",
-					"newTab": true
-				},
-				{
-					"text": "Tokens",
-					"url": "https://axyscreative.com/tokens",
-					"newTab": true
 				}
 			]
 		}
 	],
-	"returnToTop": {
-		"text": "Return To Top",
-		"url": "#",
-		"type": "underline",
-		"iconEnd": "chevron-up"
-	},
-	"legalLinks": [],
+	"legalLinks": [
+		{
+			"text": "Privacy Policy",
+			"url": "https://google.com",
+			"newTab": false
+		},
+		{
+			"text": "Terms & Conditions",
+			"url": "https://google.com",
+			"newTab": false
+		}
+	],
 	"copyright": ""
 }
