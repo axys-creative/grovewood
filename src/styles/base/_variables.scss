@@ -84,7 +84,7 @@ $blue: #ada4e3;
 	--color-info: #{$blue};
 	--color-warning: #e8b84f;
 
-	--content-width: 1440px;
+	--content-width: 1392px;
 
 	--body-padding: 48px;
 	--body-padding-double: calc(var(--body-padding) * 2);
@@ -92,6 +92,8 @@ $blue: #ada4e3;
 	--cta-group-gap: 24px;
 
 	--radius: 16px;
+	--radius-xs: 4px;
+	--box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
 	--radius-btn: 24px;
 
 	--btn-font-size: 16px;
@@ -107,6 +109,10 @@ $blue: #ada4e3;
 	--btn-bg: #{$black};
 	--btn-text: #{$white};
 	--btn-hover-text: #{$black};
+	--nav-button-bg: var(--btn-bg);
+	--nav-button-text: var(--btn-text);
+	--nav-button-radius: 12px;
+
 	--btn-link: var(--color-text);
 	--btn-link-hover: var(--color-accent-text);
 
@@ -115,6 +121,9 @@ $blue: #ada4e3;
 	--space-paragraph-cta-group: 48px;
 	--space-copy-columns: 48px; // between the heading and the description in a row layout
 	--max-width-text: 750px;
+
+	--logo-width: 128px;
+	--logo-height: auto;
 
 	--float-offset: 16px;
 	--z-nav: 3;
@@ -128,6 +137,13 @@ $blue: #ada4e3;
 	--transition-scale: scale var(--duration) var(--ease);
 }
 
+// The page is a 1440px box with its padding inside, so wider screens lose the bigger padding twice.
+@media (min-width: 1441px) {
+	:root {
+		--content-width: 1344px;
+	}
+}
+
 @media (max-width: 1440px) {
 	:root {
 		--body-padding: 24px;
@@ -137,6 +153,7 @@ $blue: #ada4e3;
 @media (max-width: 1024px) {
 	:root {
 		--body-padding: 16px;
+		--logo-width: 96px;
 		--float-offset: 12px;
 	}
 }

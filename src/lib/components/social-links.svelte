@@ -50,14 +50,14 @@
 		justify-content: center;
 		width: 24px;
 		height: 24px;
-		color: var(--color-accent-text);
+		color: var(--color-text);
 
 		@include mixins.mq-motion-allow {
 			transition: 0.25s ease;
 		}
 
 		@include mixins.desktop-hover {
-			color: var(--color-text);
+			color: var(--color-accent-text);
 			scale: 1.1;
 		}
 	}

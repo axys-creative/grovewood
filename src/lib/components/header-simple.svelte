@@ -4,6 +4,8 @@
 
 	export type HeaderSimpleProps = HeaderNavProps & {
 		linkPlacement?: 'start' | 'center' | 'end';
+		/** The button type of the header and mobile navigation links. Defaults to `underline`. */
+		linkType?: ButtonProps['type'];
 		float?: boolean;
 		/** A translucent, blurred background. */
 		blur?: boolean;
@@ -15,6 +17,7 @@
 
 <script lang="ts">
 	import { glass as glassEffect } from '$lib/attachments/glass';
+	import { magnet } from '$lib/attachments/magnet';
 	import { textRoll } from '$lib/attachments/text-roll';
 	import { watchScroll } from '$lib/attachments/watch-scroll';
 	import Button from './button.svelte';
@@ -29,6 +32,7 @@
 		ctas = [],
 		socialLinks = [],
 		linkPlacement = 'end',
+		linkType = 'underline',
 		float = false,
 		blur = false,
 		glass = false,
@@ -88,13 +92,20 @@
 			class="links"
 			{links}
 			label="Primary"
+			type={linkType}
 			dropdownSurface={glass ? 'glass' : blur ? 'blur' : 'solid'}
 		/>
 
 		{#if ctas.length}
 			<div class="ctas">
 				{#each ctas as cta (`${cta.url}|${cta.text}`)}
-					<Button {...cta} {@attach textRoll()} />
+					<Button
+						{...cta}
+						{@attach textRoll()}
+						{@attach cta.type === 'solid' || cta.type === undefined
+							? magnet({ x: 0.12, y: 0.48, returnEase: 'cubic-bezier(0, 1.64, 0.63, 1.92)' })
+							: undefined}
+					/>
 				{/each}
 			</div>
 		{/if}
@@ -105,7 +116,16 @@
 	</div>
 </header>
 
-<SiteNav id={navId} {open} {links} {footerLinks} {socialLinks} onlink={close} />
+<SiteNav
+	id={navId}
+	{open}
+	{links}
+	{footerLinks}
+	{socialLinks}
+	{linkType}
+	socialLabel="Connect with us!"
+	onlink={close}
+/>
 
 <style lang="scss">
 	@use 'base/mixins';
@@ -176,6 +196,10 @@
 
 	.float .inner {
 		padding-inline: var(--body-padding);
+	}
+
+	.header :global(.links) {
+		--links-gap: 36px;
 	}
 
 	.header :global(.links),

@@ -80,9 +80,13 @@
 <style lang="scss">
 	.menu-links {
 		display: flex;
-		gap: 24px;
+		gap: var(--links-gap, 24px);
 		padding: 0;
 		list-style: none;
+	}
+
+	li {
+		display: flex;
 	}
 
 	.column {

@@ -59,7 +59,7 @@
 
 	// A wide logo keeps its shape: its height is set and the width follows.
 	.themed {
-		width: auto;
+		width: var(--logo-width, auto);
 		height: var(--logo-height, var(--logo-size));
 		max-width: 100%;
 	}

@@ -5,10 +5,11 @@
 	"hideOnScroll": true,
 	"showSkipLink": true,
 	"linkPlacement": "center",
+	"linkType": "text",
 	"navButton": {
-		"text": "menu",
+		"text": "",
 		"symbol": "burger",
 		"shape": "square",
-		"type": "icon"
+		"type": "button"
 	}
 }

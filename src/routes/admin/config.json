@@ -119,9 +119,18 @@
 							"label": "Eyebrow status dot",
 							"widget": "select",
 							"options": [
-								{ "label": "None", "value": "none" },
-								{ "label": "Pulse", "value": "pulse" },
-								{ "label": "Sonar", "value": "sonar" }
+								{
+									"label": "None",
+									"value": "none"
+								},
+								{
+									"label": "Pulse",
+									"value": "pulse"
+								},
+								{
+									"label": "Sonar",
+									"value": "sonar"
+								}
 							],
 							"default": "none",
 							"required": false,
@@ -403,9 +412,18 @@
 							"label": "Eyebrow status dot",
 							"widget": "select",
 							"options": [
-								{ "label": "None", "value": "none" },
-								{ "label": "Pulse", "value": "pulse" },
-								{ "label": "Sonar", "value": "sonar" }
+								{
+									"label": "None",
+									"value": "none"
+								},
+								{
+									"label": "Pulse",
+									"value": "pulse"
+								},
+								{
+									"label": "Sonar",
+									"value": "sonar"
+								}
 							],
 							"default": "none",
 							"required": false,
@@ -857,6 +875,31 @@
 									"widget": "string",
 									"required": false,
 									"hint": "Optional aria-label for screen readers"
+								},
+								{
+									"name": "type",
+									"label": "Style",
+									"widget": "select",
+									"options": [
+										{
+											"label": "Underline",
+											"value": "underline"
+										},
+										{
+											"label": "Text",
+											"value": "text"
+										},
+										{
+											"label": "Solid",
+											"value": "solid"
+										},
+										{
+											"label": "Outline",
+											"value": "outline"
+										}
+									],
+									"default": "underline",
+									"required": false
 								}
 							]
 						},
@@ -919,6 +962,23 @@
 							"widget": "select",
 							"options": ["start", "center", "end"],
 							"default": "center"
+						},
+						{
+							"name": "linkType",
+							"label": "Link style",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Underline",
+									"value": "underline"
+								},
+								{
+									"label": "Text",
+									"value": "text"
+								}
+							],
+							"default": "underline",
+							"hint": "The style of the header links and the mobile menu links."
 						},
 						{
 							"name": "navButton",

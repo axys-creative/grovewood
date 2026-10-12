@@ -377,17 +377,19 @@
 		height: 40px;
 		padding: var(--symbol-gap);
 		border: 1px solid var(--color-border);
-		border-radius: var(--radius-btn);
-		background: var(--color-accent);
+		border-radius: var(--nav-button-radius);
+		background: var(--nav-button-bg);
 	}
 
-	// The box has the accent color in both themes, so its lines are a fixed dark color too.
 	.type-button .stroke {
-		background: var(--color-on-accent);
+		background: var(--nav-button-text);
 	}
 
 	// The lines are as wide as the space inside that padding, whatever the padding is set to.
-	.type-button .burger .stroke,
+	.type-button .burger .stroke {
+		width: calc(100% - var(--symbol-gap) * 2);
+	}
+
 	.type-button .oreo .stroke {
 		width: calc(100% - var(--symbol-gap) * 1.5);
 	}
@@ -401,5 +403,13 @@
 	.type-button .kebab,
 	.type-button .chocolate {
 		width: 40px;
+	}
+
+	.type-button {
+		@include mixins.desktop-hover {
+			.icon {
+				scale: 1.025;
+			}
+		}
 	}
 </style>

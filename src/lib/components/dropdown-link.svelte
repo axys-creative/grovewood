@@ -113,10 +113,17 @@
 
 	.dropdown {
 		position: relative;
+		display: flex;
+		flex-direction: column;
+
+		> :global(.button) {
+			align-self: flex-start;
+		}
 	}
 
 	.list {
 		--btn-font-size: 16px;
+		--btn-font-weight-link: 450;
 
 		display: flex;
 		flex-direction: column;
@@ -129,6 +136,8 @@
 
 	li {
 		display: flex;
+		align-items: center;
+		min-height: 24px;
 		white-space: nowrap;
 	}
 
@@ -150,14 +159,14 @@
 
 	.popover {
 		.panel {
-			--offset: 24px;
+			--offset: 16px;
 
 			position: absolute;
 			top: calc(100% + var(--offset));
 			left: -24px;
 			padding: 24px;
 			border: 1px solid var(--color-border);
-			border-radius: var(--radius-btn);
+			border-radius: var(--radius-xs);
 			opacity: 0;
 			translate: 0 16px;
 
@@ -175,6 +184,7 @@
 		&.open .panel {
 			opacity: 1;
 			translate: 0 0;
+			box-shadow: var(--box-shadow);
 		}
 
 		.panel.blur {
@@ -182,7 +192,8 @@
 		}
 
 		.panel.solid {
-			background: var(--color-bg);
+			border-width: 0;
+			background: var(--color-surface);
 		}
 	}
 
@@ -201,7 +212,7 @@
 			min-height: 0;
 			padding: 0 12px;
 			overflow: hidden;
-			border-radius: var(--radius-btn);
+			border-radius: var(--radius-xs);
 			background: var(--color-surface);
 
 			@include mixins.mq-motion-allow {

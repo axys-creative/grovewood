@@ -7,6 +7,8 @@
 		id: string;
 		open: boolean;
 		links?: NavLink[];
+		/** The button type of the links. Defaults to `underline`. */
+		linkType?: ButtonProps['type'];
 		/** Small links along the bottom. */
 		footerLinks?: ButtonProps[];
 		socialLinks?: SocialLink[];
@@ -45,6 +47,7 @@
 		id,
 		open,
 		links = [],
+		linkType = 'underline',
 		footerLinks = [],
 		socialLinks = [],
 		socialSolid = false,
@@ -117,6 +120,7 @@
 				{links}
 				label="Primary"
 				direction="column"
+				type={linkType}
 				landmark={false}
 			/>
 			{@render buttons()}
@@ -127,7 +131,9 @@
 			{#if footerLinks.length}
 				<ul class="footer-links">
 					{#each footerLinks as link (`${link.url}|${link.text}`)}
-						<li><Button {...link} type="underline" size="sm" {@attach textRoll()} /></li>
+						<li>
+							<Button {...link} type={link.type ?? 'underline'} size="sm" {@attach textRoll()} />
+						</li>
 					{/each}
 				</ul>
 			{/if}
@@ -165,6 +171,7 @@
 					{links}
 					label="Primary"
 					direction="column"
+					type={linkType}
 					landmark={false}
 					onactive={(index) => {
 						if (index !== null) active = index;
@@ -188,19 +195,25 @@
 				{links}
 				label="Primary"
 				direction="column"
+				type={linkType}
 				landmark={false}
 			/>
 			{@render buttons()}
 
 			<div class="footer">
+				{#if socialLinks.length}
+					<p class="connect-label">{socialLabel}</p>
+					<SocialLinks links={socialLinks} />
+				{/if}
 				{#if footerLinks.length}
 					<ul class="footer-links">
 						{#each footerLinks as link (`${link.url}|${link.text}`)}
-							<li><Button {...link} type="underline" size="sm" {@attach textRoll()} /></li>
+							<li>
+								<Button {...link} type={link.type ?? 'underline'} {@attach textRoll()} />
+							</li>
 						{/each}
 					</ul>
 				{/if}
-				<SocialLinks links={socialLinks} />
 			</div>
 		</div>
 	{/if}
@@ -247,6 +260,7 @@
 
 	.constraint {
 		position: relative;
+		flex: none;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -263,13 +277,27 @@
 		}
 	}
 
+	.connect-label {
+		margin: 0;
+		line-height: normal;
+	}
+
+	.site-nav :global(.site-nav-links .icon) {
+		--icon-size: 16px;
+	}
+
+	.site-nav :global(.site-nav-links .button) {
+		--btn-gap: 5px;
+	}
+
 	.site-nav :global(.site-nav-links) {
-		--btn-font-size: 24px;
+		--btn-font-size: 32px;
+		--btn-font-weight-link: 500;
 
 		margin-block: max(40vh, 200px) auto;
 
 		@include mixins.max-sm {
-			--btn-font-size: 20px;
+			--btn-font-size: 24px;
 
 			margin-block: 32vh auto;
 		}
@@ -459,7 +487,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 1ch;
+		gap: 16px;
 		margin: 0;
 		padding: 0;
 		list-style: none;
