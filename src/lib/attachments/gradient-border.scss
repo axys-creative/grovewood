@@ -1,0 +1,149 @@
+@use 'base/mixins';
+
+@property --gradient-border-animate-angle {
+	syntax: '<angle>';
+	initial-value: 0deg;
+	inherits: false;
+}
+
+.gradient-border {
+	--gradient-border-width: 1px;
+	--gradient-border-angle: 135deg;
+	--gradient-border-color: color-mix(in srgb, var(--color-text) 50%, transparent);
+
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border: var(--gradient-border-width) solid transparent;
+		border-radius: inherit;
+		pointer-events: none;
+		background: linear-gradient(
+				var(--gradient-border-angle),
+				var(--gradient-border-color) var(--gradient-border-start, 20%),
+				transparent var(--gradient-border-end, 80%)
+			)
+			border-box;
+		mask:
+			linear-gradient(#fff) padding-box,
+			linear-gradient(#000);
+		-webkit-mask:
+			linear-gradient(#fff) padding-box,
+			linear-gradient(#000);
+		-webkit-mask-composite: destination-out;
+		mask-composite: exclude;
+	}
+
+	&--short {
+		--gradient-border-start: 0%;
+		--gradient-border-end: 25%;
+	}
+
+	&--long {
+		--gradient-border-start: 0%;
+		--gradient-border-end: 150%;
+	}
+
+	// Animated: a conic mask sweeps the border around the element.
+	&--animate,
+	&--animate-hover {
+		--gradient-border-width: 3px;
+
+		isolation: isolate;
+		border: none;
+
+		@include mixins.mq-motion-allow {
+			transition: var(--duration) var(--ease);
+		}
+
+		&::before {
+			inset: auto;
+			top: 50%;
+			left: 50%;
+			translate: -50% -50%;
+			width: 100%;
+			height: 100%;
+			border: 0;
+			background: transparent;
+			box-shadow: inset 0 0 0 var(--gradient-border-width) var(--gradient-border-color);
+			mask: conic-gradient(
+				from var(--gradient-border-animate-angle),
+				rgb(0 0 0 / 0) var(--gradient-border-start, 25%),
+				rgb(0 0 0 / 1) var(--gradient-border-end, 75%)
+			);
+			mask-composite: source-in;
+			z-index: -1;
+
+			@include mixins.mq-motion-allow {
+				animation: gradient-border-sweep var(--gradient-border-duration, 2.5s) linear infinite;
+			}
+		}
+	}
+
+	&--animate.gradient-border--short,
+	&--animate-hover.gradient-border--short {
+		--gradient-border-start: 75%;
+		--gradient-border-end: 100%;
+	}
+
+	&--animate.gradient-border--long,
+	&--animate-hover.gradient-border--long {
+		--gradient-border-start: 0%;
+		--gradient-border-end: 25%;
+	}
+
+	// Hover: the sweep sits behind the element and grows outward into view.
+	&--animate-hover {
+		isolation: auto;
+
+		&::before {
+			transition:
+				width 1s ease 0.125s,
+				height 1s ease 0.125s;
+		}
+
+		@include mixins.desktop-hover {
+			&::before {
+				width: calc(100% + var(--gradient-border-width) * 2);
+				height: calc(100% + var(--gradient-border-width) * 2);
+				transition-delay: 0s;
+			}
+		}
+	}
+
+	// Ray trace: a glow behind the element that leans toward the pointer.
+	&--ray-trace {
+		--gradient-border-color: var(--color-text);
+
+		&::before {
+			inset: calc(var(--gradient-border-width) * -1);
+			border: 0;
+			z-index: -1;
+			background: radial-gradient(
+				circle at var(--gradient-x, 50%) var(--gradient-y, 50%),
+				color-mix(
+						in srgb,
+						var(--gradient-border-color) calc(var(--gradient-opacity, 0.5) * 100%),
+						transparent
+					)
+					0%,
+				color-mix(
+						in srgb,
+						var(--gradient-border-color) calc(var(--gradient-opacity, 0.5) * 20%),
+						transparent
+					)
+					100%
+			);
+			mask: none;
+			-webkit-mask: none;
+		}
+	}
+}
+
+@keyframes gradient-border-sweep {
+	to {
+		--gradient-border-animate-angle: 360deg;
+	}
+}

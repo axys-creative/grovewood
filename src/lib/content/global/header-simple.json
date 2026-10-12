@@ -1,0 +1,14 @@
+{
+	"float": false,
+	"blur": false,
+	"glass": false,
+	"hideOnScroll": true,
+	"showSkipLink": true,
+	"linkPlacement": "center",
+	"navButton": {
+		"text": "menu",
+		"symbol": "burger",
+		"shape": "square",
+		"type": "icon"
+	}
+}

@@ -1,0 +1,18 @@
+@use 'base/mixins';
+
+// Shared by the typing-* attachments.
+.typing__cursor {
+	@include mixins.mq-motion-allow {
+		animation: typing-flicker 1s infinite;
+	}
+}
+
+@keyframes typing-flicker {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}

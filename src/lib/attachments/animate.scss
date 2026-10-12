@@ -1,0 +1,41 @@
+@use 'base/mixins';
+
+// Elements start hidden only when motion is allowed, so reduced-motion visitors see everything.
+@include mixins.mq-motion-allow {
+	.animate {
+		--animate-duration: 0.6s;
+		--animate-delay: 0s;
+
+		opacity: 0;
+		transition:
+			opacity var(--animate-duration) var(--ease) var(--animate-delay),
+			translate var(--animate-duration) var(--ease) var(--animate-delay),
+			scale var(--animate-duration) var(--ease) var(--animate-delay);
+
+		&--up {
+			translate: 0 24px;
+		}
+
+		&--down {
+			translate: 0 -24px;
+		}
+
+		&--left {
+			translate: -24px 0;
+		}
+
+		&--right {
+			translate: 24px 0;
+		}
+
+		&--scale {
+			scale: 0.9;
+		}
+	}
+
+	.animate.animated {
+		opacity: 1;
+		translate: 0 0;
+		scale: 1;
+	}
+}

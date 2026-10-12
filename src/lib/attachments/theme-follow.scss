@@ -1,0 +1,13 @@
+@use 'base/variables';
+
+[data-theme-follow='dark'] {
+	@include variables.theme(dark);
+}
+
+[data-theme-follow='light'] {
+	@include variables.theme(light);
+}
+
+[data-theme-follow='invert'] {
+	@include variables.theme(invert);
+}

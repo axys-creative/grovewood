@@ -1,9 +1,0 @@
-// Mobile only issue — Using JS polyfill for lvh & svh (Everything seemed to just be dvh)
-
-@function lvh($amount) {
-  @return calc(var(--lvh, 1vh) * #{$amount});
-}
-
-@function svh($amount) {
-  @return calc(var(--svh, 1vh) * #{$amount});
-}

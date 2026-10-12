@@ -1,0 +1,143 @@
+{
+	"links": [
+		{
+			"text": "Home",
+			"url": "/",
+			"newTab": false,
+			"images": [
+				{
+					"src": "/images/img-sample-1.jpg",
+					"alt": ""
+				},
+				{
+					"src": "/images/img-sample-2.jpg",
+					"alt": ""
+				},
+				{
+					"src": "/images/img-sample-3.jpg",
+					"alt": ""
+				},
+				{
+					"src": "/images/img-sample-4.jpg",
+					"alt": ""
+				}
+			]
+		},
+		{
+			"text": "Resources",
+			"links": [
+				{
+					"text": "Advanced",
+					"url": "/advanced",
+					"newTab": false,
+					"iconStart": "rocket"
+				},
+				{
+					"text": "Attachments",
+					"url": "/attachments",
+					"newTab": false,
+					"iconStart": "bolt"
+				},
+				{
+					"text": "Components",
+					"url": "/components",
+					"newTab": false,
+					"iconStart": "blocks"
+				},
+				{
+					"text": "Combos",
+					"url": "/combos",
+					"newTab": false,
+					"iconStart": "orbit"
+				},
+				{
+					"text": "Sections",
+					"url": "/sections",
+					"newTab": false,
+					"iconStart": "dashboard"
+				},
+				{
+					"text": "Transitions",
+					"url": "/transitions",
+					"newTab": false,
+					"iconStart": "infinity"
+				},
+				{
+					"text": "Style Guide",
+					"url": "/style-guide",
+					"newTab": false,
+					"iconStart": "palette"
+				},
+				{
+					"text": "Tokens",
+					"url": "https://axyscreative.com/tokens",
+					"newTab": true,
+					"iconStart": "inventory"
+				}
+			],
+			"images": [
+				{
+					"src": "/images/img-sample-5.jpg",
+					"alt": ""
+				},
+				{
+					"src": "/images/img-sample-6.jpg",
+					"alt": ""
+				},
+				{
+					"src": "/images/img-sample-7.jpg",
+					"alt": ""
+				},
+				{
+					"src": "/images/img-sample-1.jpg",
+					"alt": ""
+				}
+			]
+		},
+		{
+			"text": "Blog",
+			"url": "/blog",
+			"newTab": false,
+			"images": [
+				{
+					"src": "/images/img-sample-3.jpg",
+					"alt": ""
+				},
+				{
+					"src": "/images/img-sample-6.jpg",
+					"alt": ""
+				},
+				{
+					"src": "/images/img-sample-2.jpg",
+					"alt": ""
+				},
+				{
+					"src": "/images/img-sample-7.jpg",
+					"alt": ""
+				}
+			]
+		}
+	],
+	"ctas": [
+		{
+			"text": "Join",
+			"textDescription": "Join AXYS Creative",
+			"url": "https://axyscreative.com",
+			"newTab": true,
+			"type": "outline"
+		}
+	],
+	"navFooterLinks": [
+		{
+			"text": "Privacy Policy",
+			"url": "/privacy-policy",
+			"newTab": false
+		},
+		{
+			"text": "Terms of Service",
+			"url": "/terms-of-service",
+			"newTab": false
+		}
+	],
+	"adminLogin": true
+}

@@ -1,0 +1,36 @@
+// One tile of SVG noise, thresholded into alpha so the CSS color shows through as a mask.
+@function noise($frequency, $seed, $octaves, $gain, $offset) {
+	@return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='#{$frequency}' numOctaves='#{$octaves}' seed='#{$seed}' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 #{$gain} 0 0 #{$offset}'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.paper-grain {
+	position: relative;
+	isolation: isolate;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		border-radius: inherit;
+		background: var(--paper-grain-color, var(--color-text));
+		opacity: var(--paper-grain-opacity, 0.1);
+		mask-size: var(--paper-grain-size, 480px);
+		mask-repeat: repeat;
+		pointer-events: none;
+	}
+
+	&--fibers::before {
+		mask-image: noise('0.45', 4, 3, 30, -22.5), noise('0.3', 12, 3, 30, -23);
+	}
+
+	&--flecks::before {
+		mask-image: noise('0.9', 3, 1, 45, -33.2), noise('0.03 0.8', 9, 2, 30, -21.6);
+	}
+
+	&--pulp::before {
+		mask-image:
+			noise('0.03 0.8', 11, 2, 30, -21.5), noise('0.8 0.03', 6, 2, 30, -22.3),
+			noise('0.01', 2, 2, 2.5, -1.7);
+	}
+}

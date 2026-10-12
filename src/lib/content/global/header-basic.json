@@ -1,0 +1,13 @@
+{
+	"position": "fixed",
+	"hideOnScroll": false,
+	"blend": false,
+	"navSurface": "solid",
+	"showSkipLink": true,
+	"navButton": {
+		"symbol": "stairs",
+		"shape": "round",
+		"type": "button"
+	},
+	"socialSolid": true
+}

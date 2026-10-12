@@ -1,0 +1,20 @@
+{
+	"links": [
+		{
+			"title": "Instagram",
+			"url": "https://www.instagram.com/sample",
+			"icon": "/uploads/social-instagram.svg"
+		},
+		{ "title": "X", "url": "https://twitter.com/sample", "icon": "/uploads/social-x.svg" },
+		{
+			"title": "LinkedIn",
+			"url": "https://linkedin.com/sample",
+			"icon": "/uploads/social-linkedin.svg"
+		},
+		{
+			"title": "Facebook",
+			"url": "https://facebook.com/sample",
+			"icon": "/uploads/social-facebook.svg"
+		}
+	]
+}

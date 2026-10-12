@@ -1,0 +1,21 @@
+{
+	"eyebrowText": "axys-template",
+	"title": "Welcome to the axys template",
+	"description": "A fast, accessible starting point built with SvelteKit, SCSS and JSON content, edited through Decap CMS.",
+	"cta": {
+		"primary": {
+			"text": "View Style Guide",
+			"textDescription": "View the style guide",
+			"url": "/style-guide",
+			"newTab": false,
+			"iconEnd": ""
+		},
+		"secondary": {
+			"text": "Get Started",
+			"textDescription": "Get started with AXYS Creative",
+			"url": "https://axyscreative.com",
+			"newTab": true,
+			"iconEnd": "chevron-right"
+		}
+	}
+}

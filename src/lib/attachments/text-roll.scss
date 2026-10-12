@@ -1,0 +1,29 @@
+@use 'base/mixins';
+
+.text-roll__chars {
+	display: inline-flex;
+	overflow: hidden;
+	white-space: pre;
+}
+
+.text-roll__char {
+	position: relative;
+	display: inline-block;
+	transition: translate var(--text-roll-duration, 0.6s) var(--ease)
+		calc(var(--text-roll-index) * var(--text-roll-stagger, 0.02s));
+
+	&::after {
+		content: attr(data-char);
+		position: absolute;
+		top: 100%;
+		left: 0;
+	}
+}
+
+.text-roll {
+	@include mixins.desktop-hover {
+		.text-roll__char {
+			translate: 0 -100%;
+		}
+	}
+}

@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /admin
-Disallow: /404.html
-Disallow: /form-submit.html
-
-# CHANGE ME
-Sitemap: https://grovewood.netlify.app/sitemap.xml

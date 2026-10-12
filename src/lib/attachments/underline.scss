@@ -1,0 +1,29 @@
+@use 'base/mixins';
+
+.underline-effect {
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: auto auto 0 0;
+		width: 100%;
+		height: 1px;
+		background: currentColor;
+
+		@include mixins.mq-motion-allow {
+			transition:
+				width var(--duration) var(--ease),
+				inset var(--duration) var(--ease);
+		}
+	}
+}
+
+:hover > .underline-effect::after,
+:focus-visible > .underline-effect::after,
+.underline-effect:is(:hover, :focus-visible)::after {
+	@media (hover: hover) and (pointer: fine) {
+		inset: auto 0 0 auto;
+		width: 0;
+	}
+}

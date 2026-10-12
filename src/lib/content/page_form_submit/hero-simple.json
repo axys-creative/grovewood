@@ -1,0 +1,13 @@
+{
+	"title": "Form Submitted",
+	"description": "Thank you! We'll be notified of your form submission and reach out shortly.",
+	"cta": {
+		"primary": {
+			"text": "Return home",
+			"textDescription": "Return to the home page",
+			"url": "/",
+			"newTab": false,
+			"iconEnd": ""
+		}
+	}
+}

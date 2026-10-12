@@ -1,0 +1,11 @@
+{
+	"title": "A short post",
+	"description": "A second sample so the archive has more than one entry to list.",
+	"author": "Author Here",
+	"date": "2026-02-02",
+	"tag": "Announcement",
+	"coverImage": "/images/img-sample-1.jpg",
+	"coverAlt": "",
+	"draft": false,
+	"body": "Just enough text to show how a short article looks on the page.\n\n## A heading\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis sequi dignissimos dolores? Magni, nisi quae.\n"
+}

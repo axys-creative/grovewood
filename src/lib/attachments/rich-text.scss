@@ -1,0 +1,16 @@
+.rich-text--primary {
+	color: var(--color-accent-text);
+}
+
+.rich-text--secondary {
+	color: var(--color-secondary);
+}
+
+.rich-text--italic {
+	font-style: italic;
+}
+
+.rich-text--stroke {
+	color: transparent;
+	-webkit-text-stroke: 1px var(--color-text);
+}

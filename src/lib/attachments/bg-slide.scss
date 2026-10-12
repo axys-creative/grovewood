@@ -1,0 +1,43 @@
+@use 'base/mixins';
+
+.bg-slide {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: var(--bg-slide-color, var(--color-accent));
+		translate: 0 0;
+
+		@include mixins.mq-motion-allow {
+			transition: translate 0.64s cubic-bezier(0.75, 0, 0.2, 1);
+		}
+	}
+
+	// An outline button starts empty and fills; the text stays readable on the color.
+	&.outline.outline {
+		&::before {
+			translate: calc(var(--bg-slide-x) * -100%) calc(var(--bg-slide-y) * -100%);
+		}
+
+		@include mixins.desktop-hover {
+			color: var(--color-text);
+
+			&::before {
+				translate: 0 0;
+			}
+		}
+	}
+
+	&.solid {
+		@include mixins.desktop-hover {
+			&::before {
+				translate: calc(var(--bg-slide-x) * 100%) calc(var(--bg-slide-y) * 100%);
+			}
+		}
+	}
+}

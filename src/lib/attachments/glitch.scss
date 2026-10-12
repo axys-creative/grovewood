@@ -1,0 +1,25 @@
+// Shared by the glitch-* attachments.
+.glitch-text {
+	overflow: hidden;
+	font-family: var(--font-mono);
+	font-weight: 400;
+	letter-spacing: -0.5px;
+}
+
+h1 .glitch-text,
+h2 .glitch-text,
+h3 .glitch-text,
+h4 .glitch-text {
+	font-weight: 300;
+	letter-spacing: -2px;
+}
+
+.glitch-hover,
+.glitch-target {
+	white-space: nowrap;
+}
+
+.glitch-hover__text {
+	display: inline-flex;
+	overflow: hidden;
+}

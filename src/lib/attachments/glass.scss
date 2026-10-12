@@ -1,0 +1,38 @@
+.glass {
+	position: relative;
+	background: var(--glass-tint, var(--color-glass));
+	backdrop-filter: blur(var(--glass-blur, 12px)) saturate(var(--glass-saturate, 140%));
+	-webkit-backdrop-filter: blur(var(--glass-blur, 12px)) saturate(var(--glass-saturate, 140%));
+
+	// Soft light catch along the edge.
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border: 1px solid transparent;
+		border-radius: inherit;
+		pointer-events: none;
+		background: linear-gradient(
+				135deg,
+				rgb(255 255 255 / 0.55),
+				rgb(255 255 255 / 0) 35%,
+				rgb(255 255 255 / 0) 65%,
+				rgb(255 255 255 / 0.2)
+			)
+			border-box;
+		mask:
+			linear-gradient(#fff) padding-box,
+			linear-gradient(#fff);
+		-webkit-mask:
+			linear-gradient(#fff) padding-box,
+			linear-gradient(#fff);
+		-webkit-mask-composite: destination-out;
+		mask-composite: exclude;
+	}
+}
+
+// Off screen the backdrop is never seen, so nothing is computed for it.
+.glass[data-glass-idle] {
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}

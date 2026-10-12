@@ -1,0 +1,2107 @@
+{
+	"load_config_file": false,
+	"backend": {
+		"name": "git-gateway",
+		"branch": "main",
+		"repo": "https://github.com/axys-creative/axys-template.git"
+	},
+	"local_backend": true,
+	"media_folder": "static/uploads",
+	"public_folder": "/uploads",
+	"site_url": "https://axys-template.netlify.app",
+	"display_url": "https://axys-template.netlify.app",
+	"logo_url": "/images/admin/admin-logo.svg",
+	"collections": [
+		{
+			"name": "blog",
+			"label": "Blog",
+			"label_singular": "Post",
+			"description": "Each post is one file in src/lib/content/blog. The file name becomes the address: /blog/the-file-name.",
+			"folder": "src/lib/content/blog",
+			"extension": "json",
+			"format": "json",
+			"create": true,
+			"slug": "{{slug}}",
+			"identifier_field": "title",
+			"summary": "{{title}} · {{date}}",
+			"preview_path": "blog/{{slug}}",
+			"sortable_fields": ["date", "title"],
+			"editor": {
+				"preview": false
+			},
+			"fields": [
+				{
+					"name": "title",
+					"label": "Title",
+					"widget": "string",
+					"hint": "The address of the post comes from the title the first time it is saved. Changing the title later does not change the address."
+				},
+				{
+					"name": "description",
+					"label": "Description",
+					"widget": "text",
+					"hint": "Shown on the blog page and in search results. Keep it under about 155 characters."
+				},
+				{
+					"name": "author",
+					"label": "Author",
+					"widget": "string",
+					"required": false
+				},
+				{
+					"name": "date",
+					"label": "Publish date",
+					"widget": "datetime",
+					"date_format": "YYYY-MM-DD",
+					"time_format": false,
+					"format": "YYYY-MM-DD"
+				},
+				{
+					"name": "tag",
+					"label": "Tag",
+					"widget": "select",
+					"options": ["Announcement", "Best Practices", "Event", "Press Release", "Update"],
+					"required": false
+				},
+				{
+					"name": "coverImage",
+					"label": "Cover image",
+					"widget": "image",
+					"required": false
+				},
+				{
+					"name": "coverAlt",
+					"label": "Cover image description",
+					"widget": "string",
+					"required": false,
+					"hint": "Describe the image for screen readers. Leave empty if it is decorative."
+				},
+				{
+					"name": "draft",
+					"label": "Draft",
+					"widget": "boolean",
+					"default": false,
+					"required": false,
+					"hint": "Drafts are hidden from the site."
+				},
+				{
+					"name": "body",
+					"label": "Body",
+					"widget": "markdown"
+				}
+			]
+		},
+		{
+			"name": "page_home",
+			"label": "Page - Home",
+			"files": [
+				{
+					"name": "hero_simple",
+					"label": "Hero",
+					"file": "src/lib/content/page_home/hero-simple.json",
+					"preview_path": "#hero",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "eyebrowDot",
+							"label": "Eyebrow status dot",
+							"widget": "select",
+							"options": [
+								{ "label": "None", "value": "none" },
+								{ "label": "Pulse", "value": "pulse" },
+								{ "label": "Sonar", "value": "sonar" }
+							],
+							"default": "none",
+							"required": false,
+							"hint": "A green dot before the eyebrow, such as for \"available for freelance\"."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": true,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": true
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": true
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "layout",
+							"label": "Layout",
+							"widget": "select",
+							"options": ["column", "row"],
+							"default": "column",
+							"required": false,
+							"hint": "Row puts the description beside the title on wider screens."
+						},
+						{
+							"name": "align",
+							"label": "Alignment",
+							"widget": "select",
+							"options": ["start", "center"],
+							"default": "center",
+							"required": false
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "page_blog",
+			"label": "Page - Blog",
+			"files": [
+				{
+					"name": "hero_simple",
+					"label": "Hero",
+					"file": "src/lib/content/page_blog/hero-simple.json",
+					"preview_path": "blog#hero",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "page_form_submit",
+			"label": "Page - Form Submitted",
+			"files": [
+				{
+					"name": "hero_simple",
+					"label": "Hero",
+					"file": "src/lib/content/page_form_submit/hero-simple.json",
+					"preview_path": "form-submit#hero",
+					"fields": [
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": true,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": true
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": true
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "layout",
+							"label": "Layout",
+							"widget": "select",
+							"options": ["column", "row"],
+							"default": "column",
+							"required": false,
+							"hint": "Row puts the description beside the title on wider screens."
+						},
+						{
+							"name": "align",
+							"label": "Alignment",
+							"widget": "select",
+							"options": ["start", "center"],
+							"default": "center",
+							"required": false
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "page_sections",
+			"label": "Page - Sections",
+			"files": [
+				{
+					"name": "carousel_spotlight",
+					"label": "Carousel Spotlight",
+					"file": "src/lib/content/page_sections/carousel-spotlight.json",
+					"preview_path": "sections#carousel-spotlight",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "eyebrowDot",
+							"label": "Eyebrow status dot",
+							"widget": "select",
+							"options": [
+								{ "label": "None", "value": "none" },
+								{ "label": "Pulse", "value": "pulse" },
+								{ "label": "Sonar", "value": "sonar" }
+							],
+							"default": "none",
+							"required": false,
+							"hint": "A green dot before the eyebrow, such as for \"available for freelance\"."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "pauseOnHover",
+							"label": "Pause on hover",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Holds the autoplay while the mouse is over the carousel. It always holds while a slide has keyboard focus."
+						},
+						{
+							"name": "slides",
+							"label": "Slides",
+							"widget": "list",
+							"min": 2,
+							"summary": "{{fields.title}}",
+							"fields": [
+								{
+									"name": "title",
+									"label": "Title",
+									"widget": "string"
+								},
+								{
+									"name": "description",
+									"label": "Description",
+									"widget": "text",
+									"required": false,
+									"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+								},
+								{
+									"name": "image",
+									"label": "Image",
+									"widget": "object",
+									"fields": [
+										{
+											"name": "src",
+											"label": "Image",
+											"widget": "image"
+										},
+										{
+											"name": "alt",
+											"label": "Alt text",
+											"widget": "string",
+											"required": false,
+											"hint": "Leave empty if the picture is decorative."
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "page_404",
+			"label": "Page - 404",
+			"files": [
+				{
+					"name": "hero_simple",
+					"label": "Hero",
+					"file": "src/lib/content/page_404/hero-simple.json",
+					"fields": [
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": true,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": true
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": true
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "layout",
+							"label": "Layout",
+							"widget": "select",
+							"options": ["column", "row"],
+							"default": "column",
+							"required": false,
+							"hint": "Row puts the description beside the title on wider screens."
+						},
+						{
+							"name": "align",
+							"label": "Alignment",
+							"widget": "select",
+							"options": ["start", "center"],
+							"default": "center",
+							"required": false
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "global",
+			"label": "Global",
+			"editor": {
+				"preview": false
+			},
+			"files": [
+				{
+					"name": "navigation",
+					"label": "Navigation",
+					"file": "src/lib/content/global/navigation.json",
+					"fields": [
+						{
+							"name": "links",
+							"label": "Navigation links",
+							"widget": "list",
+							"label_singular": "Link",
+							"summary": "{{fields.text}}",
+							"fields": [
+								{
+									"name": "text",
+									"label": "Text",
+									"widget": "string"
+								},
+								{
+									"name": "url",
+									"label": "URL",
+									"widget": "string",
+									"hint": "Leave empty for a dropdown. Page path (/about), anchor (#contact), or full URL.",
+									"required": false
+								},
+								{
+									"name": "newTab",
+									"label": "Open in new tab",
+									"widget": "boolean",
+									"default": false,
+									"required": false
+								},
+								{
+									"name": "textDescription",
+									"label": "Accessible description",
+									"widget": "string",
+									"required": false,
+									"hint": "Optional aria-label for screen readers"
+								},
+								{
+									"name": "links",
+									"label": "Dropdown links",
+									"label_singular": "Link",
+									"widget": "list",
+									"required": false,
+									"summary": "{{fields.text}}",
+									"hint": "Add links here to turn this item into a dropdown. Its own URL is then ignored.",
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"hint": "Page path (/about), anchor (#contact), or full URL."
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. palette). See /style-guide for examples."
+										}
+									]
+								},
+								{
+									"name": "images",
+									"label": "Hover pictures",
+									"label_singular": "Picture",
+									"widget": "list",
+									"required": false,
+									"max": 4,
+									"summary": "{{fields.alt}}",
+									"hint": "Up to four. They fade in beside the links when the link is hovered in the Header Basic menu.",
+									"fields": [
+										{
+											"name": "src",
+											"label": "Image",
+											"widget": "image"
+										},
+										{
+											"name": "alt",
+											"label": "Description",
+											"widget": "string",
+											"required": false
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "ctas",
+							"label": "Buttons",
+							"widget": "list",
+							"label_singular": "Link",
+							"summary": "{{fields.text}}",
+							"fields": [
+								{
+									"name": "text",
+									"label": "Text",
+									"widget": "string"
+								},
+								{
+									"name": "url",
+									"label": "URL",
+									"widget": "string",
+									"hint": "Page path (/about), anchor (#contact), or full URL."
+								},
+								{
+									"name": "newTab",
+									"label": "Open in new tab",
+									"widget": "boolean",
+									"default": false,
+									"required": false
+								},
+								{
+									"name": "textDescription",
+									"label": "Accessible description",
+									"widget": "string",
+									"required": false,
+									"hint": "Optional aria-label for screen readers"
+								},
+								{
+									"name": "type",
+									"label": "Style",
+									"widget": "select",
+									"options": ["solid", "outline", "underline", "text"],
+									"default": "underline",
+									"required": false
+								},
+								{
+									"name": "iconStart",
+									"label": "Icon before text",
+									"widget": "string",
+									"required": false,
+									"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+								},
+								{
+									"name": "iconEnd",
+									"label": "Icon after text",
+									"widget": "string",
+									"required": false,
+									"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+								}
+							]
+						},
+						{
+							"name": "navFooterLinks",
+							"label": "Mobile menu footer links",
+							"widget": "list",
+							"label_singular": "Link",
+							"summary": "{{fields.text}}",
+							"required": false,
+							"fields": [
+								{
+									"name": "text",
+									"label": "Text",
+									"widget": "string"
+								},
+								{
+									"name": "url",
+									"label": "URL",
+									"widget": "string",
+									"hint": "Page path (/about), anchor (#contact), or full URL."
+								},
+								{
+									"name": "newTab",
+									"label": "Open in new tab",
+									"widget": "boolean",
+									"default": false,
+									"required": false
+								},
+								{
+									"name": "textDescription",
+									"label": "Accessible description",
+									"widget": "string",
+									"required": false,
+									"hint": "Optional aria-label for screen readers"
+								}
+							]
+						},
+						{
+							"name": "adminLogin",
+							"label": "Show Admin Log In link in the menu",
+							"widget": "boolean",
+							"default": true,
+							"required": false
+						}
+					]
+				},
+				{
+					"name": "header_simple",
+					"label": "Header (simple)",
+					"file": "src/lib/content/global/header-simple.json",
+					"fields": [
+						{
+							"name": "float",
+							"label": "Floating",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "Inset, rounded bar with an outside gap."
+						},
+						{
+							"name": "glass",
+							"label": "Glass background",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "Frosted glass with refracting edges in Chrome. Other browsers get the blur."
+						},
+						{
+							"name": "blur",
+							"label": "Blur background",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "A plain translucent, blurred background. Ignored when Glass is on."
+						},
+						{
+							"name": "hideOnScroll",
+							"label": "Hide on scroll down",
+							"widget": "boolean",
+							"default": true,
+							"required": false
+						},
+						{
+							"name": "showSkipLink",
+							"label": "Show skip to content link",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "Accessibility. Leave on."
+						},
+						{
+							"name": "linkPlacement",
+							"label": "Link placement",
+							"widget": "select",
+							"options": ["start", "center", "end"],
+							"default": "center"
+						},
+						{
+							"name": "navButton",
+							"label": "Mobile menu button",
+							"widget": "object",
+							"fields": [
+								{
+									"name": "symbol",
+									"label": "Symbol",
+									"widget": "select",
+									"options": ["burger", "oreo", "stairs", "chocolate", "kebab"],
+									"default": "burger",
+									"hint": "Burger is two lines, oreo is two lines with rounded outer corners that twirl into the X, stairs is three stepped lines (short, long, short) that form the X, chocolate is nine dots, kebab is three vertical dots."
+								},
+								{
+									"name": "shape",
+									"label": "Shape",
+									"widget": "select",
+									"options": ["square", "round"],
+									"default": "square"
+								},
+								{
+									"name": "type",
+									"label": "Style",
+									"widget": "select",
+									"options": ["icon", "button"],
+									"default": "icon",
+									"hint": "Button puts the symbol in a bordered box."
+								},
+								{
+									"name": "text",
+									"label": "Text beside the symbol",
+									"widget": "string",
+									"required": false,
+									"hint": "Optional, e.g. menu."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "header_island",
+					"label": "Header (island)",
+					"file": "src/lib/content/global/header-island.json",
+					"fields": [
+						{
+							"name": "glass",
+							"label": "Glass background",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "Frosted glass with refracting edges in Chrome. Other browsers get the blur."
+						},
+						{
+							"name": "blur",
+							"label": "Blur background",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "A plain translucent, blurred background. Ignored when Glass is on."
+						},
+						{
+							"name": "hideOnScroll",
+							"label": "Hide on scroll down",
+							"widget": "boolean",
+							"default": true,
+							"required": false
+						},
+						{
+							"name": "showSkipLink",
+							"label": "Show skip to content link",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "Accessibility. Leave on."
+						},
+						{
+							"name": "navButton",
+							"label": "Menu button",
+							"widget": "object",
+							"fields": [
+								{
+									"name": "symbol",
+									"label": "Symbol",
+									"widget": "select",
+									"options": ["burger", "oreo", "stairs", "chocolate", "kebab"],
+									"default": "burger",
+									"hint": "Burger is two lines, oreo is two lines with rounded outer corners that twirl into the X, stairs is three stepped lines (short, long, short) that form the X, chocolate is nine dots, kebab is three vertical dots."
+								},
+								{
+									"name": "shape",
+									"label": "Shape",
+									"widget": "select",
+									"options": ["square", "round"],
+									"default": "square"
+								},
+								{
+									"name": "type",
+									"label": "Style",
+									"widget": "select",
+									"options": ["icon", "button"],
+									"default": "icon",
+									"hint": "Button puts the symbol in a bordered box."
+								},
+								{
+									"name": "text",
+									"label": "Text beside the symbol",
+									"widget": "string",
+									"required": false,
+									"hint": "Optional, e.g. menu."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "header_absolute",
+					"label": "Header (absolute)",
+					"file": "src/lib/content/global/header-absolute.json",
+					"fields": [
+						{
+							"name": "logoPlacement",
+							"label": "Logo placement",
+							"widget": "select",
+							"options": ["start", "center", "end"],
+							"default": "start",
+							"hint": "Where the logo sits along the top."
+						},
+						{
+							"name": "controlsPlacement",
+							"label": "Buttons placement",
+							"widget": "select",
+							"options": ["start", "center", "end"],
+							"default": "end",
+							"hint": "Where the buttons and menu button sit. Not the same side as the logo, or they overlap."
+						},
+						{
+							"name": "position",
+							"label": "Position",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Fixed (stays on screen)",
+									"value": "fixed"
+								},
+								{
+									"label": "Absolute (scrolls away with the page)",
+									"value": "absolute"
+								}
+							],
+							"default": "fixed"
+						},
+						{
+							"name": "hideOnScroll",
+							"label": "Hide on scroll down",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Only with Fixed."
+						},
+						{
+							"name": "blend",
+							"label": "Invert colors over the page",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps the logo and buttons readable over any picture or color. Works best with text or underline buttons."
+						},
+						{
+							"name": "desktopLayout",
+							"label": "Large screen layout",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Links in the middle, with a strap",
+									"value": "links"
+								},
+								{
+									"label": "Buttons and menu button",
+									"value": "controls"
+								}
+							],
+							"default": "links",
+							"hint": "Links shows the navigation in the middle and a strap of social links in the corner, and the menu button only on small screens."
+						},
+						{
+							"name": "mobileNav",
+							"label": "Small screen menu",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Slide-out panel from the right",
+									"value": "slide"
+								},
+								{
+									"label": "Full-screen overlay",
+									"value": "overlay"
+								}
+							],
+							"default": "slide",
+							"hint": "The slide-out covers about three quarters of the screen, with no backdrop, and all of it on the smallest screens."
+						},
+						{
+							"name": "navSurface",
+							"label": "Menu background",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Solid",
+									"value": "solid"
+								},
+								{
+									"label": "Blur",
+									"value": "blur"
+								},
+								{
+									"label": "Glass",
+									"value": "glass"
+								}
+							],
+							"default": "solid",
+							"hint": "Solid is the page color. Blur is translucent and blurred. Glass adds refracting edges in Chrome, and blur elsewhere."
+						},
+						{
+							"name": "strapIcon",
+							"label": "Strap icon",
+							"widget": "string",
+							"required": false,
+							"default": "orbit",
+							"hint": "An icon name from the icons folder. A placeholder for now. Leave empty for none."
+						},
+						{
+							"name": "showCtas",
+							"label": "Show buttons beside the menu button",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "From the large breakpoint up. Only with the Buttons and menu button layout."
+						},
+						{
+							"name": "showSkipLink",
+							"label": "Show skip to content link",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "Accessibility. Leave on."
+						},
+						{
+							"name": "navButton",
+							"label": "Menu button",
+							"widget": "object",
+							"fields": [
+								{
+									"name": "symbol",
+									"label": "Symbol",
+									"widget": "select",
+									"options": ["burger", "oreo", "stairs", "chocolate", "kebab"],
+									"default": "burger",
+									"hint": "Burger is two lines, oreo is two lines with rounded outer corners that twirl into the X, stairs is three stepped lines (short, long, short) that form the X, chocolate is nine dots, kebab is three vertical dots."
+								},
+								{
+									"name": "shape",
+									"label": "Shape",
+									"widget": "select",
+									"options": ["square", "round"],
+									"default": "square"
+								},
+								{
+									"name": "type",
+									"label": "Style",
+									"widget": "select",
+									"options": ["icon", "button"],
+									"default": "icon",
+									"hint": "Button puts the symbol in a bordered box."
+								},
+								{
+									"name": "text",
+									"label": "Text beside the symbol",
+									"widget": "string",
+									"required": false,
+									"hint": "Optional, e.g. menu."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "header_basic",
+					"label": "Header (basic)",
+					"file": "src/lib/content/global/header-basic.json",
+					"fields": [
+						{
+							"name": "position",
+							"label": "Position",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Fixed (stays on screen)",
+									"value": "fixed"
+								},
+								{
+									"label": "Absolute (scrolls away with the page)",
+									"value": "absolute"
+								}
+							],
+							"default": "fixed"
+						},
+						{
+							"name": "hideOnScroll",
+							"label": "Hide on scroll down",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Only with Fixed."
+						},
+						{
+							"name": "blend",
+							"label": "Invert colors over the page",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps the logo and buttons readable over any picture or color. Works best with text or underline buttons."
+						},
+						{
+							"name": "navSurface",
+							"label": "Menu background",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Solid",
+									"value": "solid"
+								},
+								{
+									"label": "Blur",
+									"value": "blur"
+								},
+								{
+									"label": "Glass",
+									"value": "glass"
+								}
+							],
+							"default": "solid",
+							"hint": "Solid is the page color. Blur is translucent and blurred. Glass adds refracting edges in Chrome, and blur elsewhere."
+						},
+						{
+							"name": "socialSolid",
+							"label": "Social links as buttons",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Puts each social icon in a box in the solid button style."
+						},
+						{
+							"name": "showSkipLink",
+							"label": "Show skip to content link",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "Accessibility. Leave on."
+						},
+						{
+							"name": "navButton",
+							"label": "Menu button",
+							"widget": "object",
+							"fields": [
+								{
+									"name": "symbol",
+									"label": "Symbol",
+									"widget": "select",
+									"options": ["burger", "oreo", "stairs", "chocolate", "kebab"],
+									"default": "burger",
+									"hint": "Burger is two lines, oreo is two lines with rounded outer corners that twirl into the X, stairs is three stepped lines (short, long, short) that form the X, chocolate is nine dots, kebab is three vertical dots."
+								},
+								{
+									"name": "shape",
+									"label": "Shape",
+									"widget": "select",
+									"options": ["square", "round"],
+									"default": "square"
+								},
+								{
+									"name": "type",
+									"label": "Style",
+									"widget": "select",
+									"options": ["icon", "button"],
+									"default": "icon",
+									"hint": "Button puts the symbol in a bordered box."
+								},
+								{
+									"name": "text",
+									"label": "Text beside the symbol",
+									"widget": "string",
+									"required": false,
+									"hint": "Optional, e.g. menu."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "footer_simple",
+					"label": "Footer",
+					"file": "src/lib/content/global/footer-simple.json",
+					"fields": [
+						{
+							"name": "float",
+							"label": "Floating",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "Inset, rounded bar with an outside gap."
+						},
+						{
+							"name": "glass",
+							"label": "Glass background",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "Frosted glass with refracting edges in Chrome. Other browsers get the blur."
+						},
+						{
+							"name": "blur",
+							"label": "Blur background",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "A plain translucent, blurred background. Ignored when Glass is on."
+						},
+						{
+							"name": "includeTop",
+							"label": "Show top section",
+							"widget": "boolean",
+							"default": true,
+							"required": false
+						},
+						{
+							"name": "includeBottom",
+							"label": "Show bottom section",
+							"widget": "boolean",
+							"default": true,
+							"required": false
+						},
+						{
+							"name": "divider",
+							"label": "Show divider",
+							"widget": "boolean",
+							"default": true,
+							"required": false
+						},
+						{
+							"name": "showThemeToggle",
+							"label": "Show theme toggle",
+							"widget": "boolean",
+							"default": true,
+							"required": false
+						},
+						{
+							"name": "message",
+							"label": "Message",
+							"widget": "text",
+							"required": false
+						},
+						{
+							"name": "linksets",
+							"label": "Link columns",
+							"widget": "list",
+							"label_singular": "Column",
+							"summary": "{{fields.title}}",
+							"fields": [
+								{
+									"name": "title",
+									"label": "Title",
+									"widget": "string",
+									"required": false
+								},
+								{
+									"name": "links",
+									"label": "Links",
+									"widget": "list",
+									"label_singular": "Link",
+									"summary": "{{fields.text}}",
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"hint": "Page path (/about), anchor (#contact), or full URL."
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										}
+									]
+								}
+							],
+							"max": 3,
+							"min": 1,
+							"hint": "Up to three columns of links, each with its own title."
+						},
+						{
+							"name": "returnToTop",
+							"label": "Return to top button",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "text",
+									"label": "Text",
+									"widget": "string"
+								},
+								{
+									"name": "url",
+									"label": "URL",
+									"widget": "string",
+									"hint": "Page path (/about), anchor (#contact), or full URL."
+								},
+								{
+									"name": "newTab",
+									"label": "Open in new tab",
+									"widget": "boolean",
+									"default": false,
+									"required": false
+								},
+								{
+									"name": "textDescription",
+									"label": "Accessible description",
+									"widget": "string",
+									"required": false,
+									"hint": "Optional aria-label for screen readers"
+								},
+								{
+									"name": "type",
+									"label": "Style",
+									"widget": "select",
+									"options": ["solid", "outline", "underline", "text"],
+									"default": "underline",
+									"required": false
+								},
+								{
+									"name": "iconStart",
+									"label": "Icon before text",
+									"widget": "string",
+									"required": false,
+									"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+								},
+								{
+									"name": "iconEnd",
+									"label": "Icon after text",
+									"widget": "string",
+									"required": false,
+									"hint": "Icon file name without .svg (e.g. chevron-right). See /style-guide for examples."
+								}
+							]
+						},
+						{
+							"name": "legalLinks",
+							"label": "Legal links",
+							"widget": "list",
+							"label_singular": "Link",
+							"summary": "{{fields.text}}",
+							"fields": [
+								{
+									"name": "text",
+									"label": "Text",
+									"widget": "string"
+								},
+								{
+									"name": "url",
+									"label": "URL",
+									"widget": "string",
+									"hint": "Page path (/about), anchor (#contact), or full URL."
+								},
+								{
+									"name": "newTab",
+									"label": "Open in new tab",
+									"widget": "boolean",
+									"default": false,
+									"required": false
+								},
+								{
+									"name": "textDescription",
+									"label": "Accessible description",
+									"widget": "string",
+									"required": false,
+									"hint": "Optional aria-label for screen readers"
+								}
+							]
+						},
+						{
+							"name": "copyright",
+							"label": "Copyright text",
+							"widget": "string",
+							"required": false,
+							"hint": "Leave empty for '© year site name. All rights reserved.'"
+						}
+					]
+				},
+				{
+					"name": "footer_scroll_reveal",
+					"label": "Footer (scroll reveal)",
+					"file": "src/lib/content/global/footer-scroll-reveal.json",
+					"fields": [
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "cta",
+							"label": "Buttons",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string"
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string"
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string"
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "message",
+							"label": "Message",
+							"widget": "text",
+							"required": false
+						},
+						{
+							"name": "bigLink",
+							"label": "Large link",
+							"widget": "object",
+							"required": false,
+							"hint": "A big link beside the title, such as an email address.",
+							"fields": [
+								{
+									"name": "text",
+									"label": "Text",
+									"widget": "string"
+								},
+								{
+									"name": "textDescription",
+									"label": "Accessible description",
+									"widget": "string",
+									"required": false
+								},
+								{
+									"name": "url",
+									"label": "URL",
+									"widget": "string"
+								},
+								{
+									"name": "newTab",
+									"label": "Open in new tab",
+									"widget": "boolean",
+									"default": false,
+									"required": false
+								}
+							]
+						},
+						{
+							"name": "showThemeToggle",
+							"label": "Show theme toggle",
+							"widget": "boolean",
+							"default": true,
+							"required": false
+						},
+						{
+							"name": "copyright",
+							"label": "Copyright text",
+							"widget": "string",
+							"required": false,
+							"hint": "Leave empty for the year and the site name."
+						},
+						{
+							"name": "credit",
+							"label": "Credit line",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "text",
+									"label": "Text",
+									"widget": "string"
+								},
+								{
+									"name": "linkText",
+									"label": "Link text",
+									"widget": "string"
+								},
+								{
+									"name": "url",
+									"label": "URL",
+									"widget": "string"
+								}
+							]
+						},
+						{
+							"name": "parallax",
+							"label": "Rise into place",
+							"widget": "boolean",
+							"default": true,
+							"required": false,
+							"hint": "The content rises and grows into place as the footer is revealed."
+						}
+					]
+				},
+				{
+					"name": "footer_gnomon",
+					"label": "Footer (gnomon)",
+					"file": "src/lib/content/global/footer-gnomon.json",
+					"fields": [
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"required": false,
+							"hint": "The heading at the top left."
+						},
+						{
+							"name": "level",
+							"label": "Heading level",
+							"widget": "select",
+							"options": [
+								{
+									"label": "H2",
+									"value": 2
+								},
+								{
+									"label": "H3",
+									"value": 3
+								}
+							],
+							"default": 2,
+							"value_type": "int",
+							"required": false
+						},
+						{
+							"name": "cta",
+							"label": "Button",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "text",
+									"label": "Text",
+									"widget": "string"
+								},
+								{
+									"name": "url",
+									"label": "URL",
+									"widget": "string",
+									"required": false,
+									"hint": "Page path (/about), anchor (#contact), or full URL."
+								},
+								{
+									"name": "newTab",
+									"label": "Open in new tab",
+									"widget": "boolean",
+									"default": false,
+									"required": false
+								},
+								{
+									"name": "textDescription",
+									"label": "Accessible description",
+									"widget": "string",
+									"required": false
+								},
+								{
+									"name": "type",
+									"label": "Style",
+									"widget": "select",
+									"options": ["solid", "outline", "underline", "text"],
+									"default": "outline",
+									"required": false
+								}
+							]
+						},
+						{
+							"name": "linksets",
+							"label": "Link columns",
+							"widget": "list",
+							"label_singular": "Column",
+							"summary": "{{fields.title}}",
+							"fields": [
+								{
+									"name": "title",
+									"label": "Title",
+									"widget": "string",
+									"required": false
+								},
+								{
+									"name": "links",
+									"label": "Links",
+									"widget": "list",
+									"label_singular": "Link",
+									"summary": "{{fields.text}}",
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"hint": "Page path (/about), anchor (#contact), or full URL."
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"default": false,
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										}
+									]
+								}
+							],
+							"max": 3,
+							"min": 1,
+							"hint": "Up to three columns of links, each with its own title."
+						},
+						{
+							"name": "socialSolid",
+							"label": "Social links as buttons",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Puts each social icon in a box in the solid button style."
+						},
+						{
+							"name": "copyright",
+							"label": "Copyright",
+							"widget": "string",
+							"required": false,
+							"hint": "Leave empty for the year, the site name and \"All rights reserved.\""
+						},
+						{
+							"name": "fullScreen",
+							"label": "Full screen height",
+							"widget": "boolean",
+							"default": false,
+							"required": false
+						}
+					]
+				},
+				{
+					"name": "logo",
+					"label": "Logo",
+					"file": "src/lib/content/global/logo.json",
+					"fields": [
+						{
+							"name": "srcLight",
+							"label": "Logo image (light theme)",
+							"widget": "image",
+							"required": false,
+							"hint": "Shown when the site is light. Pair it with the dark one. SVG recommended."
+						},
+						{
+							"name": "srcDark",
+							"label": "Logo image (dark theme)",
+							"widget": "image",
+							"required": false,
+							"hint": "Shown when the site is dark."
+						},
+						{
+							"name": "src",
+							"label": "Single logo image",
+							"widget": "image",
+							"required": false,
+							"hint": "Used when there are no light and dark images. SVG recommended."
+						},
+						{
+							"name": "tint",
+							"label": "Match text color",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Single-color SVGs only. Follows light/dark theme."
+						},
+						{
+							"name": "text",
+							"label": "Text next to logo",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "alt",
+							"label": "Accessible name",
+							"widget": "string",
+							"required": false,
+							"hint": "Used when there is no text next to the logo."
+						}
+					]
+				},
+				{
+					"name": "social_media",
+					"label": "Social Media",
+					"file": "src/lib/content/global/social-media.json",
+					"fields": [
+						{
+							"name": "links",
+							"label": "Links",
+							"widget": "list",
+							"label_singular": "Link",
+							"summary": "{{fields.title}}",
+							"fields": [
+								{
+									"name": "title",
+									"label": "Name",
+									"widget": "string"
+								},
+								{
+									"name": "url",
+									"label": "URL",
+									"widget": "string"
+								},
+								{
+									"name": "icon",
+									"label": "Icon",
+									"widget": "image",
+									"hint": "Pick one of the provided icons or upload your own. Use a single-color SVG: it is drawn in the site's link color, so any other colors are lost. Square versions are named square-social-*.",
+									"media_library": {
+										"config": {
+											"max_file_size": 500000
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "meta",
+			"label": "Meta Data",
+			"editor": {
+				"preview": false
+			},
+			"files": [
+				{
+					"name": "site",
+					"label": "Site Defaults",
+					"file": "src/lib/content/meta/site.json",
+					"fields": [
+						{
+							"name": "siteName",
+							"label": "Site name",
+							"widget": "string",
+							"hint": "Used in page titles, the footer and search results."
+						},
+						{
+							"name": "url",
+							"label": "URL",
+							"widget": "string",
+							"hint": "The full address of the live site, without an end slash. Used for canonical links."
+						},
+						{
+							"name": "footerTemplate",
+							"label": "Footer template",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Simple",
+									"value": "simple"
+								},
+								{
+									"label": "Scroll reveal",
+									"value": "scroll-reveal"
+								},
+								{
+									"label": "Gnomon",
+									"value": "gnomon"
+								}
+							],
+							"default": "simple",
+							"hint": "Which footer the site uses. Each is edited in its own Footer entry under Global."
+						},
+						{
+							"name": "headerTemplate",
+							"label": "Header template",
+							"widget": "select",
+							"options": [
+								{
+									"label": "Simple",
+									"value": "simple"
+								},
+								{
+									"label": "Island",
+									"value": "island"
+								},
+								{
+									"label": "Absolute",
+									"value": "absolute"
+								},
+								{
+									"label": "Basic",
+									"value": "basic"
+								}
+							],
+							"default": "simple",
+							"hint": "Which header the site uses. The links and buttons are shared, under Navigation. The look is edited in each header's own entry."
+						},
+						{
+							"name": "author",
+							"label": "Author",
+							"widget": "string",
+							"required": false,
+							"hint": "Person or company name."
+						},
+						{
+							"name": "contactEmail",
+							"label": "Contact email",
+							"widget": "string",
+							"required": false,
+							"hint": "Added to the site's structured data (rich results)."
+						},
+						{
+							"name": "themeColor",
+							"label": "Theme color",
+							"widget": "color",
+							"required": false,
+							"hint": "Colors the browser bar on some phones."
+						},
+						{
+							"name": "faviconLight",
+							"label": "Favicon (light theme)",
+							"widget": "image",
+							"required": false,
+							"hint": "Shown in the browser tab when the device uses a light theme. SVG recommended."
+						},
+						{
+							"name": "faviconDark",
+							"label": "Favicon (dark theme)",
+							"widget": "image",
+							"required": false,
+							"hint": "Shown in the browser tab when the device uses a dark theme."
+						},
+						{
+							"name": "description",
+							"label": "Default meta description",
+							"widget": "text",
+							"required": false,
+							"hint": "Used when a page has no description of its own. Aim for 120-160 characters."
+						},
+						{
+							"name": "ogImage",
+							"label": "Default social share image",
+							"widget": "image",
+							"required": false,
+							"hint": "1200x630 recommended."
+						}
+					]
+				},
+				{
+					"name": "pages",
+					"label": "Pages",
+					"file": "src/lib/content/meta/pages.json",
+					"fields": [
+						{
+							"name": "pages",
+							"label": "Pages",
+							"label_singular": "Page",
+							"widget": "list",
+							"allow_add": false,
+							"summary": "{{fields.title}}",
+							"fields": [
+								{
+									"name": "path",
+									"label": "Path",
+									"widget": "hidden"
+								},
+								{
+									"name": "title",
+									"label": "Meta title",
+									"widget": "string",
+									"hint": "Shown in browser tabs and search results. Aim for under 60 characters."
+								},
+								{
+									"name": "description",
+									"label": "Meta description",
+									"widget": "text",
+									"required": false,
+									"hint": "Shown in search results. Aim for 120-160 characters."
+								},
+								{
+									"name": "ogImage",
+									"label": "Social share image",
+									"widget": "image",
+									"required": false,
+									"hint": "Shown when the page is shared. 1200x630 recommended. Falls back to the site default."
+								},
+								{
+									"name": "crawlPage",
+									"label": "Crawl page (default)",
+									"widget": "boolean",
+									"default": true,
+									"required": false,
+									"hint": "Uncheck to add a 'noindex, nofollow' meta tag"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"slug": {
+		"encoding": "ascii",
+		"clean_accents": true,
+		"sanitize_replacement": "-"
+	}
+}

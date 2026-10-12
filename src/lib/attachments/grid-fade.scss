@@ -1,0 +1,22 @@
+.grid-fade {
+	position: relative;
+	overflow: hidden;
+
+	&__overlay {
+		position: absolute;
+		top: 0;
+		z-index: 1;
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
+	&__tile {
+		flex: 1 0 24px;
+		aspect-ratio: 1;
+		background: var(--color-bg);
+		transition: opacity 0.5s ease;
+	}
+}

@@ -1,0 +1,83 @@
+@use 'base/mixins';
+
+// Defaults are wrapped in :where() so a component's own styles always win.
+:where(.toggle-slider) {
+	--slider-color: var(--color-surface);
+	--slider-line: var(--color-accent);
+	--slider-radius: 6px;
+	--toggle-scale-down: 0.94;
+
+	position: relative;
+	isolation: isolate;
+}
+
+:where(.toggle-slider--solid) {
+	display: inline-flex;
+	gap: 4px;
+	padding: 4px;
+	border: 1px solid var(--color-border);
+	border-radius: calc(var(--slider-radius) + 4px);
+}
+
+:where(.toggle-slider--underline) {
+	display: inline-flex;
+	gap: 8px;
+}
+
+:where(.toggle-slider > :not(.toggle-slider__slider, legend)) {
+	padding: 6px 12px;
+	border-radius: var(--slider-radius);
+	opacity: 0.55;
+	cursor: pointer;
+
+	@include mixins.mq-motion-allow {
+		transition:
+			opacity var(--duration) var(--ease),
+			scale 0.24s ease;
+	}
+}
+
+:where(.toggle-slider > [data-active]) {
+	opacity: 1;
+}
+
+// Pressing any option shrinks it a little, as if it were pushed in.
+:where(.toggle-slider > :not(.toggle-slider__slider, legend):active) {
+	scale: var(--toggle-scale-down);
+}
+
+.toggle-slider__slider {
+	position: absolute;
+	z-index: -1;
+	pointer-events: none;
+}
+
+.toggle-slider--solid > .toggle-slider__slider {
+	border-radius: var(--slider-radius);
+	background: var(--slider-color);
+}
+
+.toggle-slider--underline > .toggle-slider__slider {
+	bottom: 0;
+	height: 2px;
+	background: var(--slider-line);
+}
+
+// The slider shrinks only when the option it is already behind is pressed (or, with hover, wherever it is
+// pressed), never on the way there.
+.toggle-slider:has(> [data-active]:active) > .toggle-slider__slider,
+.toggle-slider[data-toggle-trigger='hover']:active > .toggle-slider__slider {
+	scale: var(--toggle-scale-down);
+}
+
+// Glides only after the first placement, so it does not slide in from the corner on load.
+.toggle-slider[data-toggle-ready] > .toggle-slider__slider {
+	@include mixins.mq-motion-allow {
+		transition:
+			left 0.4s var(--ease),
+			top 0.4s var(--ease),
+			width 0.4s var(--ease),
+			height 0.4s var(--ease),
+			scale 0.24s ease;
+	}
+}

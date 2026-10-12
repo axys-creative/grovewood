@@ -1,0 +1,56 @@
+@use 'base/mixins';
+
+@property --bg-follow-r {
+	syntax: '<length>';
+	inherits: false;
+	initial-value: 0px;
+}
+
+.bg-follow {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: var(--bg-follow-color, var(--color-accent));
+		--bg-follow-r: 0px;
+
+		@include mixins.mq-motion-allow {
+			transition: --bg-follow-r 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+	}
+
+	// An outline button starts empty and a circle of color grows out of the pointer.
+	&.outline::before {
+		mask: radial-gradient(
+			circle at var(--bg-follow-x, 50%) var(--bg-follow-y, 50%),
+			#000 calc(var(--bg-follow-r) - 1px),
+			transparent var(--bg-follow-r)
+		);
+	}
+
+	// A solid button starts full and a hole opens at the pointer.
+	&.solid::before {
+		mask: radial-gradient(
+			circle at var(--bg-follow-x, 50%) var(--bg-follow-y, 50%),
+			transparent calc(var(--bg-follow-r) - 1px),
+			#000 var(--bg-follow-r)
+		);
+	}
+
+	&.outline {
+		@include mixins.desktop-hover {
+			color: var(--color-text);
+		}
+	}
+
+	@include mixins.desktop-hover {
+		&::before {
+			--bg-follow-r: var(--bg-follow-max, 0px);
+		}
+	}
+}

@@ -1,0 +1,60 @@
+@use 'mixins';
+@use 'variables';
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.body {
+	@include mixins.body;
+}
+
+.body-large {
+	@include mixins.body-large;
+}
+
+.body-small {
+	@include mixins.body-small;
+}
+
+// A page layout whose content stays inside the content width, with an easy way out. Children sit in the middle
+// column by default; add `full` to one to run it edge to edge. No 100vw, so it never adds sideways scroll.
+.page-grid {
+	display: grid;
+	grid-template-columns:
+		[full-start] minmax(var(--body-padding), 1fr)
+		[content-start] min(var(--content-width), calc(100% - var(--body-padding) * 2))
+		[content-end] minmax(var(--body-padding), 1fr)
+		[full-end];
+
+	> * {
+		grid-column: content;
+	}
+
+	> .full {
+		grid-column: full;
+	}
+}
+
+// A surface with its own theme, whatever the page theme is. Put it on a section or any wrapper: the tokens inside
+// follow it, so the background, text, borders and buttons all flip together. `theme-invert` is always the opposite
+// of the page theme.
+.theme-dark {
+	@include variables.theme(dark);
+	background: var(--color-bg);
+}
+
+.theme-light {
+	@include variables.theme(light);
+	background: var(--color-bg);
+}
+
+.theme-invert {
+	@include variables.theme(invert);
+	background: var(--color-bg);
+}

@@ -1,0 +1,43 @@
+// An arc longer than its container is capped to it; the letters stay centered and overflow evenly.
+.text-curve {
+	position: relative;
+	display: inline-block;
+	max-width: 100%;
+	white-space: nowrap;
+}
+
+.text-curve__chars {
+	position: absolute;
+	inset: 0;
+}
+
+.text-curve__char {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: inline-block;
+	translate: -50% -50%;
+	transform-origin: center;
+}
+
+@keyframes text-curve-spin {
+	to {
+		rotate: 360deg;
+	}
+}
+
+@keyframes text-curve-spin-left {
+	to {
+		rotate: -360deg;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.text-curve--spin-right {
+		animation: text-curve-spin var(--text-curve-spin-duration, 10s) linear infinite;
+	}
+
+	.text-curve--spin-left {
+		animation: text-curve-spin-left var(--text-curve-spin-duration, 12s) linear infinite;
+	}
+}

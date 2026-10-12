@@ -1,0 +1,11 @@
+{
+	"title": "How this blog works",
+	"description": "Posts are JSON files edited through the CMS. The file name becomes the address of the page.",
+	"author": "Aaron Garcia",
+	"date": "2026-03-15",
+	"tag": "Update",
+	"coverImage": "/images/img-sample-3.jpg",
+	"coverAlt": "",
+	"draft": false,
+	"body": "## One file per post\n\nEvery post lives in `src/lib/content/blog/`. The name of the file is its slug, so `how-this-blog-works.json` is served at `/blog/how-this-blog-works`.\n\n## Editing\n\nOpen `/admin`, choose **Blog**, and write. A new post gets its file name from its title when it is first saved. Changing the title later does not move the page, so links keep working.\n\n> Tick **Draft** to keep a post hidden while you work on it.\n\n## Formatting\n\nYou can use *italics*, **bold**, lists, links and headings, with all the usual Markdown.\n"
+}

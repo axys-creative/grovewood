@@ -1,0 +1,90 @@
+{
+	"float": false,
+	"blur": false,
+	"glass": false,
+	"includeTop": true,
+	"includeBottom": true,
+	"divider": true,
+	"showThemeToggle": true,
+	"message": "A simple footer with a wide range of configuration options.",
+	"linksets": [
+		{
+			"title": "Explore",
+			"links": [
+				{
+					"text": "Home",
+					"url": "/",
+					"newTab": false
+				},
+				{
+					"text": "Blog",
+					"url": "/blog",
+					"newTab": false
+				},
+				{
+					"text": "Style Guide",
+					"url": "/style-guide",
+					"newTab": false
+				}
+			]
+		},
+		{
+			"title": "Library",
+			"links": [
+				{
+					"text": "Advanced",
+					"url": "/advanced",
+					"newTab": false
+				},
+				{
+					"text": "Attachments",
+					"url": "/attachments",
+					"newTab": false
+				},
+				{
+					"text": "Components",
+					"url": "/components",
+					"newTab": false
+				},
+				{
+					"text": "Combos",
+					"url": "/combos",
+					"newTab": false
+				},
+				{
+					"text": "Sections",
+					"url": "/sections",
+					"newTab": false
+				},
+				{
+					"text": "Transitions",
+					"url": "/transitions",
+					"newTab": false
+				}
+			]
+		},
+		{
+			"title": "axys creative",
+			"links": [
+				{
+					"text": "Website",
+					"url": "https://axyscreative.com",
+					"newTab": true
+				},
+				{
+					"text": "Tokens",
+					"url": "https://axyscreative.com/tokens",
+					"newTab": true
+				}
+			]
+		}
+	],
+	"returnToTop": {
+		"text": "Return To Top",
+		"url": "#",
+		"type": "underline",
+		"iconEnd": "chevron-up"
+	},
+	"legalLinks": [],
+	"copyright": ""
+}

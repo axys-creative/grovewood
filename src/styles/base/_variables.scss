@@ -1,0 +1,147 @@
+$font-heading: 'Funnel Display', system-ui, sans-serif;
+$font-body: 'Funnel Display', system-ui, sans-serif;
+$font-mono: 'Geist Mono', ui-monospace, Menlo, monospace;
+
+$black: #0a0a0a;
+$grey-darker: #1a1a1a;
+$grey-dark: #292929;
+$grey-light: #ececec;
+$grey-lighter: #f1f1f1;
+$white: #fafafa;
+$coral: #e48c66;
+$blue: #ada4e3;
+$green: #a4d1a2;
+
+// `--display-light` and `--display-dark` are the `display` of an element shown only in that theme (a logo file).
+@mixin dark-tokens {
+	color-scheme: dark;
+	--display-light: none;
+	--display-dark: block;
+
+	--color-bg: #{$black};
+	--color-surface: #{$grey-darker};
+	--color-text: #{$white};
+	--color-text-muted: #{$grey-light};
+	--color-border: #{$grey-dark};
+	--color-accent-text: #{$coral};
+	--color-error: #dc143c;
+	--color-glass: rgb(0 0 0 / 0.25);
+}
+
+@mixin light-tokens {
+	color-scheme: light;
+	--display-light: block;
+	--display-dark: none;
+
+	--color-bg: #{$white};
+	--color-surface: #{$grey-lighter};
+	--color-text: #{$black};
+	--color-text-muted: #{$grey-dark};
+	--color-border: #{$grey-light};
+	--color-accent-text: #b3501f;
+	--color-error: #dc143c;
+	--color-glass: rgb(255 255 255 / 0.25);
+}
+
+// A theme for the element it is included in: dark, light, or invert (the opposite of the page theme).
+@mixin theme($name) {
+	@if $name == dark {
+		@include dark-tokens;
+	} @else {
+		@include light-tokens;
+	}
+
+	color: var(--color-text);
+
+	@if $name == invert {
+		:root[data-theme='light'] & {
+			@include dark-tokens;
+		}
+
+		@media (prefers-color-scheme: light) {
+			:root:not([data-theme]) & {
+				@include dark-tokens;
+			}
+		}
+	}
+}
+
+:root {
+	@include dark-tokens;
+
+	--font-heading: #{$font-heading};
+	--font-body: #{$font-body};
+	--font-mono: #{$font-mono};
+
+	--color-accent: #{$coral};
+	// Text and icons on an accent background are the same in both themes.
+	--color-on-accent: #{$white};
+	--color-secondary: #{$blue};
+	--color-tertiary: #{$green};
+	--color-success: #{$green};
+	--color-info: #{$blue};
+	--color-warning: #e8b84f;
+
+	--content-width: 1280px;
+
+	--body-padding: 64px;
+	--body-padding-double: calc(var(--body-padding) * 2);
+
+	--cta-group-gap: 24px;
+
+	--radius: 8px;
+	--radius-btn: 4px;
+
+	--btn-font-size: 16px;
+	--btn-font-weight: 500;
+	--btn-padding: 8px 16px;
+	--btn-padding-sm: 6px 12px;
+	--btn-padding-lg: 12px 24px;
+	--btn-padding-icon: 8px;
+	--btn-gap: 0.5ch;
+
+	--space-eyebrow-title: 4px;
+	--space-title-paragraph: 24px;
+	--space-paragraph-cta-group: 12px;
+	--space-copy-columns: 48px; // between the heading and the description in a row layout
+	--max-width-text: 650px;
+
+	--float-offset: 16px;
+	--z-nav: 3;
+	--z-header: 4;
+	--z-cursor-behind: 1;
+	--z-cursor: 10;
+	--z-alert: 20;
+
+	--ease: cubic-bezier(0.18, 0.97, 0.47, 1);
+	--duration: 0.3s;
+	--transition-scale: scale var(--duration) var(--ease);
+}
+
+@media (max-width: 1152px) {
+	:root {
+		--body-padding: 48px;
+	}
+}
+
+@media (max-width: 1024px) {
+	:root {
+		--body-padding: 24px;
+		--float-offset: 12px;
+	}
+}
+
+// Without JS, follow the OS; the inline script in app.html sets data-theme otherwise.
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme]) {
+		@include light-tokens;
+	}
+}
+
+:root[data-theme='light'] {
+	@include light-tokens;
+}
+
+:root[data-theme='dark'] {
+	color-scheme: dark;
+}

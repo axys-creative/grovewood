@@ -1,0 +1,108 @@
+@use 'base/mixins';
+
+.scribble-host {
+	position: relative;
+
+	// The scribble replaces a Button's own underline.
+	.label::before {
+		content: none !important;
+	}
+}
+
+.scribble-inline {
+	display: inline-block;
+}
+
+.scribble-stroke {
+	position: absolute;
+	// The reset caps an svg at its parent's width; the circle is wider than its element.
+	max-width: none;
+	overflow: visible;
+	color: var(--scribble-color, var(--color-accent));
+	pointer-events: none;
+}
+
+.scribble-underline {
+	bottom: var(--scribble-offset, -0.4em);
+	left: 0;
+	width: 100%;
+	height: var(--scribble-height, 0.7em);
+	// Open, it shows whole (the negative insets leave room for a line that leaves the box).
+	clip-path: inset(-100% 0 -100% 0);
+}
+
+// A loop is revealed by drawing along its line with a mask, so it runs around the element, overshoots and trails off.
+.scribble-draw {
+	stroke-dasharray: 1;
+	stroke-dashoffset: 0;
+}
+
+// With `hover` it starts empty, and is drawn in on hover and focus.
+.scribble-host[data-scribble-hover] {
+	.scribble-underline {
+		clip-path: inset(-100% 100% -100% 0);
+
+		@include mixins.mq-motion-allow {
+			transition: clip-path 0.5s var(--ease);
+		}
+	}
+
+	.scribble-draw {
+		stroke-dashoffset: 1;
+
+		@include mixins.mq-motion-allow {
+			transition: stroke-dashoffset 0.6s cubic-bezier(0.25, 0.7, 0.25, 1);
+		}
+	}
+}
+
+.scribble-host[data-scribble-hover]:is(:focus-visible, :focus-within) {
+	.scribble-underline {
+		clip-path: inset(-100% 0 -100% 0);
+	}
+
+	.scribble-draw {
+		stroke-dashoffset: 0;
+	}
+}
+
+.scribble-host[data-scribble-hover]:hover {
+	@media (hover: hover) and (pointer: fine) {
+		.scribble-underline {
+			clip-path: inset(-100% 0 -100% 0);
+		}
+
+		.scribble-draw {
+			stroke-dashoffset: 0;
+		}
+	}
+}
+
+// With `scroll` it starts empty, and is drawn in once the element scrolls into view.
+.scribble-host[data-scribble-scroll] {
+	.scribble-underline {
+		clip-path: inset(-100% 100% -100% 0);
+
+		@include mixins.mq-motion-allow {
+			transition: clip-path 0.7s var(--ease);
+		}
+	}
+
+	.scribble-draw {
+		stroke-dashoffset: 1;
+
+		@include mixins.mq-motion-allow {
+			transition: stroke-dashoffset 0.8s cubic-bezier(0.25, 0.7, 0.25, 1);
+		}
+	}
+}
+
+.scribble-host[data-scribble-in] {
+	.scribble-underline {
+		clip-path: inset(-100% 0 -100% 0);
+	}
+
+	.scribble-draw {
+		stroke-dashoffset: 0;
+	}
+}

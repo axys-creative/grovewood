@@ -1,0 +1,85 @@
+{
+	"title": "Let’s build something great together",
+	"cta": {
+		"text": "Get Started",
+		"textDescription": "Get started with AXYS Creative",
+		"url": "https://axyscreative.com",
+		"newTab": true,
+		"type": "outline"
+	},
+	"linksets": [
+		{
+			"title": "Explore",
+			"links": [
+				{
+					"text": "Home",
+					"url": "/",
+					"newTab": false
+				},
+				{
+					"text": "Blog",
+					"url": "/blog",
+					"newTab": false
+				},
+				{
+					"text": "Style Guide",
+					"url": "/style-guide",
+					"newTab": false
+				}
+			]
+		},
+		{
+			"title": "Library",
+			"links": [
+				{
+					"text": "Advanced",
+					"url": "/advanced",
+					"newTab": false
+				},
+				{
+					"text": "Attachments",
+					"url": "/attachments",
+					"newTab": false
+				},
+				{
+					"text": "Components",
+					"url": "/components",
+					"newTab": false
+				},
+				{
+					"text": "Combos",
+					"url": "/combos",
+					"newTab": false
+				},
+				{
+					"text": "Sections",
+					"url": "/sections",
+					"newTab": false
+				},
+				{
+					"text": "Transitions",
+					"url": "/transitions",
+					"newTab": false
+				}
+			]
+		},
+		{
+			"title": "axys creative",
+			"links": [
+				{
+					"text": "Website",
+					"url": "https://axyscreative.com",
+					"newTab": true
+				},
+				{
+					"text": "Tokens",
+					"url": "https://axyscreative.com/tokens",
+					"newTab": true
+				}
+			]
+		}
+	],
+	"copyright": "",
+	"fullScreen": false,
+	"socialSolid": true
+}

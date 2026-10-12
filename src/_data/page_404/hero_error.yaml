@@ -1,8 +1,0 @@
-toggle_section: true
-title: "[%span.text-stroke%]404[%span%] error"
-desc: The page you’re looking for doesn’t exist
-cta_1:
-  text: Return home
-  text_desc:
-  url: /
-  new_tab: false

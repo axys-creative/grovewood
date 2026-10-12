@@ -1,8 +1,0 @@
-src: /static/img/logo-dark.svg
-# theme_src: # Works with theme-toggle.njk
-#   light: /static/img/favicon-dark.svg
-#   dark: /static/img/favicon-light.svg
-text: Sample Business
-url: /
-new_tab: false
-class: cursor-hide

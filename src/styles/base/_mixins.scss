@@ -1,0 +1,196 @@
+@use 'sass:map';
+$breakpoints: (
+	xs: 480px,
+	sm: 640px,
+	md: 768px,
+	lg: 1024px,
+	xl: 1280px,
+	xxl: 1536px
+);
+
+@mixin -min($name) {
+	@media (min-width: map.get($breakpoints, $name)) {
+		@content;
+	}
+}
+
+@mixin -max($name) {
+	$max-width: map.get($breakpoints, $name) - 1px;
+
+	@media (max-width: $max-width) {
+		@content;
+	}
+}
+
+@mixin min-xs {
+	@include -min(xs) {
+		@content;
+	}
+}
+
+@mixin min-sm {
+	@include -min(sm) {
+		@content;
+	}
+}
+
+@mixin min-md {
+	@include -min(md) {
+		@content;
+	}
+}
+
+@mixin min-lg {
+	@include -min(lg) {
+		@content;
+	}
+}
+
+@mixin min-xl {
+	@include -min(xl) {
+		@content;
+	}
+}
+
+@mixin min-xxl {
+	@include -min(xxl) {
+		@content;
+	}
+}
+
+@mixin max-xs {
+	@include -max(xs) {
+		@content;
+	}
+}
+
+@mixin max-sm {
+	@include -max(sm) {
+		@content;
+	}
+}
+
+@mixin max-md {
+	@include -max(md) {
+		@content;
+	}
+}
+
+@mixin max-lg {
+	@include -max(lg) {
+		@content;
+	}
+}
+
+@mixin max-xl {
+	@include -max(xl) {
+		@content;
+	}
+}
+
+@mixin max-xxl {
+	@include -max(xxl) {
+		@content;
+	}
+}
+
+@mixin mq-touch {
+	@media (hover: none) and (pointer: coarse) {
+		@content;
+	}
+}
+
+@mixin mq-mouse {
+	@media (hover: hover) and (pointer: fine) {
+		@content;
+	}
+}
+
+@mixin mq-motion-allow {
+	@media (prefers-reduced-motion: no-preference) {
+		@content;
+	}
+}
+
+@mixin mq-motion-reduce {
+	@media (prefers-reduced-motion: reduce) {
+		@content;
+	}
+}
+
+@mixin heading($size, $line-height) {
+	font-family: var(--font-heading);
+	font-size: $size;
+	font-weight: 300;
+	line-height: $line-height;
+	letter-spacing: 0px;
+}
+
+@mixin h1 {
+	@include heading(clamp(36px, 11.5vw, 56px), 1.1);
+}
+
+@mixin h2 {
+	@include heading(clamp(30px, 8vw, 44px), 1.15);
+}
+
+@mixin h3 {
+	@include heading(36px, 1.2);
+}
+
+@mixin h4 {
+	@include heading(28px, 1.25);
+}
+
+@mixin h5 {
+	@include heading(22px, 1.3);
+}
+
+@mixin h6 {
+	@include heading(18px, 1.4);
+}
+
+@mixin body {
+	font-family: var(--font-body);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+@mixin body-large {
+	@include body;
+	font-size: 20px;
+	line-height: 1.6;
+}
+
+@mixin body-small {
+	@include body;
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+@mixin desktop-hover {
+	@media (hover: hover) and (pointer: fine) {
+		&:hover,
+		&:focus-visible {
+			@content;
+		}
+	}
+}
+
+@mixin glass {
+	background: var(--color-glass);
+	backdrop-filter: blur(8px);
+}
+
+// Anchors an absolutely or fixed positioned element to the left or right edge of the content, not the screen. On a
+// screen narrower than `--content-width` that is the body padding. On a wider one the element stays lined up with the
+// content (and the sections' copy) instead of drifting to the far edge of an ultra-wide monitor. The element's
+// containing block must be as wide as the screen.
+@mixin left-spacing {
+	left: calc(50% - min(var(--content-width), 100% - var(--body-padding) * 2) / 2);
+}
+
+@mixin right-spacing {
+	right: calc(50% - min(var(--content-width), 100% - var(--body-padding) * 2) / 2);
+}

@@ -1,0 +1,14 @@
+@use 'base/mixins';
+
+// Only when motion is allowed; otherwise the text stays fully visible.
+@include mixins.mq-motion-allow {
+	.text-fill {
+		display: inline;
+		background-image: linear-gradient(currentColor, currentColor);
+		background-repeat: no-repeat;
+		background-size: 0%;
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: var(--text-fill-base, rgb(125 125 125 / 0.25));
+	}
+}

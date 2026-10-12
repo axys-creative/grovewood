@@ -1,0 +1,18 @@
+{
+	"logoPlacement": "start",
+	"controlsPlacement": "end",
+	"position": "fixed",
+	"hideOnScroll": false,
+	"blend": false,
+	"desktopLayout": "links",
+	"mobileNav": "slide",
+	"navSurface": "solid",
+	"strapIcon": "orbit",
+	"showCtas": true,
+	"showSkipLink": true,
+	"navButton": {
+		"symbol": "oreo",
+		"shape": "round",
+		"type": "button"
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"blur": false,
+	"glass": false,
+	"hideOnScroll": true,
+	"showSkipLink": true,
+	"navButton": {
+		"text": "",
+		"symbol": "oreo",
+		"shape": "square",
+		"type": "button"
+	}
+}

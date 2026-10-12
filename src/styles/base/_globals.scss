@@ -1,0 +1,81 @@
+@use 'mixins';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+:focus-visible {
+	outline: 2px solid var(--color-accent-text);
+	outline-offset: 2px;
+}
+
+body {
+	@include mixins.body;
+	min-height: 100lvh;
+	background: var(--color-bg);
+	color: var(--color-text);
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+.h1 {
+	@include mixins.h1;
+}
+
+h2,
+.h2 {
+	@include mixins.h2;
+}
+
+h3,
+.h3 {
+	@include mixins.h3;
+}
+
+h4,
+.h4 {
+	@include mixins.h4;
+}
+
+h5,
+.h5 {
+	@include mixins.h5;
+}
+
+h6,
+.h6 {
+	@include mixins.h6;
+}
+
+a {
+	color: var(--color-accent-text);
+	text-decoration: none;
+}
+
+// Buttons start plain: no browser border, gray fill or padding. Components style their own.
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+}
+
+img,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+}

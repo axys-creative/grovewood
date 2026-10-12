@@ -1,23 +1,23 @@
-_site/
-.cache/
-_tmp/
-.DS_Store
-node_modules/
-.vscode/
-*git/
-.env
+node_modules
 
-# Local Netlify folder
+# Output
+.output
+.vercel
 .netlify
+.wrangler
+/.svelte-kit
+/build
 
-# Ignore all video files
-*.mp4
-*.avi
-*.mov
-*.wmv
-*.flv
-*.mkv
+# OS
+.DS_Store
+Thumbs.db
 
-# Prevent outputted css files from sass (doesn't appear to be working)
-*.css.map
-*.map
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*

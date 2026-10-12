@@ -1,0 +1,16 @@
+.grid-flow-canvas {
+	position: absolute;
+	display: block;
+
+	&.grid-flow-canvas--greyscale {
+		filter: grayscale(1);
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition: filter 0.3s ease;
+		}
+
+		&:hover {
+			filter: grayscale(0);
+		}
+	}
+}

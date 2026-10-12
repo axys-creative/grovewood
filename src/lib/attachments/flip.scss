@@ -1,0 +1,38 @@
+@use 'base/mixins';
+
+// Starts tipped back, then swings forward and settles when it scrolls into view.
+@include mixins.mq-motion-allow {
+	.flip {
+		transform: perspective(500px) rotateX(-60deg);
+		transform-origin: top;
+		transition: transform 0.6s var(--ease) 0.1s;
+
+		&.flipped {
+			animation: flip-swing 1.2s ease-in-out 0.25s forwards;
+		}
+
+		// Scrubbed flips are driven by scroll position in JS, so no transition or keyframes.
+		&--scrub {
+			transition: none;
+			transform: none;
+		}
+	}
+
+	@keyframes flip-swing {
+		0% {
+			transform: perspective(500px) rotateX(-50deg);
+		}
+		45% {
+			transform: perspective(500px) rotateX(8deg);
+		}
+		65% {
+			transform: perspective(500px) rotateX(-3deg);
+		}
+		82% {
+			transform: perspective(500px) rotateX(1.5deg);
+		}
+		100% {
+			transform: perspective(500px) rotateX(0deg);
+		}
+	}
+}
