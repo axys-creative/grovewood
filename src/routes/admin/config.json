@@ -5033,6 +5033,469 @@
 			]
 		},
 		{
+			"name": "page_team",
+			"label": "Page - Team",
+			"files": [
+				{
+					"name": "clinicians_image_grid",
+					"label": "Clinicians",
+					"file": "src/lib/content/page_team/clinicians-image-grid.json",
+					"preview_path": "#clinicians",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "columns",
+							"label": "Columns on a wide screen",
+							"widget": "number",
+							"required": false,
+							"default": 4,
+							"value_type": "int",
+							"min": 1,
+							"max": 6
+						},
+						{
+							"name": "background",
+							"label": "Background color",
+							"widget": "color",
+							"required": false,
+							"hint": "Sets this section apart from the page. Leave empty for none."
+						},
+						{
+							"name": "portraits",
+							"label": "People",
+							"label_singular": "Person",
+							"widget": "list",
+							"summary": "{{fields.name}}",
+							"fields": [
+								{
+									"name": "src",
+									"label": "Photo",
+									"widget": "image"
+								},
+								{
+									"name": "alt",
+									"label": "Alt text",
+									"widget": "string",
+									"required": false,
+									"hint": "Leave empty; the name is already shown beside the photo."
+								},
+								{
+									"name": "name",
+									"label": "Name",
+									"widget": "string"
+								},
+								{
+									"name": "role",
+									"label": "Role",
+									"widget": "text",
+									"required": false
+								},
+								{
+									"name": "description",
+									"label": "Description",
+									"widget": "text",
+									"required": false
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "staff_image_grid",
+					"label": "Staff",
+					"file": "src/lib/content/page_team/staff-image-grid.json",
+					"preview_path": "#staff",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "columns",
+							"label": "Columns on a wide screen",
+							"widget": "number",
+							"required": false,
+							"default": 4,
+							"value_type": "int",
+							"min": 1,
+							"max": 6
+						},
+						{
+							"name": "background",
+							"label": "Background color",
+							"widget": "color",
+							"required": false,
+							"hint": "Sets this section apart from the page. Leave empty for none."
+						},
+						{
+							"name": "portraits",
+							"label": "People",
+							"label_singular": "Person",
+							"widget": "list",
+							"summary": "{{fields.name}}",
+							"fields": [
+								{
+									"name": "src",
+									"label": "Photo",
+									"widget": "image"
+								},
+								{
+									"name": "alt",
+									"label": "Alt text",
+									"widget": "string",
+									"required": false,
+									"hint": "Leave empty; the name is already shown beside the photo."
+								},
+								{
+									"name": "name",
+									"label": "Name",
+									"widget": "string"
+								},
+								{
+									"name": "role",
+									"label": "Role",
+									"widget": "text",
+									"required": false
+								},
+								{
+									"name": "description",
+									"label": "Description",
+									"widget": "text",
+									"required": false
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "carousel_testimonials",
+					"label": "Testimonials",
+					"file": "src/lib/content/page_team/carousel-testimonials.json",
+					"preview_path": "#testimonials",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "label",
+							"label": "Carousel accessible name",
+							"widget": "string",
+							"required": false,
+							"hint": "Defaults to Testimonials."
+						},
+						{
+							"name": "testimonials",
+							"label": "Testimonials",
+							"label_singular": "Testimonial",
+							"widget": "list",
+							"summary": "{{fields.name}}",
+							"fields": [
+								{
+									"name": "quote",
+									"label": "Quote",
+									"widget": "text"
+								},
+								{
+									"name": "name",
+									"label": "Name",
+									"widget": "string"
+								},
+								{
+									"name": "role",
+									"label": "Role or description",
+									"widget": "string",
+									"required": false
+								},
+								{
+									"name": "image",
+									"label": "Portrait",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "src",
+											"label": "Image",
+											"widget": "image"
+										},
+										{
+											"name": "alt",
+											"label": "Alt text",
+											"widget": "string",
+											"required": false
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "text_stack_invite",
+					"label": "Text Stack (invite)",
+					"file": "src/lib/content/page_team/text-stack-invite.json",
+					"preview_path": "#text-invite",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "type",
+											"label": "Style",
+											"widget": "select",
+											"required": false,
+											"options": [
+												{
+													"label": "Solid",
+													"value": "solid"
+												},
+												{
+													"label": "Secondary",
+													"value": "secondary"
+												},
+												{
+													"label": "Outline",
+													"value": "outline"
+												},
+												{
+													"label": "Underline",
+													"value": "underline"
+												},
+												{
+													"label": "Text",
+													"value": "text"
+												}
+											]
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. phone)."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "string",
+											"required": false,
+											"hint": "Icon file name without .svg (e.g. chevron-right)."
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "page_blog",
 			"label": "Page - Blog",
 			"hide": true,

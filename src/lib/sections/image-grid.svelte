@@ -20,6 +20,8 @@
 		portraits?: ImageGridPortrait[];
 		/** How many cards across on a wide screen. Fewer on smaller ones. Defaults to `4`. */
 		columns?: number;
+		/** Any CSS color, to set the section apart from the page. */
+		background?: string;
 		/** The section's anchor, so a link or the CMS preview can point to `#id`. */
 		id?: string;
 		/** At least the height of the screen, with the content centered. Taller content still grows past it. */
@@ -41,6 +43,7 @@
 		images = [],
 		portraits = [],
 		columns = 4,
+		background,
 		id,
 		fullScreen = false,
 		static: isStatic = false,
@@ -61,7 +64,12 @@
 	});
 </script>
 
-<section {id} class="image-grid {className ?? ''}" class:full-screen={fullScreen}>
+<section
+	{id}
+	class="image-grid {className ?? ''}"
+	class:full-screen={fullScreen}
+	style:background={background || undefined}
+>
 	<div class="inner">
 		<div class="text">
 			<SectionCopy {eyebrowText} {eyebrowIcon} {eyebrowDot} />

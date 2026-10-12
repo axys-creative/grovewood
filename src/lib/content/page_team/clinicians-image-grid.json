@@ -1,0 +1,36 @@
+{
+	"eyebrowText": "OUR CLINICIANS",
+	"title": "Clinicians who know their field",
+	"description": "Every clinician at Grovewood Mental Health brings focused training in evidence-based treatment. Talk therapy, medication management, TMS, and assessment — each led by someone who does that work every day. That's the Grovewood Difference.",
+	"columns": 4,
+	"portraits": [
+		{
+			"src": "/images/team-portrait-geret-giles.jpg",
+			"alt": "",
+			"name": "Geret Giles, PhD",
+			"role": "Founder, Licensed Psychologist, Director of Talk Therapy Services and TMS Services",
+			"description": "Specializing in talk therapy and psychological assessment for adults in Pleasant Grove."
+		},
+		{
+			"src": "/images/team-portrait-dillon-harper.jpg",
+			"alt": "",
+			"name": "Dillon Harper, PhD",
+			"role": "Licensed Psychologist, Director of Asessment Services",
+			"description": "Provides individual therapy for anxiety, depression, and trauma recovery."
+		},
+		{
+			"src": "/images/team-portrait-tyler-brockbank.jpg",
+			"alt": "",
+			"name": "Tyler Brockbank, CMHC",
+			"role": "Licensed Clinical Social Worker",
+			"description": "Provides talk therapy for individuals, couples, and families."
+		},
+		{
+			"src": "/images/team-portrait-kelsi-crotts.png",
+			"alt": "",
+			"name": "Kelsi Crotts",
+			"role": "Kelsi's role goes here",
+			"description": "Description will go right here."
+		}
+	]
+}

@@ -63,6 +63,14 @@ const previews: Record<string, Preview> = {
 		component: ImageGrid as unknown as Section,
 		props: (data) => ({ ...data, images: data.images ?? [], static: true })
 	},
+	clinicians_image_grid: {
+		component: ImageGrid as unknown as Section,
+		props: (data) => ({ ...data, portraits: data.portraits ?? [], static: true })
+	},
+	staff_image_grid: {
+		component: ImageGrid as unknown as Section,
+		props: (data) => ({ ...data, portraits: data.portraits ?? [], static: true })
+	},
 	stats: {
 		component: Stats as unknown as Section,
 		props: (data) => ({ ...data, stats: data.stats ?? [], static: true })

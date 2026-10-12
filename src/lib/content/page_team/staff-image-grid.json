@@ -1,0 +1,44 @@
+{
+	"eyebrowText": "BEHIND THE SCENES",
+	"title": "Meet the rest of our team",
+	"description": "One practice, one standard: using our expertise to help people change. Our administrative staff, coordinators, and TMS treaters are highly trained and eager to assist you. They are a driving force behind the Grovewood Difference.",
+	"columns": 3,
+	"background": "#dde7ee",
+	"portraits": [
+		{
+			"src": "/images/team-portrait-michele-c.jpg",
+			"alt": "",
+			"name": "Michele C.",
+			"role": "Practice Manager",
+			"description": "Michele oversees daily operations, ensuring a seamless patient experience from intake to follow-up."
+		},
+		{
+			"src": "/images/team-portrait-lacey-b.jpg",
+			"alt": "",
+			"name": "Lacey B.",
+			"role": "TMS Coordinator",
+			"description": "Lacey coordinates TMS treatment schedules, guiding patients through each step of the process."
+		},
+		{
+			"src": "/images/team-portrait-kelley-g.jpg",
+			"alt": "",
+			"name": "Kelley G.",
+			"role": "Community Outreach Coordinator",
+			"description": "Kelley connects the community with our services, fostering meaningful partnerships and awareness."
+		},
+		{
+			"src": "/images/team-portrait-mariah-m.jpg",
+			"alt": "",
+			"name": "Mariah M.",
+			"role": "TMS Treater",
+			"description": "Mariah administers TMS therapy with precision and care, supporting patients throughout their treatment."
+		},
+		{
+			"src": "/images/team-portrait-abby-l.jpg",
+			"alt": "",
+			"name": "Abby L.",
+			"role": "TMS Treater",
+			"description": "Abby delivers TMS therapy with dedication, helping patients achieve their recovery goals."
+		}
+	]
+}

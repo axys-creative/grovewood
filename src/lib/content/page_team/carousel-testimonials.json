@@ -1,0 +1,33 @@
+{
+	"eyebrowText": "PATIENT OUTCOMES",
+	"title": "What our patients say about our team",
+	"testimonials": [
+		{
+			"quote": "The assessment process was thorough and clear. I finally understood what I was dealing with, and the treatment plan made sense. No guesswork, just real progress.",
+			"name": "David Chen",
+			"role": "TALK THERAPY & MEDICATION MANAGEMENT PATIENT",
+			"image": {
+				"src": "/images/portrait-david-chen.webp",
+				"alt": "David Chen"
+			}
+		},
+		{
+			"quote": "After months of trying different approaches, TMS at Grovewood was the first thing that actually shifted things. The staff was straightforward and supportive throughout.",
+			"name": "Megan Foster",
+			"role": "MEDICATION MANAGEMENT PATIENT",
+			"image": {
+				"src": "/images/portrait-megan-foster.webp",
+				"alt": "Megan Foster"
+			}
+		},
+		{
+			"quote": "I was nervous about starting therapy, but the psychologist here made the whole process feel manageable and professional. No fluff, just honest, effective care.",
+			"name": "Jordan Ruiz",
+			"role": "TALK THERAPY PATIENT",
+			"image": {
+				"src": "/images/portrait-jordan-ruiz.webp",
+				"alt": "Jordan Ruiz"
+			}
+		}
+	]
+}
