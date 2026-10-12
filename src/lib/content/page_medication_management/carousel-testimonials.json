@@ -1,0 +1,33 @@
+{
+	"eyebrowText": "PATIENT SUCCESS",
+	"title": "Over 200 patients have found the right medication fit",
+	"testimonials": [
+		{
+			"quote": "The medication management at Grovewood was exactly what I needed. They adjusted my dosage slowly and explained every change. For the first time in years, I feel stable.",
+			"name": "Emily R.",
+			"role": "PATIENT SINCE 2025",
+			"image": {
+				"src": "/images/portrait-emily-r.webp",
+				"alt": "Emily R."
+			}
+		},
+		{
+			"quote": "I was nervous about starting medication, but the team walked me through the whole process. No pressure, no rush. Just clear answers and a plan that actually worked.",
+			"name": "David K.",
+			"role": "PATIENT SINCE 2024",
+			"image": {
+				"src": "/images/portrait-david-k.webp",
+				"alt": "David K."
+			}
+		},
+		{
+			"quote": "After months of trial and error with other clinics, Grovewood got my medication right on the first attempt. Their assessment was thorough and the follow-up has been consistent.",
+			"name": "Jennifer L.",
+			"role": "PATIENT SINCE 2023",
+			"image": {
+				"src": "/images/portrait-jennifer-l.webp",
+				"alt": "Jennifer L."
+			}
+		}
+	]
+}

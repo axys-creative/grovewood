@@ -1,0 +1,47 @@
+{
+	"eyebrowText": "MEDICATION BENEFITS",
+	"title": "Personalized medication plans with measurable outcomes",
+	"cta": {
+		"primary": {
+			"text": "Email us",
+			"textDescription": "Send us an email",
+			"url": "mailto:info@grovewoodutah.com",
+			"newTab": false,
+			"iconStart": "mail"
+		}
+	},
+	"slides": [
+		{
+			"title": "Symptom reduction protocol",
+			"description": "Targeted medication to reduce symptoms like anxiety, depression, or insomnia within weeks.",
+			"image": {
+				"src": "/images/medication-management-carousel-1.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Combined therapy approach",
+			"description": "Medication paired with talk therapy for better long-term results than either alone.",
+			"image": {
+				"src": "/images/medication-management-carousel-2.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Side effect monitoring",
+			"description": "We track and adjust dosage to minimize side effects and keep treatment comfortable.",
+			"image": {
+				"src": "/images/medication-management-carousel-3.webp",
+				"alt": ""
+			}
+		},
+		{
+			"title": "Monthly check-ins included",
+			"description": "Regular follow-ups to assess progress, adjust dosages, and keep your plan on track.",
+			"image": {
+				"src": "/images/medication-management-carousel-4.webp",
+				"alt": ""
+			}
+		}
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"eyebrowText": "MEASURED RESULTS",
+	"title": "Grovewood protocol outcomes by the numbers",
+	"description": "Each metric reflects real patient progress under our medication management approach in Pleasant Grove.",
+	"stats": [
+		{
+			"digit": 85,
+			"suffix": "%",
+			"label": "Symptom reduction rate",
+			"spokenLabel": "85% symptom reduction rate",
+			"ticker": false
+		},
+		{
+			"digit": 4,
+			"suffix": "wks",
+			"label": "Median response time",
+			"spokenLabel": "Four weeks median response time",
+			"ticker": false
+		}
+	]
+}
