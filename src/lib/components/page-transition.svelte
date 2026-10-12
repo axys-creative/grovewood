@@ -62,11 +62,13 @@
 	}
 
 	/* A bar with no size captures nothing, so the island, or the logo, links, strap and controls, are named instead. */
-	:global(html[data-keep-header] header.header:not(:has(.island)):not([data-header-parts])) {
+	:global(
+		html[data-keep-header] .site > header.header:not(:has(.island)):not([data-header-parts])
+	) {
 		view-transition-name: site-header;
 	}
 
-	:global(html[data-keep-header] header.header .island) {
+	:global(html[data-keep-header] .site > header.header .island) {
 		view-transition-name: site-header;
 	}
 
