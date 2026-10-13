@@ -1,6 +1,7 @@
 import { blog } from '$lib/blog';
 import { pages } from '$lib/content/meta/pages.json';
 import site from '$lib/content/meta/site.json';
+import { isLocked } from '$lib/utils/page-lock';
 
 export const prerender = true;
 
@@ -12,7 +13,7 @@ export const GET = () => {
 	const entries: { path: string; lastmod?: string }[] = [
 		...pages.filter((page) => page.crawlPage).map((page) => ({ path: page.path })),
 		...blog.all.map((post) => ({ path: `/blog/${post.slug}`, lastmod: post.date }))
-	];
+	].filter((entry) => !isLocked(entry.path));
 
 	const urls = entries
 		.map(

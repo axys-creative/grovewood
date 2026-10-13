@@ -91,6 +91,23 @@
 
 <svelte:window onkeydown={onKeydown} onpointerdown={onPointerdown} />
 
+{#snippet siteNav()}
+	<SiteNav
+		id={navId}
+		{open}
+		{links}
+		{footerLinks}
+		{socialLinks}
+		{linkType}
+		socialLabel="Connect with us!"
+		variant={mobileNav}
+		strap={false}
+		top={mobileNav === 'slide' ? navTop : undefined}
+		rounded={mobileNav === 'slide'}
+		onlink={close}
+	/>
+{/snippet}
+
 <header
 	class="header page-grid {linkPlacement}"
 	class:float
@@ -136,22 +153,11 @@
 			<SiteNavButton {...navButton} expanded={open} controls={navId} onclick={toggle} />
 		</div>
 	</div>
+
+	{#if mobileNav === 'slide'}{@render siteNav()}{/if}
 </header>
 
-<SiteNav
-	id={navId}
-	{open}
-	{links}
-	{footerLinks}
-	{socialLinks}
-	{linkType}
-	socialLabel="Connect with us!"
-	variant={mobileNav}
-	strap={false}
-	top={mobileNav === 'slide' ? navTop : undefined}
-	rounded={mobileNav === 'slide'}
-	onlink={close}
-/>
+{#if mobileNav !== 'slide'}{@render siteNav()}{/if}
 
 <style lang="scss">
 	@use 'base/mixins';
@@ -161,6 +167,7 @@
 		top: 0;
 		z-index: var(--z-header);
 		background: var(--color-bg);
+		box-shadow: var(--box-shadow);
 
 		@include mixins.mq-motion-allow {
 			transition: translate var(--duration) var(--ease);
@@ -262,7 +269,10 @@
 		translate: -50% 0;
 	}
 
+	// Above the slide-in panel, which sits inside the header and covers it.
 	.nav-button {
+		position: relative;
+		z-index: calc(var(--z-nav) + 1);
 		margin-inline-start: auto;
 
 		@include mixins.min-lg {

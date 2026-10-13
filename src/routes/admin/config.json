@@ -381,7 +381,14 @@
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
 						}
 					]
-				},
+				}
+			]
+		},
+		{
+			"name": "page_home_hidden",
+			"label": "Page - Home (hidden sections)",
+			"hide": true,
+			"files": [
 				{
 					"name": "image_grid",
 					"label": "Image Grid",
@@ -815,6 +822,7 @@
 		},
 		{
 			"name": "page_talk_therapy",
+			"hide": true,
 			"label": "Page - Talk Therapy",
 			"files": [
 				{
@@ -1848,6 +1856,7 @@
 		},
 		{
 			"name": "page_medication_management",
+			"hide": true,
 			"label": "Page - Medication Management",
 			"files": [
 				{
@@ -2968,6 +2977,7 @@
 		},
 		{
 			"name": "page_neurostar_tms",
+			"hide": true,
 			"label": "Page - NeuroStar TMS",
 			"files": [
 				{
@@ -4001,6 +4011,7 @@
 		},
 		{
 			"name": "page_assessment",
+			"hide": true,
 			"label": "Page - Assessment",
 			"files": [
 				{
@@ -5034,6 +5045,7 @@
 		},
 		{
 			"name": "page_team",
+			"hide": true,
 			"label": "Page - Team",
 			"files": [
 				{
@@ -5955,6 +5967,7 @@
 					"name": "header_simple",
 					"label": "Header (simple)",
 					"file": "src/lib/content/global/header-simple.json",
+					"editor": { "preview": true },
 					"fields": [
 						{
 							"name": "border",
@@ -6087,6 +6100,7 @@
 					"name": "footer_simple",
 					"label": "Footer",
 					"file": "src/lib/content/global/footer-simple.json",
+					"editor": { "preview": true },
 					"fields": [
 						{
 							"name": "border",

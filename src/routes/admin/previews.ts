@@ -3,7 +3,12 @@ import globalCss from '../../styles/styles.scss?inline';
 import CarouselSpotlight from '$lib/sections/carousel-spotlight.svelte';
 import CarouselTestimonials from '$lib/sections/carousel-testimonials.svelte';
 import CommonQuestions from '$lib/sections/common-questions.svelte';
+import FooterSimple from '$lib/components/footer-simple.svelte';
+import HeaderSimple from '$lib/components/header-simple.svelte';
 import HeroSimple from '$lib/sections/hero-simple.svelte';
+import logo from '$lib/content/global/logo.json';
+import navigation from '$lib/content/global/navigation.json';
+import social from '$lib/content/global/social-media.json';
 import ImageGrid from '$lib/sections/image-grid.svelte';
 import Stats from '$lib/sections/stats.svelte';
 import TextStack from '$lib/sections/text-stack.svelte';
@@ -11,7 +16,13 @@ import { mountPreview, type PreviewHost } from './preview-host.svelte';
 
 type Data = Record<string, unknown>;
 type Section = Component<Data>;
-type Preview = { component: Section; props?: (data: Data) => Data };
+type Preview = {
+	component: Section;
+	props?: (data: Data) => Data;
+	align?: 'start' | 'center' | 'end';
+};
+
+const justify = { start: 'flex-start', center: 'center', end: 'flex-end' } as const;
 
 type Cms = { registerPreviewTemplate: (name: string, template: unknown) => void };
 type Entry = { getIn: (path: string[]) => { toJS: () => Data } };
@@ -35,6 +46,22 @@ const withCta = (data: Data) => {
 };
 
 const previews: Record<string, Preview> = {
+	header_simple: {
+		component: HeaderSimple as unknown as Section,
+		align: 'start',
+		props: (data) => ({
+			...navigation,
+			logo,
+			socialLinks: social.links,
+			...data,
+			hideOnScroll: false
+		})
+	},
+	footer_simple: {
+		component: FooterSimple as unknown as Section,
+		align: 'end',
+		props: (data) => ({ logo, socialLinks: social.links, ...data })
+	},
 	carousel_spotlight: {
 		component: CarouselSpotlight as unknown as Section,
 		props: (data) => {
@@ -170,7 +197,7 @@ function template(preview: Preview) {
 					minHeight: '100vh',
 					display: 'flex',
 					flexDirection: 'column',
-					justifyContent: 'center'
+					justifyContent: justify[preview.align ?? 'center']
 				},
 				ref: (el: HTMLElement | null) => {
 					this.root = el;

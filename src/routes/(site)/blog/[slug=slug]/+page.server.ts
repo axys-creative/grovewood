@@ -1,10 +1,12 @@
 import { error } from '@sveltejs/kit';
 import { blog } from '$lib/blog';
 import { renderMarkdown } from '$lib/utils/collection';
+import { isLocked } from '$lib/utils/page-lock';
 
 export const prerender = true;
 
-export const entries = () => blog.slugs.map((slug) => ({ slug }));
+export const entries = () =>
+	blog.slugs.filter((slug) => !isLocked(`/blog/${slug}`)).map((slug) => ({ slug }));
 
 export const load = ({ params }) => {
 	const post = blog.get(params.slug);

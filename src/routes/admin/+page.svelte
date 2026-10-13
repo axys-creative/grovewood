@@ -4,6 +4,7 @@
 	import config from './config.json';
 	import site from '$lib/content/meta/site.json';
 	import { loadIdentity } from '$lib/utils/identity';
+	import { sideToggleControls } from './view-controls';
 
 	type Cms = {
 		init: (options: { config: unknown }) => void;
@@ -32,6 +33,7 @@
 
 	onMount(() => {
 		let script: HTMLScriptElement | undefined;
+		const stopControls = sideToggleControls();
 
 		loadIdentity().then((identity) => {
 			// Decap's fallback re-init would create a second widget iframe.
@@ -50,7 +52,10 @@
 			document.head.append(script);
 		});
 
-		return () => script?.remove();
+		return () => {
+			script?.remove();
+			stopControls();
+		};
 	});
 </script>
 

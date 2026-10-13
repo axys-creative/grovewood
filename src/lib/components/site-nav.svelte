@@ -515,11 +515,12 @@
 
 	// The slide variant: a panel from the right with rounded left corners, over the page and not over a backdrop.
 	.slide {
-		inset: var(--nav-top, 0) 0 0 auto;
+		inset: 0 0 auto auto;
 		width: min(75vw, 640px);
+		height: 100dvh;
 		overflow: hidden;
 		border-radius: 28px 0 0 28px;
-		border-inline-start: 1px solid var(--color-border);
+		box-shadow: -2px 0 8px rgb(0 0 0 / 0.08);
 		// It only slides: it is fully opaque, and only off the screen when closed.
 		opacity: 1;
 		translate: 100% 0;
@@ -533,12 +534,12 @@
 		@include mixins.max-md {
 			width: 100%;
 			border-radius: 0;
-			border-inline-start: 0;
+			box-shadow: none;
 
 			&.rounded {
 				width: min(88vw, 640px);
 				border-radius: 28px 0 0 28px;
-				border-inline-start: 1px solid var(--color-border);
+				box-shadow: -2px 0 8px rgb(0 0 0 / 0.08);
 			}
 		}
 
@@ -560,6 +561,11 @@
 		@include mixins.max-md {
 			padding-inline: 24px;
 		}
+	}
+
+	// The panel runs behind the header, so its content starts below it.
+	.slide .scroll {
+		padding-block-start: calc(var(--nav-top, 72px) + 40px);
 	}
 
 	.slide :global(.site-nav-links) {
