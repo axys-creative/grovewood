@@ -8,6 +8,8 @@
 
 	type Cms = {
 		init: (options: { config: unknown }) => void;
+		getLocale: (locale: string) => { auth: Record<string, string> };
+		registerLocale: (locale: string, phrases: unknown) => void;
 		registerPreviewTemplate: (name: string, template: unknown) => void;
 	};
 	type Node = { widget?: string; media_library?: { config?: { max_file_size?: number } } };
@@ -33,6 +35,9 @@
 
 	onMount(() => {
 		let script: HTMLScriptElement | undefined;
+		const preload = document.body.getAttribute('data-sveltekit-preload-data');
+		// Hovering Decap's "Go back to site" link would otherwise preload the site's CSS into the admin.
+		document.body.setAttribute('data-sveltekit-preload-data', 'off');
 		const stopControls = sideToggleControls();
 
 		loadIdentity().then((identity) => {
@@ -46,6 +51,11 @@
 				if (!cms) return;
 				const { registerPreviews } = await import('./previews');
 				registerPreviews(cms);
+				const en = cms.getLocale('en');
+				cms.registerLocale('en', {
+					...en,
+					auth: { ...en.auth, loginWithNetlifyIdentity: 'Sign in' }
+				});
 				cms.init({ config: capUploads(config) });
 			};
 			(window as { CMS_MANUAL_INIT?: boolean }).CMS_MANUAL_INIT = true;
@@ -54,6 +64,7 @@
 
 		return () => {
 			script?.remove();
+			if (preload) document.body.setAttribute('data-sveltekit-preload-data', preload);
 			stopControls();
 		};
 	});

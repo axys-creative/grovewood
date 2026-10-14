@@ -21,6 +21,48 @@
 		}
 	}
 
+	// Login page logo.
+	[class*='NetlifyCreditIcon'] {
+		display: none;
+	}
+
+	[class*='StyledAuthenticationPage'] {
+		display: grid;
+		grid-template-columns: auto;
+		justify-content: center;
+		justify-items: center;
+		align-content: center;
+		gap: 1.5rem;
+
+		[class*='LoginButton'],
+		[class*='GoBackButtonStyle'] {
+			margin: 0;
+			width: 100%;
+			max-width: 248px;
+			justify-content: center;
+			border-radius: 4px;
+			height: 36px;
+			padding: 0 12px;
+			line-height: 1;
+
+			p {
+				line-height: inherit;
+			}
+		}
+
+		[class*='GoBackButtonStyle'] {
+			border: 1px solid #313d3e;
+
+			span {
+				display: none;
+			}
+		}
+
+		// [class*='LoginButton'] {
+		// 	padding-inline: 1.25rem;
+		// }
+	}
+
 	label[class*='FieldLabel'] {
 		font-weight: 500;
 		text-transform: initial;
