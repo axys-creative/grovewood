@@ -1,6 +1,8 @@
 <script lang="ts">
 	import '../../styles/styles.scss';
 	import AlertStack from '$lib/components/alert-stack.svelte';
+	import CalendarBooking from '$lib/components/calendar-booking.svelte';
+	import booking from '$lib/content/global/booking.json';
 	import FooterGnomon, { type FooterGnomonProps } from '$lib/components/footer-gnomon.svelte';
 	import FooterScrollReveal, {
 		type FooterScrollRevealProps
@@ -75,6 +77,7 @@
 	{/if}
 </div>
 
+<CalendarBooking {...booking} />
 <AlertStack />
 
 <style lang="scss">

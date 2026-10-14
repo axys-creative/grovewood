@@ -713,6 +713,42 @@ export const solarSystemProps = props(
 	]
 );
 
+export const calendarBookingProps = props(
+	[
+		'services',
+		'An array of `{ title, description, duration }` cards to pick from, `duration` in minutes and an optional `price` (the confirmation shows `Free` without one). Picking one moves to the date and time; Back and Continue in the footer move between panels.'
+	],
+	['triggerText', 'A string, the label of the fixed button. Defaults to `Book a session`.'],
+	[
+		'stepTitles',
+		'An array of four headings, one per panel: service, date and time, details, done. Defaults to `Pick a service`, `Pick a date and time`, `Your details`, `You’re all set`.'
+	],
+	[
+		'days',
+		'A number, how many days are offered, starting tomorrow. Sundays are shown but disabled and do not count, so the row wraps to a sixth day when one falls in range. Defaults to `5`.'
+	],
+	['timeStart', 'A number, the hour (0 to 23) the first time slot starts. Defaults to `8`.'],
+	['timeLength', 'A number, the length of each time slot in hours. Defaults to `2`.'],
+	['timeSlots', 'A number, how many time slots are offered. Defaults to `5`.'],
+	[
+		'formName',
+		'A string, the Netlify form name used for the owner notification (first name, last name, email, phone, plus the service, date and time). Defaults to `booking`. Netlify finds the form through `static/booking-form.html`, so keep its name and fields in step.'
+	],
+	[
+		'onbook',
+		'A function called with `{ service, date, time, firstName, lastName, email, phone }` once the form has been sent.'
+	],
+	[
+		'offset',
+		'A CSS length, the distance from the bottom edge. The right side follows the edge of the content (the `right-spacing` mixin), so on an ultra-wide screen the button stays lined up with the content. At the bottom of the page it stops at the bottom of the `.top` block of the footer (or above the footer, without one). Defaults to `24px`.'
+	],
+	[
+		'inline',
+		'A boolean. Draws the booking panel in place, always open and with no button or close, for use as a section on a page. Defaults to `false`.'
+	],
+	['class', 'A string of extra classes.']
+);
+
 export const scrollProgressProps = props(
 	[
 		'placement',

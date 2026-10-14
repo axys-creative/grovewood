@@ -1,0 +1,19 @@
+{
+	"triggerText": "Book a session",
+	"days": 5,
+	"timeStart": 8,
+	"timeLength": 2,
+	"timeSlots": 5,
+	"services": [
+		{
+			"title": "Initial consultation",
+			"description": "A first conversation about what brings you in and how we can help.",
+			"duration": 30
+		},
+		{
+			"title": "Follow-up visit",
+			"description": "Check in on your progress and adjust your plan.",
+			"duration": 30
+		}
+	]
+}

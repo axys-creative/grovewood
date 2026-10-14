@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="robots" content="noindex" />
+		<title>Booking form</title>
+	</head>
+	<body>
+		<!-- Netlify only finds forms in built HTML; the booking popover is drawn in the browser, so this copy registers it. -->
+		<form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+			<input name="bot-field" />
+			<input name="service" />
+			<input name="date" />
+			<input name="time" />
+			<input name="firstName" />
+			<input name="lastName" />
+			<input name="email" type="email" />
+			<input name="phone" type="tel" />
+		</form>
+	</body>
+</html>

@@ -12,6 +12,7 @@
 	import SocialLinks from '$lib/components/social-links.svelte';
 	import Strap from '$lib/components/strap.svelte';
 	import SolarSystem from '$lib/components/solar-system.svelte';
+	import CalendarBooking from '$lib/components/calendar-booking.svelte';
 	import ScrollProgress from '$lib/components/scroll-progress.svelte';
 	import SideShadows from '$lib/components/side-shadows.svelte';
 	import Form from '$lib/components/form.svelte';
@@ -37,6 +38,7 @@
 		backToTopProps,
 		cardGnomonProps,
 		carouselAccordionProps,
+		calendarBookingProps,
 		carouselProps,
 		counterProps,
 		formProps,
@@ -636,6 +638,25 @@
 		<p class="h3">
 			<RichText text={richTextSample} />
 		</p>
+	</LibrarySection>
+
+	<LibrarySection
+		title="Calendar Booking"
+		type="Component"
+		description="A fixed button, bottom right, that opens a small booking popover. A progress bar at the top fills as the visitor goes: pick a service, then a date and time, then enter details, with Back and Continue in a footer. The panels fade into each other, and the details are sent to `/api/book`, which re-checks every rule, verifies the reCAPTCHA (when `PUBLIC_RECAPTCHA_SITE_KEY` and `RECAPTCHA_SECRET` are set), rate limits, reserves the slot in Netlify Blobs so other visitors see it as taken, notifies the owner through a Netlify form, and emails the visitor through Resend when `RESEND_API_KEY` and `BOOKING_FROM` are set. Escape or the close button dismisses it and returns focus to the button. With `inline` it is a plain panel for a section. The one below is inline; the site's own button is bottom right on every page."
+		props={calendarBookingProps}
+	>
+		<CalendarBooking
+			inline
+			services={[
+				{
+					title: 'Initial consultation',
+					description: 'A first conversation about what brings you in.',
+					duration: 30
+				},
+				{ title: 'Follow-up', description: 'Check in on your progress.', duration: 30 }
+			]}
+		/>
 	</LibrarySection>
 
 	<LibrarySection

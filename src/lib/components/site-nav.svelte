@@ -140,11 +140,15 @@
 
 		<!-- The strap runs past the panel's edge, which clips it, so only its loop end shows. -->
 		<div class="corner">
+			{#if !strap && socialLinks.length}
+				<div class="social-above"><SocialLinks links={socialLinks} /></div>
+			{/if}
+
 			{#if footerLinks.length}
 				<ul class="footer-links">
 					{#each footerLinks as link (`${link.url}|${link.text}`)}
 						<li>
-							<Button {...link} type={link.type ?? 'underline'} size="sm" {@attach textRoll()} />
+							<Button {...link} type={link.type ?? 'underline'} {@attach textRoll()} />
 						</li>
 					{/each}
 				</ul>
@@ -609,6 +613,12 @@
 		padding-block-end: 24px;
 		padding-inline-start: var(--body-padding);
 
+		// Leaves the corner free for a button fixed over the page (the booking button), which then sits below the
+		// content instead of over it.
+		@include mixins.max-md {
+			padding-block-end: 96px;
+		}
+
 		@include mixins.max-md {
 			padding-inline-start: 24px;
 		}
@@ -618,8 +628,24 @@
 		flex-direction: column;
 	}
 
+	// On small screens the social links sit on their own row above the corner's buttons, clear of anything fixed
+	// over the bottom corner.
+	.social-above {
+		display: none;
+		flex-basis: 100%;
+
+		@include mixins.max-lg {
+			display: block;
+		}
+	}
+
 	.corner .social {
 		flex: none;
+
+		@include mixins.max-lg {
+			display: none;
+		}
+
 		margin-inline-start: auto;
 		padding-inline-end: var(--body-padding);
 

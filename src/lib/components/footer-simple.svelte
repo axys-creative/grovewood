@@ -193,6 +193,11 @@
 		justify-content: space-between;
 		gap: 40px;
 
+		// Room at the bottom for a button fixed over the page (the booking button), which rests here.
+		@include mixins.max-md {
+			padding-block-end: 96px;
+		}
+
 		@include mixins.min-lg {
 			flex-direction: row;
 			gap: 48px;

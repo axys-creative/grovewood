@@ -288,7 +288,7 @@
 			left: 0.75em;
 			padding-inline: 0.35em;
 			translate: 0 -50%;
-			background: var(--color-bg);
+			background: var(--field-label-bg, var(--color-bg));
 		}
 	}
 

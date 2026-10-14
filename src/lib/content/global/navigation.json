@@ -38,6 +38,11 @@
 			"text": "Team",
 			"url": "/team",
 			"newTab": false
+		},
+		{
+			"text": "Patient Portal",
+			"url": "https://www.patientally.com/register?invite=eyJhbGciOiJIUzI1NiIsImV4cCI6MTY5NDY0MTcxMi45NTI4MiwiaWF0IjoxNjg2ODY1NzEzfQ.eyJleHBpcmVfYXRfdXRjIjoiMjAyMy0wOS0xMyAyMTo0ODozMiIsImludml0ZXMiOlt7Imludml0ZV9pZCI6MTcwNzY2fV19.YA_ZP4EJAyowEj31dF7fJFeAr6GlscM-KJkoL3pVIUg",
+			"newTab": true
 		}
 	],
 	"ctas": [
@@ -62,7 +67,7 @@
 			"text": "Call (801) 785-4622",
 			"url": "tel:8017854622",
 			"newTab": false,
-			"type": "solid"
+			"type": "secondary"
 		}
 	],
 	"adminLogin": false
