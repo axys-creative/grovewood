@@ -38,6 +38,8 @@
 		const preload = document.body.getAttribute('data-sveltekit-preload-data');
 		// Hovering Decap's "Go back to site" link would otherwise preload the site's CSS into the admin.
 		document.body.setAttribute('data-sveltekit-preload-data', 'off');
+		// A client-side navigation would leave Decap's #nc-root and the identity widget on the home page.
+		document.body.setAttribute('data-sveltekit-reload', '');
 		const stopControls = sideToggleControls();
 
 		loadIdentity().then((identity) => {
@@ -65,6 +67,7 @@
 		return () => {
 			script?.remove();
 			if (preload) document.body.setAttribute('data-sveltekit-preload-data', preload);
+			document.body.removeAttribute('data-sveltekit-reload');
 			stopControls();
 		};
 	});
