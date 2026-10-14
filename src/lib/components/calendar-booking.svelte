@@ -367,7 +367,7 @@
 					aria-valuetext="Step {step} of {steps}"
 				>
 					{#each [1, 2, 3, 4] as bar (bar)}
-						<span class="bar" class:filled={bar <= step}></span>
+						<span class="bar" class:filled={bar <= step}><span class="fill"></span></span>
 					{/each}
 				</div>
 			</header>
@@ -478,9 +478,20 @@
 									<input type="hidden" name="date" value={picked.day ? isoDate(picked.day) : ''} />
 									<input type="hidden" name="time" value={picked.time ?? ''} />
 
-									<p class="summary">
-										{picked.service?.title} · {picked.day ? full(picked.day) : ''} · {picked.time}
-									</p>
+									<dl class="table">
+										<div class="row">
+											<dt>Service</dt>
+											<dd>{picked.service?.title}</dd>
+										</div>
+										<div class="row">
+											<dt>Date</dt>
+											<dd>{picked.day ? full(picked.day) : ''}</dd>
+										</div>
+										<div class="row">
+											<dt>Time</dt>
+											<dd>{picked.time}</dd>
+										</div>
+									</dl>
 
 									<div class="group">
 										<FormField
@@ -722,15 +733,23 @@
 	.bar {
 		flex: 1;
 		height: 4px;
+		overflow: hidden;
 		border-radius: 2px;
 		background: var(--color-border);
+	}
+
+	.fill {
+		display: block;
+		width: 0;
+		height: 100%;
+		background: var(--color-on-accent);
 
 		@include mixins.mq-motion-allow {
-			transition: background-color 0.3s;
+			transition: width 0.8s var(--ease);
 		}
 
-		&.filled {
-			background: var(--color-accent);
+		.filled > & {
+			width: 100%;
 		}
 	}
 
@@ -943,14 +962,9 @@
 		gap: 12px;
 	}
 
-	.summary,
 	.muted {
 		font-size: 0.9375rem;
 		color: var(--color-text-muted);
-	}
-
-	.summary {
-		padding-block: 16px 12px;
 	}
 
 	// A disabled button ignores the pointer, so the cursor comes from this wrapper.
@@ -995,6 +1009,10 @@
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
 		text-align: start;
+	}
+
+	.details .table {
+		margin-block: 16px;
 	}
 
 	.row {
