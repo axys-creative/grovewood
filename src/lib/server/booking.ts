@@ -125,7 +125,10 @@ async function sendConfirmation(details: {
 	date: string;
 	time: string;
 }) {
-	if (!env.RESEND_API_KEY || !env.BOOKING_FROM) return false;
+	if (!env.RESEND_API_KEY || !env.BOOKING_FROM) {
+		console.warn('Confirmation email skipped: RESEND_API_KEY or BOOKING_FROM is not set');
+		return false;
+	}
 
 	const day = new Date(`${details.date}T12:00:00Z`).toLocaleDateString('en-US', {
 		weekday: 'long',
@@ -157,8 +160,11 @@ async function sendConfirmation(details: {
 				html: lines.map((line) => `<p>${escape(line)}</p>`).join('')
 			})
 		});
+		if (!response.ok)
+			console.error('Resend rejected the email', response.status, await response.text());
 		return response.ok;
-	} catch {
+	} catch (error) {
+		console.error('Resend request failed', error);
 		return false;
 	}
 }
@@ -214,10 +220,11 @@ export async function createBooking(
 	});
 	if (!reserved) return fail(409, 'taken');
 
-	// Tells the site owner through Netlify Forms. A failed notice never undoes the booking.
+	// Tells the site owner through Netlify Forms. A failed notice never undoes the booking. The post goes to the
+	// static page that holds the form, since the site's other paths are answered by the server, not Netlify Forms.
 	if (!dev) {
 		try {
-			await fetch(`${origin}/`, {
+			const response = await fetch(`${origin}/booking-form.html`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 				body: new URLSearchParams({
@@ -231,8 +238,9 @@ export async function createBooking(
 					phone
 				}).toString()
 			});
-		} catch {
-			// Ignored on purpose.
+			if (!response.ok) console.error('Netlify form notice failed', response.status);
+		} catch (error) {
+			console.error('Netlify form notice failed', error);
 		}
 	}
 
