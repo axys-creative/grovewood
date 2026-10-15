@@ -85,6 +85,7 @@
 	let ticket = $state('');
 	let email = $state('');
 	let emailed = $state(false);
+	let booked = $state<{ service?: BookingService; day?: Date; time?: string }>({});
 	let name = $state('');
 	let form = $state<HTMLFormElement>();
 	let trigger = $state<HTMLElement>();
@@ -92,7 +93,6 @@
 	let body = $state<HTMLElement>();
 	let lift = $state(0);
 	let navOpen = $state(false);
-	let closing = $state(false);
 
 	const siteKey = env.PUBLIC_RECAPTCHA_SITE_KEY;
 	const shown = $derived(inline || open);
@@ -186,6 +186,7 @@
 		service = date = time = null;
 		email = name = token = '';
 		emailed = false;
+		booked = {};
 		trigger?.focus();
 	}
 
@@ -231,6 +232,8 @@
 				email,
 				phone: text('phone')
 			});
+			// Kept apart from the picks, which are cleared once the slot shows as taken.
+			booked = { ...picked };
 			step = 4;
 			loadAvailability();
 		} catch (error) {
@@ -294,15 +297,10 @@
 		updateLift();
 
 		// The header marks itself while its navigation is open; this only reads that mark.
-		let timer: ReturnType<typeof setTimeout>;
 		const sync = () => {
 			const next = document.querySelector('[data-nav-open]') !== null;
 			if (next === navOpen) return;
 			navOpen = next;
-			// Marks the button as returning, so it waits for the navigation to finish closing.
-			closing = !next;
-			clearTimeout(timer);
-			if (closing) timer = setTimeout(() => (closing = false), 1300);
 		};
 		sync();
 		const observer = new MutationObserver(sync);
@@ -311,10 +309,7 @@
 			attributes: true,
 			attributeFilter: ['data-nav-open']
 		});
-		return () => {
-			observer.disconnect();
-			clearTimeout(timer);
-		};
+		return () => observer.disconnect();
 	});
 
 	$effect(() => {
@@ -544,19 +539,19 @@
 									<dl class="table">
 										<div class="row">
 											<dt>Service</dt>
-											<dd>{picked.service?.title}</dd>
+											<dd>{booked.service?.title}</dd>
 										</div>
 										<div class="row">
 											<dt>Date</dt>
-											<dd>{picked.day ? full(picked.day) : ''}</dd>
+											<dd>{booked.day ? full(booked.day) : ''}</dd>
 										</div>
 										<div class="row">
 											<dt>Time</dt>
-											<dd>{picked.time}</dd>
+											<dd>{booked.time}</dd>
 										</div>
 										<div class="row">
 											<dt>Total</dt>
-											<dd>{picked.service?.price ?? 'Free'}</dd>
+											<dd>{booked.service?.price ?? 'Free'}</dd>
 										</div>
 									</dl>
 
@@ -609,7 +604,6 @@
 			class="trigger"
 			class:nudged={navOpen}
 			class:parked={lift > 0}
-			class:closing
 			bind:this={trigger}
 		>
 			<Button
@@ -667,12 +661,6 @@
 
 			@include mixins.mq-motion-allow {
 				transition-delay: 0.15s;
-			}
-		}
-
-		&.closing {
-			@include mixins.mq-motion-allow {
-				transition-delay: 0.45s;
 			}
 		}
 	}
