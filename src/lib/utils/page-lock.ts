@@ -2,7 +2,19 @@
 // Set `lockPages` to false to bring them all back.
 export const lockPages = true;
 
-const open = ['/', '/admin', '/_app', '/api', '/form-submit', '/robots.txt', '/sitemap.xml'];
+const open = [
+	'/',
+	'/admin',
+	'/_app',
+	'/api',
+	'/form-submit',
+	'/talk-therapy',
+	'/neurostar-tms',
+	'/assessment',
+	'/medication-management',
+	'/robots.txt',
+	'/sitemap.xml'
+];
 
 export const isLocked = (pathname: string) => {
 	if (!lockPages) return false;

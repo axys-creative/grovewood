@@ -203,6 +203,10 @@
 		width: 100%;
 	}
 
+	.value:has(.ticker) {
+		width: auto;
+	}
+
 	.number {
 		font-variant-numeric: tabular-nums;
 	}
@@ -220,11 +224,12 @@
 
 	.digit {
 		display: block;
-		width: 1ch;
+		width: var(--digit-width, 1ch);
 		overflow: hidden;
+		text-align: center;
 
 		&.narrow {
-			width: 0.96ch;
+			width: var(--digit-width-narrow, 0.9ch);
 		}
 	}
 

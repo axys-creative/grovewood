@@ -381,14 +381,7 @@
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "page_home_hidden",
-			"label": "Page - Home (hidden sections)",
-			"hide": true,
-			"files": [
+				},
 				{
 					"name": "image_grid",
 					"label": "Image Grid",
@@ -822,7 +815,6 @@
 		},
 		{
 			"name": "page_talk_therapy",
-			"hide": true,
 			"label": "Page - Talk Therapy",
 			"files": [
 				{
@@ -1110,7 +1102,14 @@
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
 						}
 					]
-				},
+				}
+			]
+		},
+		{
+			"name": "page_talk_therapy_hidden",
+			"label": "Page - Talk Therapy (hidden sections)",
+			"hide": true,
+			"files": [
 				{
 					"name": "carousel_spotlight",
 					"label": "Carousel",
@@ -1856,7 +1855,6 @@
 		},
 		{
 			"name": "page_medication_management",
-			"hide": true,
 			"label": "Page - Medication Management",
 			"files": [
 				{
@@ -2110,7 +2108,14 @@
 							"default": "column"
 						}
 					]
-				},
+				}
+			]
+		},
+		{
+			"name": "page_medication_management_hidden",
+			"label": "Page - Medication Management (hidden sections)",
+			"hide": true,
+			"files": [
 				{
 					"name": "text_stack",
 					"label": "Text Stack",
@@ -2977,7 +2982,6 @@
 		},
 		{
 			"name": "page_neurostar_tms",
-			"hide": true,
 			"label": "Page - NeuroStar TMS",
 			"files": [
 				{
@@ -3231,7 +3235,14 @@
 							"default": "column"
 						}
 					]
-				},
+				}
+			]
+		},
+		{
+			"name": "page_neurostar_tms_hidden",
+			"label": "Page - NeuroStar TMS (hidden sections)",
+			"hide": true,
+			"files": [
 				{
 					"name": "text_stack",
 					"label": "Text Stack",
@@ -4011,7 +4022,6 @@
 		},
 		{
 			"name": "page_assessment",
-			"hide": true,
 			"label": "Page - Assessment",
 			"files": [
 				{
@@ -4265,7 +4275,14 @@
 							"default": "column"
 						}
 					]
-				},
+				}
+			]
+		},
+		{
+			"name": "page_assessment_hidden",
+			"label": "Page - Assessment (hidden sections)",
+			"hide": true,
+			"files": [
 				{
 					"name": "text_stack",
 					"label": "Text Stack",
