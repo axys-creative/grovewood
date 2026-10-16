@@ -19,6 +19,7 @@ let core: Promise<typeof Gsap> | undefined;
 const registering = new Map<PluginName, Promise<void>>();
 
 let refreshTimer: ReturnType<typeof setTimeout> | undefined;
+let watchingPage = false;
 
 /**
  * Measures every ScrollTrigger again, in page order, once things have gone quiet. Sections build their triggers
@@ -33,6 +34,15 @@ export function refreshScrollTriggers() {
 	}, 200);
 }
 
+function refreshWhenPageChanges() {
+	if (watchingPage) return;
+	watchingPage = true;
+	// Images, fonts and lazy content change the page's height after triggers were measured, which leaves them stale.
+	new ResizeObserver(refreshScrollTriggers).observe(document.documentElement);
+	document.fonts?.ready.then(refreshScrollTriggers);
+	addEventListener('pageshow', refreshScrollTriggers);
+}
+
 /**
  * Loads GSAP and any plugins you name, once. Pages that never call this never download GSAP, so
  * call it from an attachment (not at module scope) and keep plugin lists as short as possible.
@@ -40,7 +50,10 @@ export function refreshScrollTriggers() {
 export async function loadGsap(...plugins: PluginName[]) {
 	core ??= import('gsap').then((module) => module.gsap);
 	const gsap = await core;
-	if (plugins.includes('scrollTrigger')) refreshScrollTriggers();
+	if (plugins.includes('scrollTrigger')) {
+		refreshScrollTriggers();
+		refreshWhenPageChanges();
+	}
 
 	await Promise.all(
 		plugins.map((name) => {
