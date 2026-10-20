@@ -13,7 +13,7 @@
 			"textDescription": "Take the depression screening to see if you qualify for TMS",
 			"url": "https://phq9web.azurewebsites.net/PHQ9/Survey/86472",
 			"newTab": true,
-			"iconStart": "check-circle"
+			"iconStart": "/uploads/check-circle.svg"
 		},
 		"secondary": {
 			"text": "Call Grovewood",
@@ -21,7 +21,7 @@
 			"url": "tel:8017854622",
 			"newTab": false,
 			"type": "secondary",
-			"iconStart": "phone"
+			"iconStart": "/uploads/phone.svg"
 		}
 	}
 }

@@ -20,7 +20,7 @@
 			"url": "tel:8017854622",
 			"newTab": false,
 			"type": "secondary",
-			"iconStart": "phone"
+			"iconStart": "/uploads/phone.svg"
 		}
 	}
 }

@@ -1,4 +1,5 @@
 <script module lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { ButtonProps } from './button.svelte';
 	import type { NavLink } from './menu-links.svelte';
 	import type { SocialLink } from './social-links.svelte';
@@ -32,6 +33,8 @@
 		top?: string;
 		/** Keeps the `slide` variant a rounded panel on small screens too, instead of covering the whole width. */
 		rounded?: boolean;
+		/** The `slide` variant shows this in its top left, rolling up into place as the panel opens. */
+		logo?: Snippet;
 		/** Called when a link inside is chosen. */
 		onlink?: () => void;
 	};
@@ -66,6 +69,7 @@
 		surface = 'solid',
 		top,
 		rounded = false,
+		logo,
 		onlink
 	}: SiteNavProps = $props();
 
@@ -126,6 +130,10 @@
 	{@attach surface === 'glass' ? glass({ blur: 16, tint: 'rgb(0 0 0 / 0.6)' }) : undefined}
 >
 	{#if variant === 'slide'}
+		{#if logo}<div class="nav-logo">
+				<div class="nav-logo-clip"><div class="nav-logo-inner">{@render logo()}</div></div>
+			</div>{/if}
+
 		<div class="scroll">
 			<MenuLinks
 				class="site-nav-links"
@@ -574,6 +582,41 @@
 
 	.slide :global(.site-nav-links) {
 		margin-block: auto;
+	}
+
+	.nav-logo {
+		position: absolute;
+		inset: 0 auto auto var(--body-padding);
+		display: flex;
+		align-items: center;
+		height: var(--nav-top, 72px);
+		padding-block-start: 10px;
+
+		@include mixins.max-md {
+			inset-inline-start: 24px;
+		}
+	}
+
+	.nav-logo-clip {
+		display: flex;
+		overflow: clip;
+	}
+
+	.nav-logo-inner {
+		display: flex;
+		translate: 0 100%;
+
+		@include mixins.mq-motion-allow {
+			transition: translate 0.3s var(--ease);
+		}
+	}
+
+	.slide.open .nav-logo-inner {
+		translate: 0 0;
+
+		@include mixins.mq-motion-allow {
+			transition: translate 0.7s var(--ease) 0.7s;
+		}
 	}
 
 	// The links rise in one after another once the panel is moving.

@@ -7,7 +7,7 @@
 			"textDescription": "Call us to schedule an appointment",
 			"url": "tel:8017854622",
 			"newTab": false,
-			"iconStart": "phone"
+			"iconStart": "/uploads/phone.svg"
 		},
 		"secondary": {
 			"text": "Email us",

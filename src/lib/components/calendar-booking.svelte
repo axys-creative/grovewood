@@ -268,6 +268,7 @@
 	}
 
 	// Stops the button at the bottom of the footer's top block, so it never covers the legal links below it.
+	const footerSink = 24;
 	let frame = 0;
 	function updateLift() {
 		if (inline || frame) return;
@@ -281,7 +282,7 @@
 			const stop = footer.querySelector('.top') ?? footer;
 			const edge =
 				stop === footer ? stop.getBoundingClientRect().top : stop.getBoundingClientRect().bottom;
-			lift = Math.max(0, Math.round(window.innerHeight - edge));
+			lift = Math.max(0, Math.round(window.innerHeight - edge) - footerSink);
 		});
 	}
 

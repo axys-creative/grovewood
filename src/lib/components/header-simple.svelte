@@ -91,6 +91,8 @@
 
 <svelte:window onkeydown={onKeydown} onpointerdown={onPointerdown} />
 
+{#snippet navLogo()}<Logo {...logo} url="/" />{/snippet}
+
 {#snippet siteNav()}
 	<SiteNav
 		id={navId}
@@ -104,6 +106,7 @@
 		strap={false}
 		top={mobileNav === 'slide' ? navTop : undefined}
 		rounded={mobileNav === 'slide'}
+		logo={logo ? navLogo : undefined}
 		onlink={close}
 	/>
 {/snippet}
@@ -125,7 +128,11 @@
 	{/if}
 
 	<div class="inner">
-		{#if logo}<Logo {...logo} url="/" />{/if}
+		{#if logo}
+			<div class="logo-mask" inert={open && mobileNav === 'slide'}>
+				<Logo {...logo} url="/" />
+			</div>
+		{/if}
 
 		<MenuLinks
 			class="links"
@@ -231,6 +238,21 @@
 		justify-content: space-between;
 		gap: 24px;
 		padding-block: 12px;
+	}
+
+	.logo-mask {
+		display: flex;
+		overflow: clip;
+
+		@include mixins.mq-motion-allow {
+			:global(.logo) {
+				transition: translate 0.5s var(--ease) 0.1s;
+			}
+		}
+	}
+
+	[data-nav-open] .logo-mask :global(.logo) {
+		translate: 0 -100%;
 	}
 
 	.float .inner {

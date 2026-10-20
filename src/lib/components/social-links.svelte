@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+	import { magnet } from '$lib/attachments/magnet';
 	import Icon from './icon.svelte';
 
 	let {
@@ -21,6 +22,7 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					aria-label="{title} (opens in a new tab)"
+					{@attach magnet({ x: 0.4, y: 0.4, returnEase: 'cubic-bezier(0, 1.64, 0.63, 1.92)' })}
 				>
 					<Icon name={icon} size="lg" />
 				</a>

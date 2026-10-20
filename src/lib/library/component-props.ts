@@ -159,7 +159,7 @@ export const sectionCopyProps = props(
 export const siteNavButtonProps = props(
 	[
 		'symbol',
-		'`burger | oreo | stairs | chocolate | kebab`. Two lines, two lines with rounded outer corners that twirl into the X, three stepped lines (short, long, short) that form the X, nine dots or three vertical dots. Defaults to `burger`.'
+		'`burger | oreo | stairs | chocolate | kebab`. Two lines, two lines with rounded outer corners that twirl into the X, three stepped lines (short, long, short) that form the X, nine dots, or three vertical dots that turn into an X of five. Defaults to `burger`.'
 	],
 	['shape', '`square | round`. Defaults to `square`.'],
 	['type', '`icon | button`. `button` puts the symbol in a bordered box. Defaults to `icon`.'],

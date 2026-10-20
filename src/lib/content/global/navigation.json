@@ -12,25 +12,25 @@
 					"text": "Talk Therapy",
 					"url": "/talk-therapy",
 					"newTab": false,
-					"iconStart": "communication"
+					"iconStart": "/uploads/communication.svg"
 				},
 				{
 					"text": "Medication Management",
 					"url": "/medication-management",
 					"newTab": false,
-					"iconStart": "pill"
+					"iconStart": "/uploads/pill.svg"
 				},
 				{
 					"text": "NeuroStar TMS",
 					"url": "/neurostar-tms",
 					"newTab": false,
-					"iconStart": "neurostar"
+					"iconStart": "/uploads/neurostar.svg"
 				},
 				{
 					"text": "Assessment",
 					"url": "/assessment",
 					"newTab": false,
-					"iconStart": "inventory"
+					"iconStart": "/uploads/inventory.svg"
 				}
 			]
 		},
@@ -59,7 +59,7 @@
 			"url": "tel:8017854622",
 			"newTab": false,
 			"type": "solid",
-			"iconStart": "phone"
+			"iconStart": "/uploads/phone.svg"
 		}
 	],
 	"navFooterLinks": [

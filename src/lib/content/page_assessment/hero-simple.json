@@ -13,7 +13,7 @@
 			"textDescription": "Jump to the frequently asked questions",
 			"url": "#common-questions",
 			"newTab": false,
-			"iconStart": "check-circle"
+			"iconStart": "/uploads/check-circle.svg"
 		},
 		"secondary": {
 			"text": "Call (801) 785-4622",
@@ -21,7 +21,7 @@
 			"url": "tel:8017854622",
 			"newTab": false,
 			"type": "secondary",
-			"iconStart": "phone"
+			"iconStart": "/uploads/phone.svg"
 		}
 	}
 }

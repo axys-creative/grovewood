@@ -1,9 +1,9 @@
 {
-	"eyebrowText": "PATIENT OUTCOMES",
-	"title": "What our clients are saying about \"The Grovewood Difference\"",
+	"eyebrowText": "REAL OUTCOMES",
+	"title": "Does talk therapy actually work? Here's what our clients say about the Grovewood difference.",
 	"testimonials": [
 		{
-			"quote": "After two years of medication that barely worked, TMS at Grovewood changed my baseline. The team was precise, patient, and clear about what to expect at every session.",
+			"quote": "I was skeptical at first, but after 3 months, I could finally name what I was feeling without it overwhelming me. The structure of each session gave me tools I still use daily.",
 			"name": "David Chen",
 			"role": "TMS PATIENT, COMPLETED PROTOCOL",
 			"image": {
@@ -12,7 +12,7 @@
 			}
 		},
 		{
-			"quote": "I was nervous about starting TMS. The clinical team explained the evidence behind the protocol and walked me through each session. I noticed real improvement by week four.",
+			"quote": "I came in for anxiety and stayed because the progress was measurable. My therapist helped me identify patterns I've been stuck in for years. That's not fluff. That's results.",
 			"name": "Megan Foster",
 			"role": "TMS PATIENT",
 			"image": {
@@ -21,21 +21,12 @@
 			}
 		},
 		{
-			"quote": "The psychological assessment gave me a clearer picture of what I was dealing with. The treatment plan that followed was specific to my results — not a generic approach.",
+			"quote": "The assessment was thorough and the treatment plan was specific to me, not a one-size-fits-all approach. I appreciate that Grovewood treats therapy like science, not chatter.",
 			"name": "Jordan Ruiz",
 			"role": "TALK THERAPY PATIENT",
 			"image": {
 				"src": "/images/portrait-jordan-ruiz.webp",
 				"alt": "Jordan Ruiz"
-			}
-		},
-		{
-			"quote": "Coming here after trying three different therapists elsewhere. The difference is the structure — from the initial assessment to the follow-through. I finally feel like treatment is working.",
-			"name": "Elena Vasquez",
-			"role": "THERAPY AND ASSESSMENT PATIENT",
-			"image": {
-				"src": "/images/portrait-elena-vasquez.webp",
-				"alt": "Elena Vasquez"
 			}
 		}
 	]
