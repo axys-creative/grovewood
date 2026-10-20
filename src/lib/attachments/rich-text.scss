@@ -1,3 +1,29 @@
+@use 'base/mixins';
+
+.rich-text--h1 {
+	@include mixins.h1;
+}
+
+.rich-text--h2 {
+	@include mixins.h2;
+}
+
+.rich-text--h3 {
+	@include mixins.h3;
+}
+
+.rich-text--h4 {
+	@include mixins.h4;
+}
+
+.rich-text--h5 {
+	@include mixins.h5;
+}
+
+.rich-text--h6 {
+	@include mixins.h6;
+}
+
 .rich-text--primary {
 	color: var(--color-accent-text);
 }

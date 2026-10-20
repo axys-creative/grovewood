@@ -1,5 +1,11 @@
 /** Class names an admin can use in `[text]{.name}`. Anything else is dropped and the text stays. */
 export const richTextClasses = [
+	'h1',
+	'h2',
+	'h3',
+	'h4',
+	'h5',
+	'h6',
 	'italic',
 	'primary',
 	'scribble',
@@ -25,9 +31,7 @@ export function richTextToken(inner: string, names: string) {
 	if (!used.size) return inner;
 
 	const classes = [...used]
-		.filter(
-			(name) => name === 'italic' || name === 'primary' || name === 'secondary' || name === 'stroke'
-		)
+		.filter((name) => /^(h[1-6]|italic|primary|secondary|stroke)$/.test(name))
 		.map((name) => `rich-text--${name}`);
 	const drawn = [...used].find((name) => name.startsWith('scribble'));
 	const behaviors = drawn ? ` data-rich-text="${drawn}"` : '';

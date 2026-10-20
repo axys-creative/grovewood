@@ -995,6 +995,7 @@ export const richTextProps = props(
 		'text',
 		'A string. `[words]{.primary}` styles the words, `[words]{.primary .scribble}` combines classes, and `{.br}` is a line break. Anything else, including `<` and `&`, is shown as typed. Required.'
 	],
+	['.h1', 'The size and style of a Heading 1. `.h2` to `.h6` match their headings.'],
 	['.italic', 'Italic.'],
 	['.primary', 'The brand accent color.'],
 	[

@@ -1102,17 +1102,10 @@
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "page_talk_therapy_hidden",
-			"label": "Page - Talk Therapy (hidden sections)",
-			"hide": true,
-			"files": [
+				},
 				{
 					"name": "carousel_spotlight",
-					"label": "Carousel",
+					"label": "Carousel (Spotlight)",
 					"file": "src/lib/content/page_talk_therapy/carousel-spotlight.json",
 					"preview_path": "#carousel-spotlight",
 					"fields": [
@@ -1347,7 +1340,7 @@
 				},
 				{
 					"name": "carousel_testimonials",
-					"label": "Testimonials",
+					"label": "Carousel (Testimonials)",
 					"file": "src/lib/content/page_talk_therapy/carousel-testimonials.json",
 					"preview_path": "#testimonials",
 					"fields": [
@@ -2108,14 +2101,7 @@
 							"default": "column"
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "page_medication_management_hidden",
-			"label": "Page - Medication Management (hidden sections)",
-			"hide": true,
-			"files": [
+				},
 				{
 					"name": "text_stack",
 					"label": "Text Stack",
@@ -3235,14 +3221,7 @@
 							"default": "column"
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "page_neurostar_tms_hidden",
-			"label": "Page - NeuroStar TMS (hidden sections)",
-			"hide": true,
-			"files": [
+				},
 				{
 					"name": "text_stack",
 					"label": "Text Stack",
@@ -4275,14 +4254,7 @@
 							"default": "column"
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "page_assessment_hidden",
-			"label": "Page - Assessment (hidden sections)",
-			"hide": true,
-			"files": [
+				},
 				{
 					"name": "text_stack",
 					"label": "Text Stack",
