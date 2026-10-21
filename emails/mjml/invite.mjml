@@ -33,7 +33,7 @@
 					Once your account is set up, you can access the dashboard anytime by visiting:
 					<a href="{{ .SiteURL }}/admin">{{ .SiteURL }}/admin</a>.
 					<strong>
-						After submitting changes, please allow 2-3 minutes for the build to complete before
+						After submitting changes, please allow 1-2 minutes for the build to complete before
 						seeing live updates!
 					</strong>
 				</mj-text>
@@ -45,7 +45,7 @@
 				<mj-text font-size="15px" color="#E48C66">
 					Aaron,
 					<br /><br />
-					AXYS Creative
+					axys creative
 				</mj-text>
 			</mj-column>
 		</mj-section>
