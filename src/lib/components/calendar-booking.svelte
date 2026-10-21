@@ -2,8 +2,8 @@
 	export type BookingService = {
 		title: string;
 		description?: string;
-		/** Length in minutes. */
-		duration: number;
+		/** Length of the visit as text, such as "30 min" or "1 hour". */
+		duration?: string;
 		/** Shown as the total on the confirmation. Free when left out. */
 		price?: string;
 	};
@@ -18,26 +18,76 @@
 		phone: string;
 	};
 
+	export type BookingSteps = {
+		service?: { title?: string; services?: BookingService[] };
+		when?: {
+			title?: string;
+			dateLabel?: string;
+			timeLabel?: string;
+			/** How many days are offered, starting tomorrow. */
+			days?: number;
+			/** Weekdays that are listed but cannot be booked, such as `Sun`. */
+			closedDays?: string[];
+			/** The hour (0 to 23) the first time slot starts. */
+			timeStart?: number;
+			/** Length of each time slot, in hours. */
+			timeLength?: number;
+			/** How many time slots are offered. */
+			timeSlots?: number;
+		};
+		details?: {
+			title?: string;
+			submitText?: string;
+			sendingText?: string;
+			showFirstName?: boolean;
+			showLastName?: boolean;
+			showEmail?: boolean;
+			showPhone?: boolean;
+		};
+		done?: { title?: string; heading?: string; message?: string };
+	};
+
+	const defaultSteps = {
+		service: { title: 'Pick a service', services: [] as BookingService[] },
+		when: {
+			title: 'Pick a date and time',
+			dateLabel: 'Pick a date',
+			timeLabel: 'Pick a time',
+			days: 5,
+			closedDays: defaultClosedDays,
+			timeStart: 8,
+			timeLength: 2,
+			timeSlots: 5
+		},
+		details: {
+			title: 'Your details',
+			submitText: 'Book session',
+			sendingText: 'Booking…',
+			showFirstName: true,
+			showLastName: true,
+			showEmail: true,
+			showPhone: true
+		},
+		done: {
+			title: 'You’re all set',
+			heading: 'Booking confirmed',
+			message: 'Your appointment is scheduled.'
+		}
+	};
+
 	export type CalendarBookingProps = {
-		services?: BookingService[];
 		/** Text of the fixed button that opens the popover. */
 		triggerText?: string;
-		/** Headings for the four steps: service, date and time, details, done. */
-		stepTitles?: string[];
-		/** How many days are offered, starting tomorrow. */
-		days?: number;
-		/** The hour (0 to 23) the first time slot starts. */
-		timeStart?: number;
-		/** Length of each time slot, in hours. */
-		timeLength?: number;
-		/** How many time slots are offered. */
-		timeSlots?: number;
+		/** The copy of each step. Anything left out falls back to the default. */
+		steps?: BookingSteps;
 		/** The Netlify form name. */
 		formName?: string;
 		/** Called with the whole booking once the form has been sent. */
 		onbook?: (booking: Booking) => void;
 		/** Distance from the bottom and right edges, as a CSS length. */
 		offset?: string;
+		/** Walks through every step without sending anything, for the admin preview. */
+		demo?: boolean;
 		/** Renders the booking panel in place, always open, with no fixed button. */
 		inline?: boolean;
 		class?: string;
@@ -47,26 +97,22 @@
 <script lang="ts">
 	import { env } from '$env/dynamic/public';
 	import { recaptcha } from '$lib/attachments/recaptcha';
-	import { onMount } from 'svelte';
+	import { onMount, untrack } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 	import { alerts } from '$lib/utils/alerts.svelte';
-	import { isoDate, slotLabels } from '$lib/utils/booking-rules';
+	import { defaultClosedDays, isoDate, slotLabels, weekdays } from '$lib/utils/booking-rules';
 	import Button from './button.svelte';
 	import Icon from './icon.svelte';
 	import FormField from './form-field.svelte';
 
 	let {
-		services = [],
 		triggerText = 'Book a session',
-		stepTitles = ['Pick a service', 'Pick a date and time', 'Your details', 'You’re all set'],
-		days = 5,
-		timeStart = 8,
-		timeLength = 2,
-		timeSlots = 5,
+		steps: stepCopy,
 		formName = 'booking',
 		onbook,
 		offset = '24px',
 		inline = false,
+		demo = false,
 		class: className
 	}: CalendarBookingProps = $props();
 
@@ -97,15 +143,35 @@
 	const siteKey = env.PUBLIC_RECAPTCHA_SITE_KEY;
 	const shown = $derived(inline || open);
 	const view = $derived(step <= 2 ? 'choose' : step === 3 ? 'details' : 'done');
-	const title = $derived(stepTitles[step - 1] ?? '');
-	const times = $derived(slotLabels(timeStart, timeLength, timeSlots));
+	// An emptied field falls back to the default text.
+	const fill = <T extends object>(base: T, over?: Partial<T>): T => ({
+		...base,
+		...Object.fromEntries(
+			Object.entries(over ?? {}).filter(([, value]) => value !== '' && value != null)
+		)
+	});
+	const copy = $derived({
+		service: fill(defaultSteps.service, stepCopy?.service),
+		when: fill(defaultSteps.when, stepCopy?.when),
+		details: fill(defaultSteps.details, stepCopy?.details),
+		done: fill(defaultSteps.done, stepCopy?.done)
+	});
+	const title = $derived(
+		[copy.service.title, copy.when.title, copy.details.title, copy.done.title][step - 1] ?? ''
+	);
+	const services = $derived(copy.service.services);
+	const days = $derived(copy.when.days);
+	const closedDays = $derived(copy.when.closedDays);
+	const times = $derived(
+		slotLabels(copy.when.timeStart, copy.when.timeLength, copy.when.timeSlots)
+	);
 	const ready = $derived(
 		step === 1
 			? service !== null
 			: step === 2
 				? date !== null && time !== null
 				: step === 3
-					? !siteKey || token !== ''
+					? demo || !siteKey || token !== ''
 					: true
 	);
 	const timeOpen = $derived(view === 'choose' && step >= 2 && date !== null);
@@ -115,17 +181,27 @@
 		time: time === null ? undefined : times[time]
 	});
 
-	onMount(() => {
+	$effect(() => {
 		const today = new Date();
 		const list: Date[] = [];
-		// Sundays are listed but not bookable, so they do not count toward the days offered.
-		for (let ahead = 1; list.filter((day) => !closed(day)).length < days; ahead += 1) {
+		// Closed days are listed but not bookable, so they do not count toward the days offered.
+		for (
+			let ahead = 1;
+			ahead <= 366 && list.filter((day) => !closed(day)).length < days;
+			ahead += 1
+		) {
 			list.push(new Date(today.getFullYear(), today.getMonth(), today.getDate() + ahead));
 		}
 		dates = list;
+		untrack(() => {
+			if (date !== null && date >= list.length) {
+				date = null;
+				time = null;
+			}
+		});
 	});
 
-	const closed = (day: Date) => day.getDay() === 0;
+	const closed = (day: Date) => closedDays.includes(weekdays[day.getDay()]);
 	const slotTaken = (day: Date, index: number) => taken[isoDate(day)]?.includes(index) ?? false;
 	const dayFull = (day: Date) => times.every((_, index) => slotTaken(day, index));
 	const weekday = (day: Date) => day.toLocaleDateString(undefined, { weekday: 'short' });
@@ -144,6 +220,7 @@
 	}
 
 	async function loadAvailability() {
+		if (demo) return;
 		try {
 			const response = await fetch('/api/availability', { cache: 'no-store' });
 			if (!response.ok) return;
@@ -197,6 +274,14 @@
 		sending = true;
 		try {
 			const text = (key: string) => String(data.get(key) ?? '').trim();
+			if (demo) {
+				email = text('email');
+				name = `${text('firstName')} ${text('lastName')}`.trim();
+				booked = { ...picked };
+				emailed = false;
+				step = 4;
+				return;
+			}
 			const response = await fetch('/api/book', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -395,7 +480,7 @@
 											/>
 											<span class="card-top">
 												<strong>{item.title}</strong>
-												<span class="duration">{item.duration} min</span>
+												{#if item.duration}<span class="duration">{item.duration}</span>{/if}
 											</span>
 											{#if item.description}
 												<span class="description">{item.description}</span>
@@ -407,7 +492,7 @@
 								<div class="reveal" class:open={step >= 2}>
 									<div class="reveal-inner" inert={step < 2}>
 										<fieldset>
-											<legend>Pick a date</legend>
+											<legend>{copy.when.dateLabel}</legend>
 											<div class="date-row">
 												{#each dates as day, index (day.getTime())}
 													<label
@@ -437,7 +522,7 @@
 								<div class="reveal" class:open={step >= 2 && date !== null}>
 									<div class="reveal-inner" inert={step < 2 || date === null}>
 										<fieldset>
-											<legend>Pick a time</legend>
+											<legend>{copy.when.timeLabel}</legend>
 											<div class="time-row">
 												{#each times as label, index (label)}
 													{@const unavailable = date !== null && slotTaken(dates[date], index)}
@@ -489,36 +574,46 @@
 										</div>
 									</dl>
 
-									<div class="group">
+									{#if copy.details.showFirstName || copy.details.showLastName}
+										<div class="group">
+											{#if copy.details.showFirstName}
+												<FormField
+													variant="outline"
+													name="firstName"
+													label="First name"
+													autocomplete="given-name"
+												/>
+											{/if}
+											{#if copy.details.showLastName}
+												<FormField
+													variant="outline"
+													name="lastName"
+													label="Last name"
+													autocomplete="family-name"
+												/>
+											{/if}
+										</div>
+									{/if}
+									{#if copy.details.showEmail}
 										<FormField
 											variant="outline"
-											name="firstName"
-											label="First name"
-											autocomplete="given-name"
+											name="email"
+											label="Email"
+											type="email"
+											autocomplete="email"
 										/>
+									{/if}
+									{#if copy.details.showPhone}
 										<FormField
 											variant="outline"
-											name="lastName"
-											label="Last name"
-											autocomplete="family-name"
+											name="phone"
+											label="Phone"
+											type="tel"
+											inputmode="numeric"
+											autocomplete="tel"
 										/>
-									</div>
-									<FormField
-										variant="outline"
-										name="email"
-										label="Email"
-										type="email"
-										autocomplete="email"
-									/>
-									<FormField
-										variant="outline"
-										name="phone"
-										label="Phone"
-										type="tel"
-										inputmode="numeric"
-										autocomplete="tel"
-									/>
-									{#if siteKey}
+									{/if}
+									{#if siteKey && !demo}
 										<div
 											class="captcha"
 											{@attach recaptcha({
@@ -533,8 +628,8 @@
 								<div class="confirmation">
 									<Icon name="check-circle" class="done-icon" />
 									<div class="done-copy">
-										<h3>Booking confirmed</h3>
-										<p class="muted">Your appointment is scheduled.</p>
+										<h3>{copy.done.heading}</h3>
+										<p class="muted">{copy.done.message}</p>
 									</div>
 
 									<dl class="table">
@@ -556,24 +651,32 @@
 										</div>
 									</dl>
 
-									<dl class="table">
-										<div class="row">
-											<dt>Name</dt>
-											<dd>{name}</dd>
-										</div>
-										<div class="row">
-											<dt>Email</dt>
-											<dd>{email}</dd>
-										</div>
-									</dl>
+									{#if name || email}
+										<dl class="table">
+											{#if name}
+												<div class="row">
+													<dt>Name</dt>
+													<dd>{name}</dd>
+												</div>
+											{/if}
+											{#if email}
+												<div class="row">
+													<dt>Email</dt>
+													<dd>{email}</dd>
+												</div>
+											{/if}
+										</dl>
+									{/if}
 
-									<p class="muted">
-										{#if emailed}
-											A confirmation email has been sent to {email}.
-										{:else}
-											We’ll be in touch at {email} to confirm.
-										{/if}
-									</p>
+									{#if email}
+										<p class="muted">
+											{#if emailed}
+												A confirmation email has been sent to {email}.
+											{:else}
+												We’ll be in touch at {email} to confirm.
+											{/if}
+										</p>
+									{/if}
 								</div>
 							{/if}
 						</div>
@@ -590,7 +693,11 @@
 					</span>
 					<span class="action" class:disabled={!ready || sending}>
 						<Button
-							text={step === 3 ? (sending ? 'Booking…' : 'Book session') : 'Continue'}
+							text={step === 3
+								? sending
+									? copy.details.sendingText
+									: copy.details.submitText
+								: 'Continue'}
 							disabled={!ready || sending}
 							onclick={next}
 						/>
@@ -601,12 +708,7 @@
 	{/if}
 
 	{#if !inline}
-		<div
-			class="trigger"
-			class:nudged={navOpen}
-			class:parked={lift > 0}
-			bind:this={trigger}
-		>
+		<div class="trigger" class:nudged={navOpen} class:parked={lift > 0} bind:this={trigger}>
 			<Button
 				text={triggerText}
 				iconStart="icon-calendar"

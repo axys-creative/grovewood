@@ -4,7 +4,7 @@
 	import { pages } from '$lib/content/meta/pages.json';
 	import { imageUrl as optimized } from '$lib/utils/image';
 
-	// A page can pass its own `seo` in its load data (a blog post does); otherwise pages.json decides.
+	// A page can pass its own `seo` in its load data; otherwise pages.json decides.
 	type PageSeo = {
 		title: string;
 		description?: string;

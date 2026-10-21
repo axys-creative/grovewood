@@ -2,7 +2,6 @@ import adapter from '@sveltejs/adapter-netlify';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { defineConfig } from 'vite';
-import { lockPages } from './src/lib/utils/page-lock';
 
 // Pictures go through Netlify's Image CDN on Netlify builds only, so local dev and `vite preview` keep showing the
 // files themselves. Set `IMAGE_CDN=off` in the Netlify build environment to switch the CDN off for a site.
@@ -25,8 +24,7 @@ export default defineConfig({
 			},
 			adapter: adapter(),
 			// Footer legal links may point at pages a site has not added yet; warn instead of failing the build.
-			// Locked pages are never reached, so their prerendered routes go unseen.
-			prerender: { handleHttpError: 'warn', handleUnseenRoutes: lockPages ? 'ignore' : 'fail' }
+			prerender: { handleHttpError: 'warn' }
 		})
 	]
 });

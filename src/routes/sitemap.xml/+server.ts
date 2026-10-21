@@ -1,25 +1,17 @@
-import { blog } from '$lib/blog';
 import { pages } from '$lib/content/meta/pages.json';
 import site from '$lib/content/meta/site.json';
-import { isLocked } from '$lib/utils/page-lock';
 
 export const prerender = true;
 
 const escape = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
-// Pages marked "crawl" in pages.json, plus every published post. Library pages are left out.
+// Pages marked "crawl" in pages.json.
 export const GET = () => {
 	const origin = site.url.replace(/\/$/, '');
-	const entries: { path: string; lastmod?: string }[] = [
-		...pages.filter((page) => page.crawlPage).map((page) => ({ path: page.path })),
-		...blog.all.map((post) => ({ path: `/blog/${post.slug}`, lastmod: post.date }))
-	].filter((entry) => !isLocked(entry.path));
+	const entries = pages.filter((page) => page.crawlPage).map((page) => ({ path: page.path }));
 
 	const urls = entries
-		.map(
-			({ path, lastmod }) =>
-				`  <url>\n    <loc>${escape(origin + path)}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''}\n  </url>`
-		)
+		.map(({ path }) => `  <url>\n    <loc>${escape(origin + path)}</loc>\n  </url>`)
 		.join('\n');
 
 	return new Response(

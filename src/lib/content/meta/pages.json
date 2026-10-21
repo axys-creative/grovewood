@@ -41,27 +41,6 @@
 			"description": "Meet the clinicians and staff at Grovewood Mental Health.",
 			"ogImage": "/images/og-image.png",
 			"crawlPage": true
-		},
-		{
-			"path": "/blog",
-			"title": "Blog Archive",
-			"description": "Blog archive description here",
-			"ogImage": "",
-			"crawlPage": true
-		},
-		{
-			"path": "/form-submit",
-			"title": "Form Submitted",
-			"description": "",
-			"ogImage": "",
-			"crawlPage": false
-		},
-		{
-			"path": "/404",
-			"title": "Page Not Found",
-			"description": "The page you are looking for cannot be found. Please check the URL or return to the home page.",
-			"ogImage": "",
-			"crawlPage": false
 		}
 	]
 }

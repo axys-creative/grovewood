@@ -13,86 +13,6 @@
 	"logo_url": "/images/admin/admin-logo.svg",
 	"collections": [
 		{
-			"name": "blog",
-			"label": "Blog",
-			"hide": true,
-			"label_singular": "Post",
-			"description": "Each post is one file in src/lib/content/blog. The file name becomes the address: /blog/the-file-name.",
-			"folder": "src/lib/content/blog",
-			"extension": "json",
-			"format": "json",
-			"create": true,
-			"slug": "{{slug}}",
-			"identifier_field": "title",
-			"summary": "{{title}} · {{date}}",
-			"preview_path": "blog/{{slug}}",
-			"sortable_fields": ["date", "title"],
-			"editor": {
-				"preview": false
-			},
-			"fields": [
-				{
-					"name": "title",
-					"label": "Title",
-					"widget": "string",
-					"hint": "The address of the post comes from the title the first time it is saved. Changing the title later does not change the address."
-				},
-				{
-					"name": "description",
-					"label": "Description",
-					"widget": "text",
-					"hint": "Shown on the blog page and in search results. Keep it under about 155 characters."
-				},
-				{
-					"name": "author",
-					"label": "Author",
-					"widget": "string",
-					"required": false
-				},
-				{
-					"name": "date",
-					"label": "Publish date",
-					"widget": "datetime",
-					"date_format": "YYYY-MM-DD",
-					"time_format": false,
-					"format": "YYYY-MM-DD"
-				},
-				{
-					"name": "tag",
-					"label": "Tag",
-					"widget": "select",
-					"options": ["Announcement", "Best Practices", "Event", "Press Release", "Update"],
-					"required": false
-				},
-				{
-					"name": "coverImage",
-					"label": "Cover image",
-					"widget": "image",
-					"required": false
-				},
-				{
-					"name": "coverAlt",
-					"label": "Cover image description",
-					"widget": "string",
-					"required": false,
-					"hint": "Describe the image for screen readers. Leave empty if it is decorative."
-				},
-				{
-					"name": "draft",
-					"label": "Draft",
-					"widget": "boolean",
-					"default": false,
-					"required": false,
-					"hint": "Drafts are hidden from the site."
-				},
-				{
-					"name": "body",
-					"label": "Body",
-					"widget": "markdown"
-				}
-			]
-		},
-		{
 			"name": "page_home",
 			"label": "Page - Home",
 			"files": [
@@ -5034,7 +4954,6 @@
 		},
 		{
 			"name": "page_team",
-			"hide": true,
 			"label": "Page - Team",
 			"files": [
 				{
@@ -5301,6 +5220,40 @@
 					]
 				},
 				{
+					"name": "text_stack",
+					"label": "Text Stack",
+					"file": "src/lib/content/page_team/text-stack.json",
+					"preview_path": "#text-stack",
+					"fields": [
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						}
+					]
+				},
+				{
 					"name": "text_stack_invite",
 					"label": "Text Stack (invite)",
 					"file": "src/lib/content/page_team/text-stack-invite.json",
@@ -5491,133 +5444,6 @@
 									]
 								}
 							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "page_blog",
-			"label": "Page - Blog",
-			"hide": true,
-			"files": [
-				{
-					"name": "hero_simple",
-					"label": "Hero",
-					"file": "src/lib/content/page_blog/hero-simple.json",
-					"preview_path": "blog#hero",
-					"fields": [
-						{
-							"name": "eyebrowText",
-							"label": "Eyebrow text",
-							"widget": "string",
-							"required": false
-						},
-						{
-							"name": "title",
-							"label": "Title",
-							"widget": "string",
-							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
-						},
-						{
-							"name": "description",
-							"label": "Description",
-							"widget": "text",
-							"required": false,
-							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "page_form_submit",
-			"label": "Page - Form Submitted",
-			"hide": true,
-			"files": [
-				{
-					"name": "hero_simple",
-					"label": "Hero",
-					"file": "src/lib/content/page_form_submit/hero-simple.json",
-					"preview_path": "form-submit#hero",
-					"fields": [
-						{
-							"name": "title",
-							"label": "Title",
-							"widget": "string",
-							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
-						},
-						{
-							"name": "description",
-							"label": "Description",
-							"widget": "text",
-							"required": false,
-							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
-						},
-						{
-							"name": "cta",
-							"label": "Call to action",
-							"widget": "object",
-							"fields": [
-								{
-									"name": "primary",
-									"label": "Primary button",
-									"widget": "object",
-									"required": true,
-									"fields": [
-										{
-											"name": "text",
-											"label": "Text",
-											"widget": "string",
-											"required": true
-										},
-										{
-											"name": "textDescription",
-											"label": "Accessible description",
-											"widget": "string",
-											"required": false,
-											"hint": "Optional aria-label for screen readers"
-										},
-										{
-											"name": "url",
-											"label": "URL",
-											"widget": "string",
-											"required": true
-										},
-										{
-											"name": "newTab",
-											"label": "Open in new tab",
-											"widget": "boolean",
-											"default": false,
-											"required": false
-										},
-										{
-											"name": "iconEnd",
-											"label": "Icon after text",
-											"widget": "image",
-											"required": false,
-											"hint": "An SVG icon; it takes the text color."
-										}
-									]
-								}
-							]
-						},
-						{
-							"name": "layout",
-							"label": "Layout",
-							"widget": "select",
-							"options": ["column", "row"],
-							"default": "column",
-							"required": false,
-							"hint": "Row puts the description beside the title on wider screens."
-						},
-						{
-							"name": "align",
-							"label": "Alignment",
-							"widget": "select",
-							"options": ["start", "center"],
-							"default": "center",
-							"required": false
 						}
 					]
 				}
@@ -5962,7 +5788,9 @@
 					"name": "header_simple",
 					"label": "Header",
 					"file": "src/lib/content/global/header-simple.json",
-					"editor": { "preview": true },
+					"editor": {
+						"preview": true
+					},
 					"fields": [
 						{
 							"name": "border",
@@ -6095,7 +5923,9 @@
 					"name": "footer_simple",
 					"label": "Footer",
 					"file": "src/lib/content/global/footer-simple.json",
-					"editor": { "preview": true },
+					"editor": {
+						"preview": true
+					},
 					"fields": [
 						{
 							"name": "border",
@@ -6420,6 +6250,232 @@
 							"widget": "string",
 							"required": false,
 							"hint": "Leave empty for '© year site name. All rights reserved.'"
+						}
+					]
+				},
+				{
+					"name": "booking",
+					"label": "Booking",
+					"file": "src/lib/content/global/booking.json",
+					"editor": {
+						"preview": true
+					},
+					"fields": [
+						{
+							"name": "triggerText",
+							"label": "Button text",
+							"widget": "string",
+							"default": "Book a session",
+							"hint": "The text on the button that opens the booking window."
+						},
+						{
+							"name": "steps",
+							"label": "Steps",
+							"widget": "object",
+							"fields": [
+								{
+									"name": "service",
+									"label": "Step 1 · Service",
+									"widget": "object",
+									"collapsed": false,
+									"hint": "Choosing a service, and the services offered.",
+									"fields": [
+										{
+											"name": "title",
+											"label": "Heading",
+											"widget": "string"
+										},
+										{
+											"name": "services",
+											"label": "Services",
+											"widget": "list",
+											"summary": "{{fields.title}}",
+											"fields": [
+												{
+													"name": "title",
+													"label": "Title",
+													"widget": "string"
+												},
+												{
+													"name": "description",
+													"label": "Description",
+													"widget": "text",
+													"required": false
+												},
+												{
+													"name": "duration",
+													"label": "Length",
+													"widget": "string",
+													"default": "30 min",
+													"required": false,
+													"hint": "Shown on the service card, such as “30 min” or “1 hour”."
+												},
+												{
+													"name": "price",
+													"label": "Price",
+													"widget": "string",
+													"required": false,
+													"hint": "Shown on the confirmation. Leave empty for free."
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "when",
+									"label": "Step 2 · Date and time",
+									"widget": "object",
+									"collapsed": false,
+									"hint": "Choosing a day and a time, and which days and times are offered.",
+									"fields": [
+										{
+											"name": "title",
+											"label": "Heading",
+											"widget": "string"
+										},
+										{
+											"name": "dateLabel",
+											"label": "Date label",
+											"widget": "string"
+										},
+										{
+											"name": "days",
+											"label": "Days offered",
+											"widget": "number",
+											"value_type": "int",
+											"min": 1,
+											"max": 14,
+											"default": 5,
+											"hint": "How many bookable days are shown, starting tomorrow. Sundays are skipped."
+										},
+										{
+											"name": "closedDays",
+											"label": "Closed days",
+											"widget": "select",
+											"multiple": true,
+											"required": false,
+											"options": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+											"default": ["Sun"],
+											"hint": "Weekdays that can’t be booked. They still appear in the list, greyed out, and don’t count toward the days offered."
+										},
+										{
+											"name": "timeLabel",
+											"label": "Time label",
+											"widget": "string"
+										},
+										{
+											"name": "timeStart",
+											"label": "First time slot (hour)",
+											"widget": "number",
+											"value_type": "int",
+											"min": 0,
+											"max": 23,
+											"default": 8,
+											"hint": "The hour the first time slot starts, 0 to 23 (8 is 8 AM)."
+										},
+										{
+											"name": "timeLength",
+											"label": "Slot length (hours)",
+											"widget": "number",
+											"value_type": "int",
+											"min": 1,
+											"max": 12,
+											"default": 2,
+											"hint": "How long each time slot is, in hours."
+										},
+										{
+											"name": "timeSlots",
+											"label": "Slots per day",
+											"widget": "number",
+											"value_type": "int",
+											"min": 1,
+											"max": 12,
+											"default": 5,
+											"hint": "How many time slots are offered each day."
+										}
+									]
+								},
+								{
+									"name": "details",
+									"label": "Step 3 · Details",
+									"widget": "object",
+									"collapsed": false,
+									"hint": "The visitor’s contact details. Keep at least one way to reach them.",
+									"fields": [
+										{
+											"name": "title",
+											"label": "Heading",
+											"widget": "string"
+										},
+										{
+											"name": "submitText",
+											"label": "Book button",
+											"widget": "string"
+										},
+										{
+											"name": "sendingText",
+											"label": "Book button while sending",
+											"widget": "string"
+										},
+										{
+											"name": "showFirstName",
+											"label": "Ask for first name",
+											"widget": "boolean",
+											"default": true,
+											"required": false,
+											"hint": "Turn off to stop asking."
+										},
+										{
+											"name": "showLastName",
+											"label": "Ask for last name",
+											"widget": "boolean",
+											"default": true,
+											"required": false,
+											"hint": "Turn off to stop asking."
+										},
+										{
+											"name": "showEmail",
+											"label": "Ask for email",
+											"widget": "boolean",
+											"default": true,
+											"required": false,
+											"hint": "Turn off to stop asking. Without an email no confirmation message is sent to the visitor."
+										},
+										{
+											"name": "showPhone",
+											"label": "Ask for phone",
+											"widget": "boolean",
+											"default": true,
+											"required": false,
+											"hint": "Turn off to stop asking."
+										}
+									]
+								},
+								{
+									"name": "done",
+									"label": "Step 4 · Done",
+									"widget": "object",
+									"collapsed": false,
+									"hint": "Shown after the booking is sent.",
+									"fields": [
+										{
+											"name": "title",
+											"label": "Heading",
+											"widget": "string"
+										},
+										{
+											"name": "heading",
+											"label": "Confirmation title",
+											"widget": "string"
+										},
+										{
+											"name": "message",
+											"label": "Confirmation message",
+											"widget": "string"
+										}
+									]
+								}
+							]
 						}
 					]
 				},

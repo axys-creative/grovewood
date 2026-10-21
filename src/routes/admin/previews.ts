@@ -1,5 +1,6 @@
 import type { Component } from 'svelte';
 import globalCss from '../../styles/styles.scss?inline';
+import BookingPreview from './booking-preview.svelte';
 import CarouselSpotlight from '$lib/sections/carousel-spotlight.svelte';
 import CarouselTestimonials from '$lib/sections/carousel-testimonials.svelte';
 import CommonQuestions from '$lib/sections/common-questions.svelte';
@@ -46,6 +47,13 @@ const withCta = (data: Data) => {
 };
 
 const previews: Record<string, Preview> = {
+	booking: {
+		component: BookingPreview as unknown as Section,
+		props: (data) => ({
+			...data,
+			steps: data.steps ?? {}
+		})
+	},
 	header_simple: {
 		component: HeaderSimple as unknown as Section,
 		align: 'start',

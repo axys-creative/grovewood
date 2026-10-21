@@ -1,9 +1,8 @@
 import type { gsap as Gsap } from 'gsap';
 
-type PluginName = 'scramble' | 'scrollTrigger' | 'splitText';
+type PluginName = 'scrollTrigger' | 'splitText';
 
 const loaders: Record<PluginName, () => Promise<object>> = {
-	scramble: () => import('gsap/ScrambleTextPlugin').then((module) => module.ScrambleTextPlugin),
 	scrollTrigger: () =>
 		import('gsap/ScrollTrigger').then((module) => {
 			// Any `refreshPriority` makes every refresh sort triggers by where their element is on the page. Without

@@ -18,5 +18,11 @@ export const isoDate = (day: Date) =>
 
 export const isIsoDate = (value: string) => /^\d{4}-\d{2}-\d{2}$/.test(value);
 
-/** Sundays are closed. Works from the date string, so the visitor's time zone does not matter. */
-export const isClosed = (iso: string) => new Date(`${iso}T12:00:00Z`).getUTCDay() === 0;
+/** Weekday names in `Date.getDay()` order. */
+export const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+export const defaultClosedDays = ['Sun'];
+
+/** Works from the date string, so the visitor's time zone does not matter. */
+export const isClosed = (iso: string, closedDays: string[] = defaultClosedDays) =>
+	closedDays.includes(weekdays[new Date(`${iso}T12:00:00Z`).getUTCDay()]);

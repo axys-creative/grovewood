@@ -1,19 +1,44 @@
 {
 	"triggerText": "Book a session",
-	"days": 5,
-	"timeStart": 8,
-	"timeLength": 2,
-	"timeSlots": 5,
-	"services": [
-		{
-			"title": "Initial consultation",
-			"description": "A first conversation about what brings you in and how we can help.",
-			"duration": 30
+	"steps": {
+		"service": {
+			"title": "Pick a service",
+			"services": [
+				{
+					"title": "Initial consultation",
+					"description": "A first conversation about what brings you in and how we can help.",
+					"duration": "30 min"
+				},
+				{
+					"title": "Follow-up visit",
+					"description": "Check in on your progress and adjust your plan.",
+					"duration": "30 min"
+				}
+			]
 		},
-		{
-			"title": "Follow-up visit",
-			"description": "Check in on your progress and adjust your plan.",
-			"duration": 30
+		"when": {
+			"title": "Pick a date and time",
+			"dateLabel": "Pick a date",
+			"timeLabel": "Pick a time",
+			"days": 5,
+			"closedDays": ["Sun"],
+			"timeStart": 8,
+			"timeLength": 2,
+			"timeSlots": 5
+		},
+		"details": {
+			"title": "Your details",
+			"submitText": "Book session",
+			"sendingText": "Booking…",
+			"showFirstName": true,
+			"showLastName": true,
+			"showEmail": true,
+			"showPhone": true
+		},
+		"done": {
+			"title": "You’re all set",
+			"heading": "Booking confirmed",
+			"message": "Your appointment is scheduled."
 		}
-	]
+	}
 }

@@ -1,8 +1,6 @@
 {
 	"siteName": "Grovewood Mental Health",
 	"url": "https://grovewood.netlify.app",
-	"headerTemplate": "simple",
-	"footerTemplate": "simple",
 	"author": "Grovewood Mental Health",
 	"contactEmail": "info@grovewoodutah.com",
 	"themeColor": "#e9f4ea",

@@ -42,8 +42,15 @@ const store: Store = dev
 			};
 		})();
 
-const days = config.days ?? 5;
-const labels = slotLabels(config.timeStart ?? 8, config.timeLength ?? 2, config.timeSlots ?? 5);
+const when = config.steps.when;
+const shown = {
+	firstName: config.steps.details.showFirstName ?? true,
+	lastName: config.steps.details.showLastName ?? true,
+	email: config.steps.details.showEmail ?? true,
+	phone: config.steps.details.showPhone ?? true
+};
+const days = when.days ?? 5;
+const labels = slotLabels(when.timeStart ?? 8, when.timeLength ?? 2, when.timeSlots ?? 5);
 
 const MIN_AGE_MS = 4_000;
 const MAX_AGE_MS = 2 * 60 * 60 * 1000;
@@ -137,7 +144,7 @@ async function sendConfirmation(details: {
 		timeZone: 'UTC'
 	});
 	const lines = [
-		`Hi ${details.firstName},`,
+		details.firstName ? `Hi ${details.firstName},` : 'Hi,',
 		'Your appointment is scheduled.',
 		`Service: ${details.service}`,
 		`Date: ${day}`,
@@ -179,19 +186,20 @@ export async function createBooking(
 	// A bot that fills the hidden field is told it worked, so it does not adapt.
 	if (text(data.botField, 100)) return { status: 200, body: { ok: true } };
 
-	const firstName = text(data.firstName, 60);
-	const lastName = text(data.lastName, 60);
-	const email = text(data.email, 120).toLowerCase();
-	const phone = text(data.phone, 20).replace(/\D/g, '');
+	// A field the popover does not show is ignored, whatever was sent.
+	const firstName = shown.firstName ? text(data.firstName, 60) : '';
+	const lastName = shown.lastName ? text(data.lastName, 60) : '';
+	const email = shown.email ? text(data.email, 120).toLowerCase() : '';
+	const phone = shown.phone ? text(data.phone, 20).replace(/\D/g, '') : '';
 	const date = text(data.date, 10);
-	const service = config.services.find((item) => item.title === data.service);
+	const service = config.steps.service.services.find((item) => item.title === data.service);
 	const slot = typeof data.slot === 'number' ? data.slot : -1;
 
-	if (!firstName || !lastName || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-		return fail(400, 'invalid');
-	if (phone.length < 7 || phone.length > 15) return fail(400, 'invalid');
+	if ((shown.firstName && !firstName) || (shown.lastName && !lastName)) return fail(400, 'invalid');
+	if (shown.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail(400, 'invalid');
+	if (shown.phone && (phone.length < 7 || phone.length > 15)) return fail(400, 'invalid');
 	if (!service || !Number.isInteger(slot) || !labels[slot]) return fail(400, 'invalid');
-	if (!isIsoDate(date) || isClosed(date)) return fail(400, 'invalid');
+	if (!isIsoDate(date) || isClosed(date, when.closedDays)) return fail(400, 'invalid');
 
 	// A day beyond what the popover offers (with room for time zones) is not bookable.
 	const day = new Date(`${date}T12:00:00Z`).getTime();
@@ -206,7 +214,7 @@ export async function createBooking(
 
 	const within =
 		(await allow(`ip:${ip}`, IP_LIMIT, 60 * 60 * 1000)) &&
-		(await allow(`email:${email}`, EMAIL_LIMIT, 24 * 60 * 60 * 1000));
+		(!email || (await allow(`email:${email}`, EMAIL_LIMIT, 24 * 60 * 60 * 1000)));
 	if (!within) return fail(429, 'rate-limit');
 
 	const reserved = await store.create(`slot/${date}/${slot}`, {
@@ -244,13 +252,15 @@ export async function createBooking(
 		}
 	}
 
-	const emailed = await sendConfirmation({
-		to: email,
-		firstName,
-		service: service.title,
-		date,
-		time: labels[slot]
-	});
+	const emailed =
+		!!email &&
+		(await sendConfirmation({
+			to: email,
+			firstName,
+			service: service.title,
+			date,
+			time: labels[slot]
+		}));
 
 	return { status: 200, body: { ok: true, emailed } };
 }
