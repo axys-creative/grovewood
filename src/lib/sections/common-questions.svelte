@@ -15,6 +15,8 @@
 		id?: string;
 		/** At least the height of the screen, with the content centered. Taller content still grows past it. */
 		fullScreen?: boolean;
+		/** Renders nothing. */
+		hidden?: boolean;
 		class?: string;
 	};
 </script>
@@ -29,22 +31,25 @@
 		singleOpen = false,
 		id,
 		fullScreen = false,
+		hidden = false,
 		class: className,
 		...copy
 	}: CommonQuestionsProps = $props();
 </script>
 
-<section {id} class="common-questions {className ?? ''}" class:full-screen={fullScreen}>
-	<div class="inner">
-		<header class="header"><SectionCopy {...copy} align="center" /></header>
+{#if !hidden}
+	<section {id} class="common-questions {className ?? ''}" class:full-screen={fullScreen}>
+		<div class="inner">
+			<header class="header"><SectionCopy {...copy} align="center" /></header>
 
-		{#if items.length}
-			<div class="questions">
-				<Accordion {items} {icon} {singleOpen} />
-			</div>
-		{/if}
-	</div>
-</section>
+			{#if items.length}
+				<div class="questions">
+					<Accordion {items} {icon} {singleOpen} />
+				</div>
+			{/if}
+		</div>
+	</section>
+{/if}
 
 <style lang="scss">
 	@use 'base/mixins';

@@ -26,6 +26,8 @@
 		id?: string;
 		/** At least the height of the screen, with the content centered. Taller content still grows past it. */
 		fullScreen?: boolean;
+		/** Renders nothing. */
+		hidden?: boolean;
 		/** Skips the scroll entrance, for the CMS preview. */
 		static?: boolean;
 		class?: string;
@@ -46,6 +48,7 @@
 		background,
 		id,
 		fullScreen = false,
+		hidden = false,
 		static: isStatic = false,
 		class: className,
 		eyebrowText,
@@ -64,61 +67,67 @@
 	});
 </script>
 
-<section
-	{id}
-	class="image-grid {className ?? ''}"
-	class:full-screen={fullScreen}
-	style:background={background || undefined}
->
-	<div class="inner">
-		<div class="text">
-			<SectionCopy {eyebrowText} {eyebrowIcon} {eyebrowDot} />
-			<div class="group">
-				<div class="title">
-					<SectionCopy {title} titleAttach={isStatic ? undefined : reveal} />
-				</div>
-				<div class="description">
-					<SectionCopy {description} />
+{#if !hidden}
+	<section
+		{id}
+		class="image-grid {className ?? ''}"
+		class:full-screen={fullScreen}
+		style:background={background || undefined}
+	>
+		<div class="inner">
+			<div class="text">
+				<SectionCopy {eyebrowText} {eyebrowIcon} {eyebrowDot} />
+				<div class="group">
+					<div class="title">
+						<SectionCopy {title} titleAttach={isStatic ? undefined : reveal} />
+					</div>
+					<div class="description">
+						<SectionCopy {description} />
+					</div>
 				</div>
 			</div>
-		</div>
 
-		{#if portraits.length}
-			<ul class="list portraits" style:--columns={columns} {@attach isStatic ? undefined : stagger}>
-				{#each portraits as portrait (portrait.src)}
-					<li>
-						<div class="card portrait">
-							<img
-								{...imageProps(portrait.src, { sizes: '(min-width: 768px) 25vw, 100vw' })}
-								alt={portrait.alt ?? ''}
-								loading="lazy"
-							/>
-						</div>
-						<div class="info">
-							{#if portrait.role}<p class="role">{portrait.role}</p>{/if}
-							{#if portrait.name}<p class="name">{portrait.name}</p>{/if}
-							{#if portrait.description}<p class="about">{portrait.description}</p>{/if}
-						</div>
-					</li>
-				{/each}
-			</ul>
-		{:else if images.length}
-			<ul class="list" style:--columns={columns} {@attach isStatic ? undefined : stagger}>
-				{#each images as image (image.src)}
-					<li>
-						<div class="card" {@attach isStatic ? undefined : push()}>
-							<img
-								{...imageProps(image.src, { sizes: '(min-width: 1024px) 20vw, 40vw' })}
-								alt={image.alt ?? ''}
-								loading="lazy"
-							/>
-						</div>
-					</li>
-				{/each}
-			</ul>
-		{/if}
-	</div>
-</section>
+			{#if portraits.length}
+				<ul
+					class="list portraits"
+					style:--columns={columns}
+					{@attach isStatic ? undefined : stagger}
+				>
+					{#each portraits as portrait (portrait.src)}
+						<li>
+							<div class="card portrait">
+								<img
+									{...imageProps(portrait.src, { sizes: '(min-width: 768px) 25vw, 100vw' })}
+									alt={portrait.alt ?? ''}
+									loading="lazy"
+								/>
+							</div>
+							<div class="info">
+								{#if portrait.role}<p class="role">{portrait.role}</p>{/if}
+								{#if portrait.name}<p class="name">{portrait.name}</p>{/if}
+								{#if portrait.description}<p class="about">{portrait.description}</p>{/if}
+							</div>
+						</li>
+					{/each}
+				</ul>
+			{:else if images.length}
+				<ul class="list" style:--columns={columns} {@attach isStatic ? undefined : stagger}>
+					{#each images as image (image.src)}
+						<li>
+							<div class="card" {@attach isStatic ? undefined : push()}>
+								<img
+									{...imageProps(image.src, { sizes: '(min-width: 1024px) 20vw, 40vw' })}
+									alt={image.alt ?? ''}
+									loading="lazy"
+								/>
+							</div>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+		</div>
+	</section>
+{/if}
 
 <style lang="scss">
 	@use 'base/mixins';

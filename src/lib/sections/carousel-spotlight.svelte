@@ -25,6 +25,8 @@
 		interval?: number;
 		/** At least the height of the screen, with the content centered. Taller content still grows past it. */
 		fullScreen?: boolean;
+		/** Renders nothing. */
+		hidden?: boolean;
 		/** The section's anchor, so a link or the CMS preview can point to `#id`. */
 		id?: string;
 		class?: string;
@@ -49,6 +51,7 @@
 		pauseOnHover = false,
 		interval = 3200,
 		fullScreen = false,
+		hidden = false,
 		id,
 		class: className,
 		...copy
@@ -157,75 +160,77 @@
 	});
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
-<section
-	{id}
-	class="carousel-spotlight {className ?? ''}"
-	class:full-screen={fullScreen}
-	onpointerenter={(event) => (hovering = pauseOnHover && event.pointerType === 'mouse')}
-	onpointerleave={() => (hovering = false)}
-	onpointerdown={() => (touched = Date.now())}
-	onfocusin={() => (focused = true)}
-	onfocusout={() => (focused = false)}
->
-	<div class="inner">
-		<header class="header"><SectionCopy {...copy} align="center" /></header>
+{#if !hidden}
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<section
+		{id}
+		class="carousel-spotlight {className ?? ''}"
+		class:full-screen={fullScreen}
+		onpointerenter={(event) => (hovering = pauseOnHover && event.pointerType === 'mouse')}
+		onpointerleave={() => (hovering = false)}
+		onpointerdown={() => (touched = Date.now())}
+		onfocusin={() => (focused = true)}
+		onfocusout={() => (focused = false)}
+	>
+		<div class="inner">
+			<header class="header"><SectionCopy {...copy} align="center" /></header>
 
-		<!-- svelte-ignore a11y_no_noninteractive_tabindex, a11y_no_noninteractive_element_interactions -->
-		<div
-			class="track"
-			role="group"
-			aria-roledescription="carousel"
-			aria-label={label}
-			tabindex="0"
-			bind:this={track}
-			onscroll={onScroll}
-			onkeydown={onKeydown}
-			{@attach carouselDrag()}
-		>
-			{#each sets as set (set)}
-				{#each slides as slide, index (index)}
-					<div
-						class="slide"
-						class:active={index === active}
-						role="group"
-						aria-roledescription="slide"
-						aria-label="{index + 1} of {count}"
-						aria-hidden={set === 0 ? undefined : 'true'}
-						inert={set !== 0}
-					>
-						{#if slide.image?.src}
-							<img
-								{...imageProps(slide.image.src, {
-									sizes: '(min-width: 1280px) 1100px, 75vw'
-								})}
-								alt={slide.image.alt ?? ''}
-								loading={set === 0 && index === 0 ? 'eager' : 'lazy'}
-								draggable="false"
-							/>
-						{/if}
-						<div class="panel">
-							<h3>{slide.title}</h3>
-							{#if slide.description}<p><RichText text={slide.description} /></p>{/if}
+			<!-- svelte-ignore a11y_no_noninteractive_tabindex, a11y_no_noninteractive_element_interactions -->
+			<div
+				class="track"
+				role="group"
+				aria-roledescription="carousel"
+				aria-label={label}
+				tabindex="0"
+				bind:this={track}
+				onscroll={onScroll}
+				onkeydown={onKeydown}
+				{@attach carouselDrag()}
+			>
+				{#each sets as set (set)}
+					{#each slides as slide, index (index)}
+						<div
+							class="slide"
+							class:active={index === active}
+							role="group"
+							aria-roledescription="slide"
+							aria-label="{index + 1} of {count}"
+							aria-hidden={set === 0 ? undefined : 'true'}
+							inert={set !== 0}
+						>
+							{#if slide.image?.src}
+								<img
+									{...imageProps(slide.image.src, {
+										sizes: '(min-width: 1280px) 1100px, 75vw'
+									})}
+									alt={slide.image.alt ?? ''}
+									loading={set === 0 && index === 0 ? 'eager' : 'lazy'}
+									draggable="false"
+								/>
+							{/if}
+							<div class="panel">
+								<h3>{slide.title}</h3>
+								{#if slide.description}<p><RichText text={slide.description} /></p>{/if}
+							</div>
 						</div>
-					</div>
+					{/each}
 				{/each}
-			{/each}
-		</div>
+			</div>
 
-		<div class="dots" hidden={count < 2}>
-			{#each slides as slide, index (index)}
-				<button
-					type="button"
-					class="dot"
-					aria-label="Go to slide {index + 1}: {slide.title}"
-					aria-current={index === active ? 'true' : undefined}
-					onclick={() => goToSlide(index)}
-				></button>
-			{/each}
+			<div class="dots" hidden={count < 2}>
+				{#each slides as slide, index (index)}
+					<button
+						type="button"
+						class="dot"
+						aria-label="Go to slide {index + 1}: {slide.title}"
+						aria-current={index === active ? 'true' : undefined}
+						onclick={() => goToSlide(index)}
+					></button>
+				{/each}
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{/if}
 
 <style lang="scss">
 	@use 'base/mixins';

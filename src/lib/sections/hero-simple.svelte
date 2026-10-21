@@ -6,6 +6,7 @@
 		id,
 		compact = false,
 		fullScreen = true,
+		hidden = false,
 		image,
 		direction = 'column',
 		...props
@@ -14,6 +15,8 @@
 		id?: string;
 		compact?: boolean;
 		fullScreen?: boolean;
+		/** Renders nothing. */
+		hidden?: boolean;
 		/** A picture beside the copy (below it on small screens), or below it at full width with `column`. */
 		image?: { src: string; alt?: string };
 		/** `column` centers the copy, with a picture below it at full width. `row` aligns it to the start, with the picture beside it from `lg` up. */
@@ -24,34 +27,38 @@
 	const stacked = $derived(!!image && !row);
 </script>
 
-<section
-	{id}
-	class="hero-simple"
-	class:compact
-	class:full-screen={fullScreen && !compact}
-	class:row
-	class:stacked
-	class:has-image={!!image}
->
-	<div class="inner">
-		<div class="copy">
-			<SectionCopy level={1} align={row ? 'start' : 'center'} {...props} />
-		</div>
-
-		{#if image?.src}
-			<div class="media">
-				<img
-					{...imageProps(image.src, {
-						sizes: stacked ? '(min-width: 1440px) 1344px, 100vw' : '(min-width: 1024px) 50vw, 100vw'
-					})}
-					alt={image.alt ?? ''}
-					loading="eager"
-					fetchpriority="high"
-				/>
+{#if !hidden}
+	<section
+		{id}
+		class="hero-simple"
+		class:compact
+		class:full-screen={fullScreen && !compact}
+		class:row
+		class:stacked
+		class:has-image={!!image}
+	>
+		<div class="inner">
+			<div class="copy">
+				<SectionCopy level={1} align={row ? 'start' : 'center'} {...props} />
 			</div>
-		{/if}
-	</div>
-</section>
+
+			{#if image?.src}
+				<div class="media">
+					<img
+						{...imageProps(image.src, {
+							sizes: stacked
+								? '(min-width: 1440px) 1344px, 100vw'
+								: '(min-width: 1024px) 50vw, 100vw'
+						})}
+						alt={image.alt ?? ''}
+						loading="eager"
+						fetchpriority="high"
+					/>
+				</div>
+			{/if}
+		</div>
+	</section>
+{/if}
 
 <style lang="scss">
 	@use 'base/mixins';

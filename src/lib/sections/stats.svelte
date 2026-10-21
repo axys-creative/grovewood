@@ -14,6 +14,8 @@
 		id?: string;
 		/** At least the height of the screen, with the content centered. Taller content still grows past it. */
 		fullScreen?: boolean;
+		/** Renders nothing. */
+		hidden?: boolean;
 		/** Skips the scroll entrance, for the CMS preview. */
 		static?: boolean;
 		class?: string;
@@ -29,6 +31,7 @@
 		stats = [],
 		id,
 		fullScreen = false,
+		hidden = false,
 		static: isStatic = false,
 		class: className,
 		...copy
@@ -37,21 +40,23 @@
 	const stagger = animate({ variant: 'up', stagger: 0.24, once: false, duration: 0.5 });
 </script>
 
-<section {id} class="stats {className ?? ''}" class:full-screen={fullScreen}>
-	<div class="inner">
-		<SectionCopy {...copy} />
+{#if !hidden}
+	<section {id} class="stats {className ?? ''}" class:full-screen={fullScreen}>
+		<div class="inner">
+			<SectionCopy {...copy} />
 
-		{#if stats.length}
-			<ul class="list" {@attach isStatic ? undefined : stagger}>
-				{#each stats as stat (`${stat.digit}|${stat.label}`)}
-					<li>
-						<Counter {...stat} size="lg" align="start" divider />
-					</li>
-				{/each}
-			</ul>
-		{/if}
-	</div>
-</section>
+			{#if stats.length}
+				<ul class="list" {@attach isStatic ? undefined : stagger}>
+					{#each stats as stat (`${stat.digit}|${stat.label}`)}
+						<li>
+							<Counter {...stat} size="lg" align="start" divider />
+						</li>
+					{/each}
+				</ul>
+			{/if}
+		</div>
+	</section>
+{/if}
 
 <style lang="scss">
 	@use 'base/mixins';

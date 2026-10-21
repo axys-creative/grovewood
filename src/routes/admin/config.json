@@ -23,6 +23,14 @@
 					"preview_path": "#hero",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -275,6 +283,14 @@
 					"preview_path": "#text-stack",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -308,6 +324,14 @@
 					"file": "src/lib/content/page_home/image-grid.json",
 					"preview_path": "#image-grid",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -371,6 +395,14 @@
 					"file": "src/lib/content/page_home/text-stack-invite.json",
 					"preview_path": "#text-invite",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -566,6 +598,14 @@
 					"preview_path": "#testimonials",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -650,6 +690,14 @@
 					"file": "src/lib/content/page_home/stats.json",
 					"preview_path": "#stats",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -743,6 +791,14 @@
 					"file": "src/lib/content/page_talk_therapy/hero-simple.json",
 					"preview_path": "#hero",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -996,6 +1052,14 @@
 					"preview_path": "#text-stack",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -1029,6 +1093,14 @@
 					"file": "src/lib/content/page_talk_therapy/carousel-spotlight.json",
 					"preview_path": "#carousel-spotlight",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -1265,6 +1337,14 @@
 					"preview_path": "#testimonials",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -1349,6 +1429,14 @@
 					"file": "src/lib/content/page_talk_therapy/common-questions.json",
 					"preview_path": "#common-questions",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -1577,6 +1665,14 @@
 					"preview_path": "#text-invite",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -1776,6 +1872,14 @@
 					"file": "src/lib/content/page_medication_management/hero-simple.json",
 					"preview_path": "#hero",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -2029,6 +2133,14 @@
 					"preview_path": "#text-stack",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -2062,6 +2174,14 @@
 					"file": "src/lib/content/page_medication_management/carousel-spotlight.json",
 					"preview_path": "#carousel-spotlight",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -2298,6 +2418,14 @@
 					"preview_path": "#text-invite",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -2491,6 +2619,14 @@
 					"file": "src/lib/content/page_medication_management/common-questions.json",
 					"preview_path": "#common-questions",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -2719,6 +2855,14 @@
 					"preview_path": "#testimonials",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -2803,6 +2947,14 @@
 					"file": "src/lib/content/page_medication_management/stats.json",
 					"preview_path": "#stats",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -2896,6 +3048,14 @@
 					"file": "src/lib/content/page_neurostar_tms/hero-simple.json",
 					"preview_path": "#hero",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -3149,6 +3309,14 @@
 					"preview_path": "#text-stack",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -3182,6 +3350,14 @@
 					"file": "src/lib/content/page_neurostar_tms/carousel-spotlight.json",
 					"preview_path": "#carousel-spotlight",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -3418,6 +3594,14 @@
 					"preview_path": "#testimonials",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -3502,6 +3686,14 @@
 					"file": "src/lib/content/page_neurostar_tms/common-questions.json",
 					"preview_path": "#common-questions",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -3730,6 +3922,14 @@
 					"preview_path": "#text-invite",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -3929,6 +4129,14 @@
 					"file": "src/lib/content/page_assessment/hero-simple.json",
 					"preview_path": "#hero",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -4182,6 +4390,14 @@
 					"preview_path": "#text-stack",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -4215,6 +4431,14 @@
 					"file": "src/lib/content/page_assessment/carousel-spotlight.json",
 					"preview_path": "#carousel-spotlight",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -4451,6 +4675,14 @@
 					"preview_path": "#testimonials",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -4535,6 +4767,14 @@
 					"file": "src/lib/content/page_assessment/common-questions.json",
 					"preview_path": "#common-questions",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -4763,6 +5003,14 @@
 					"preview_path": "#text-invite",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -4963,6 +5211,14 @@
 					"preview_path": "#clinicians",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -5051,6 +5307,14 @@
 					"file": "src/lib/content/page_team/staff-image-grid.json",
 					"preview_path": "#staff",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -5141,6 +5405,14 @@
 					"preview_path": "#testimonials",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -5226,6 +5498,14 @@
 					"preview_path": "#text-stack",
 					"fields": [
 						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
 							"widget": "string",
@@ -5259,6 +5539,14 @@
 					"file": "src/lib/content/page_team/text-stack-invite.json",
 					"preview_path": "#text-invite",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",
@@ -5458,6 +5746,14 @@
 					"label": "Hero",
 					"file": "src/lib/content/page_404/hero-simple.json",
 					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
 						{
 							"name": "eyebrowText",
 							"label": "Eyebrow text",

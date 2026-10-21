@@ -19,6 +19,8 @@
 		label?: string;
 		/** At least the height of the screen, with the content centered. Taller content still grows past it. */
 		fullScreen?: boolean;
+		/** Renders nothing. */
+		hidden?: boolean;
 		/** The section's anchor, so a link or the CMS preview can point to `#id`. */
 		id?: string;
 		class?: string;
@@ -38,6 +40,7 @@
 		testimonials,
 		label = 'Testimonials',
 		fullScreen = false,
+		hidden = false,
 		id,
 		class: className,
 		...copy
@@ -90,65 +93,67 @@
 	});
 </script>
 
-<section {id} class="carousel-testimonials {className ?? ''}" class:full-screen={fullScreen}>
-	<div class="inner">
-		<header class="header">
-			<SectionCopy {...copy} />
-		</header>
+{#if !hidden}
+	<section {id} class="carousel-testimonials {className ?? ''}" class:full-screen={fullScreen}>
+		<div class="inner">
+			<header class="header">
+				<SectionCopy {...copy} />
+			</header>
 
-		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-		<div
-			class="track"
-			role="group"
-			aria-roledescription="carousel"
-			aria-label={label}
-			tabindex="0"
-			bind:this={track}
-			onscroll={update}
-			{@attach carouselDrag()}
-		>
-			{#each testimonials as item, index (index)}
-				<figure class="card">
-					<blockquote><p><RichText text={item.quote} /></p></blockquote>
-					<figcaption>
-						<span class="who">
-							<span class="name">{item.name}</span>
-							{#if item.role}<span class="role">{item.role}</span>{/if}
-						</span>
-						{#if item.image?.src}
-							<img
-								{...imageProps(item.image.src, { sizes: '64px' })}
-								alt={item.image.alt ?? ''}
-								loading="lazy"
-								draggable="false"
-							/>
-						{/if}
-					</figcaption>
-				</figure>
-			{/each}
-		</div>
+			<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+			<div
+				class="track"
+				role="group"
+				aria-roledescription="carousel"
+				aria-label={label}
+				tabindex="0"
+				bind:this={track}
+				onscroll={update}
+				{@attach carouselDrag()}
+			>
+				{#each testimonials as item, index (index)}
+					<figure class="card">
+						<blockquote><p><RichText text={item.quote} /></p></blockquote>
+						<figcaption>
+							<span class="who">
+								<span class="name">{item.name}</span>
+								{#if item.role}<span class="role">{item.role}</span>{/if}
+							</span>
+							{#if item.image?.src}
+								<img
+									{...imageProps(item.image.src, { sizes: '64px' })}
+									alt={item.image.alt ?? ''}
+									loading="lazy"
+									draggable="false"
+								/>
+							{/if}
+						</figcaption>
+					</figure>
+				{/each}
+			</div>
 
-		<div class="controls" hidden={!overflowing}>
-			<Button
-				class="prev"
-				type="secondary"
-				iconStart="chevron-right"
-				textDescription="Previous testimonial"
-				disabled={!canPrev}
-				onclick={() => move(-1)}
-				{@attach arrowPull()}
-			/>
-			<Button
-				type="secondary"
-				iconStart="chevron-right"
-				textDescription="Next testimonial"
-				disabled={!canNext}
-				onclick={() => move(1)}
-				{@attach arrowPull()}
-			/>
+			<div class="controls" hidden={!overflowing}>
+				<Button
+					class="prev"
+					type="secondary"
+					iconStart="chevron-right"
+					textDescription="Previous testimonial"
+					disabled={!canPrev}
+					onclick={() => move(-1)}
+					{@attach arrowPull()}
+				/>
+				<Button
+					type="secondary"
+					iconStart="chevron-right"
+					textDescription="Next testimonial"
+					disabled={!canNext}
+					onclick={() => move(1)}
+					{@attach arrowPull()}
+				/>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{/if}
 
 <style lang="scss">
 	@use 'base/mixins';

@@ -9,6 +9,8 @@
 		id?: string;
 		/** At least the height of the screen, with the content centered. Taller content still grows past it. */
 		fullScreen?: boolean;
+		/** Renders nothing. */
+		hidden?: boolean;
 		/** Skips the scroll effect on the title, for the CMS preview. */
 		static?: boolean;
 		class?: string;
@@ -22,6 +24,7 @@
 	let {
 		id,
 		fullScreen = false,
+		hidden = false,
 		static: isStatic = false,
 		class: className,
 		...copy
@@ -38,11 +41,13 @@
 	});
 </script>
 
-<section {id} class="text-stack {className ?? ''}" class:full-screen={fullScreen}>
-	<div class="inner">
-		<SectionCopy align="center" {...copy} titleAttach={isStatic ? undefined : scale} />
-	</div>
-</section>
+{#if !hidden}
+	<section {id} class="text-stack {className ?? ''}" class:full-screen={fullScreen}>
+		<div class="inner">
+			<SectionCopy align="center" {...copy} titleAttach={isStatic ? undefined : scale} />
+		</div>
+	</section>
+{/if}
 
 <style lang="scss">
 	@use 'base/mixins';

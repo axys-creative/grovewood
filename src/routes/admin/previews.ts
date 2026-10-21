@@ -175,7 +175,9 @@ function syncStyles(doc: Document) {
 
 function dataOf(instance: Instance, preview: Preview): Data {
 	const data = instance.props.entry.getIn(['data']).toJS();
-	return preview.props ? preview.props(data) : data;
+	const props = preview.props ? preview.props(data) : data;
+	// A hidden section still shows here, so it can be edited.
+	return 'hidden' in data ? { ...props, hidden: false } : props;
 }
 
 function template(preview: Preview) {
