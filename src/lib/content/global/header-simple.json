@@ -1,17 +1,17 @@
 {
-	"float": false,
-	"blur": false,
-	"glass": false,
-	"hideOnScroll": true,
-	"showSkipLink": true,
-	"linkPlacement": "center",
-	"linkType": "text",
-	"navButton": {
-		"text": "",
-		"symbol": "burger",
-		"shape": "square",
-		"type": "button"
-	},
-	"mobileNav": "slide",
-	"border": false
+  "mobileNav": "slide",
+  "blur": false,
+  "linkPlacement": "center",
+  "border": false,
+  "hideOnScroll": false,
+  "linkType": "text",
+  "navButton": {
+    "text": "",
+    "symbol": "burger",
+    "shape": "square",
+    "type": "button"
+  },
+  "showSkipLink": true,
+  "float": false,
+  "glass": false
 }
