@@ -21,6 +21,8 @@
 		fullScreen?: boolean;
 		/** Renders nothing. */
 		hidden?: boolean;
+		/** Skips the scroll entrance, for the CMS preview. */
+		static?: boolean;
 		/** The section's anchor, so a link or the CMS preview can point to `#id`. */
 		id?: string;
 		class?: string;
@@ -28,6 +30,8 @@
 </script>
 
 <script lang="ts">
+	import { animate } from '$lib/attachments/animate';
+	import { textReveal } from '$lib/attachments/text-reveal';
 	import { onMount } from 'svelte';
 	import { carouselDrag } from '$lib/attachments/carousel-drag';
 	import { magnet } from '$lib/attachments/magnet';
@@ -41,10 +45,14 @@
 		label = 'Testimonials',
 		fullScreen = false,
 		hidden = false,
+		static: isStatic = false,
 		id,
 		class: className,
 		...copy
 	}: CarouselTestimonialsProps = $props();
+
+	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
+	const stagger = animate({ variant: 'scale', stagger: 0.1, once: false, duration: 0.5 });
 
 	let track = $state<HTMLElement>();
 	let canPrev = $state(false);
@@ -97,7 +105,7 @@
 	<section {id} class="carousel-testimonials {className ?? ''}" class:full-screen={fullScreen}>
 		<div class="inner">
 			<header class="header">
-				<SectionCopy {...copy} />
+				<SectionCopy {...copy} titleAttach={isStatic ? undefined : reveal} />
 			</header>
 
 			<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -110,6 +118,7 @@
 				bind:this={track}
 				onscroll={update}
 				{@attach carouselDrag()}
+				{@attach isStatic ? undefined : stagger}
 			>
 				{#each testimonials as item, index (index)}
 					<figure class="card">
@@ -159,6 +168,9 @@
 	@use 'base/mixins';
 
 	.carousel-testimonials {
+		// Cards fade in and grow slightly from this size.
+		--animate-scale: 0.92;
+		--animate-ease: ease;
 		// The first card lines up with the copy, and the row runs on past the right edge.
 		--content: min(var(--content-width), 100vw - var(--body-padding) * 2);
 		--start: calc((100% - var(--content)) / 2);

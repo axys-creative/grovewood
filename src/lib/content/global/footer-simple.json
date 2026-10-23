@@ -76,6 +76,11 @@
 			"text": "Terms & Conditions",
 			"url": "https://google.com",
 			"newTab": false
+		},
+		{
+			"text": "Admin Log In",
+			"url": "/admin",
+			"newTab": true
 		}
 	],
 	"copyright": "",

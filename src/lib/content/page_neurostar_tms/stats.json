@@ -1,0 +1,29 @@
+{
+	"hidden": false,
+	"eyebrowText": "WHAT TO EXPECT",
+	"title": "NeuroStar TMS at a glance",
+	"description": "A snapshot of what a typical course of NeuroStar TMS looks like at Grovewood Mental Health in Pleasant Grove.",
+	"stats": [
+		{
+			"digit": 19,
+			"suffix": "min",
+			"label": "Typical session length",
+			"spokenLabel": "About 19 minutes per session",
+			"ticker": false
+		},
+		{
+			"digit": 36,
+			"suffix": "",
+			"label": "Sessions in a full course",
+			"spokenLabel": "About 36 sessions in a full course",
+			"ticker": false
+		},
+		{
+			"digit": 6,
+			"suffix": "wks",
+			"label": "Of daily sessions, then a taper",
+			"spokenLabel": "Six weeks of daily sessions, then a taper",
+			"ticker": false
+		}
+	]
+}

@@ -167,7 +167,7 @@
 		color: var(--btn-text);
 
 		@include mixins.desktop-hover {
-			background: transparent;
+			background: var(--color-bg);
 			color: var(--btn-hover-text);
 		}
 	}
@@ -176,8 +176,8 @@
 		color: var(--color-text);
 
 		@include mixins.desktop-hover {
-			background: var(--btn-bg);
-			color: var(--btn-text);
+			background: var(--btn-secondary-bg);
+			color: var(--btn-secondary-text);
 		}
 	}
 

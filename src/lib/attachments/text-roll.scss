@@ -4,6 +4,9 @@
 	display: inline-flex;
 	overflow: hidden;
 	white-space: pre;
+	// Room for the last letter's right edge when letter-spacing is negative; the margin gives the space back.
+	padding-inline-end: 0.12em;
+	margin-inline-end: -0.12em;
 }
 
 .text-roll__char {

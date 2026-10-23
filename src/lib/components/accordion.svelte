@@ -1,4 +1,6 @@
 <script module lang="ts">
+	import type { Attachment } from 'svelte/attachments';
+
 	export type AccordionItem = {
 		title: string;
 		/** Trusted HTML from the CMS, so it can hold links and other markup. */
@@ -20,6 +22,8 @@
 		toggleAll?: boolean;
 		toggleAllTextOpen?: string;
 		toggleAllTextClose?: string;
+		/** An attachment for each item, such as an entrance animation. */
+		itemAttach?: Attachment<HTMLElement>;
 	};
 </script>
 
@@ -37,7 +41,8 @@
 		defaultOpen = false,
 		toggleAll = false,
 		toggleAllTextOpen = 'Open All',
-		toggleAllTextClose = 'Close All'
+		toggleAllTextClose = 'Close All',
+		itemAttach
 	}: AccordionProps = $props();
 
 	const id = $props.id();
@@ -69,7 +74,7 @@
 
 	{#each items as item, index (index)}
 		{@const open = disclosure.isOpen(index)}
-		<div class="item">
+		<div class="item" {@attach itemAttach}>
 			<h3 class="heading">
 				<button
 					type="button"
@@ -120,7 +125,13 @@
 		border-bottom: 1px solid var(--color-border);
 
 		@include mixins.mq-motion-allow {
-			transition: border-color var(--duration) var(--ease);
+			// Repeats the entrance transitions of `animate`, which this scoped rule would otherwise override.
+			transition:
+				border-color var(--duration) var(--ease),
+				opacity var(--animate-duration, 0.6s) var(--animate-ease, var(--ease))
+					var(--animate-delay, 0s),
+				translate var(--animate-duration, 0.6s) var(--animate-ease, var(--ease))
+					var(--animate-delay, 0s);
 		}
 
 		&:first-of-type {

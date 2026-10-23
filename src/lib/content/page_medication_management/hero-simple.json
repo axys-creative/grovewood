@@ -21,8 +21,7 @@
 			"textDescription": "Call us to schedule an appointment",
 			"url": "tel:8017854622",
 			"newTab": false,
-			"iconStart": "/uploads/phone.svg",
-			"type": "secondary"
+			"iconStart": "/uploads/phone.svg"
 		}
 	}
 }

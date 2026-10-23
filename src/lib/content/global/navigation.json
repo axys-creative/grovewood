@@ -47,13 +47,6 @@
 	],
 	"ctas": [
 		{
-			"text": "Admin Log In",
-			"textDescription": "",
-			"url": "/admin",
-			"newTab": true,
-			"type": "text"
-		},
-		{
 			"text": "Call (801) 785-4622",
 			"textDescription": "Call us to schedule an appointment",
 			"url": "tel:8017854622",
@@ -67,7 +60,7 @@
 			"text": "Call (801) 785-4622",
 			"url": "tel:8017854622",
 			"newTab": false,
-			"type": "secondary"
+			"type": "outline"
 		}
 	],
 	"adminLogin": false

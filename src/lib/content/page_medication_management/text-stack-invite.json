@@ -15,7 +15,6 @@
 			"textDescription": "Send us an email",
 			"url": "mailto:info@grovewoodutah.com",
 			"newTab": false,
-			"type": "secondary",
 			"iconStart": "/uploads/mail.svg"
 		}
 	}

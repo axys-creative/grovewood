@@ -18,7 +18,7 @@
 </script>
 
 <script lang="ts">
-	import { textScale } from '$lib/attachments/text-scale';
+	import { textReveal } from '$lib/attachments/text-reveal';
 	import SectionCopy from '$lib/components/section-copy.svelte';
 
 	let {
@@ -30,21 +30,13 @@
 		...copy
 	}: TextStackProps = $props();
 
-	const scale = textScale({
-		type: 'words',
-		style: 'random',
-		from: 0.75,
-		duration: 0.15,
-		scrub: true,
-		start: 'top 100%',
-		end: 'bottom 70%'
-	});
+	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
 </script>
 
 {#if !hidden}
 	<section {id} class="text-stack {className ?? ''}" class:full-screen={fullScreen}>
 		<div class="inner">
-			<SectionCopy align="center" {...copy} titleAttach={isStatic ? undefined : scale} />
+			<SectionCopy align="center" {...copy} titleAttach={isStatic ? undefined : reveal} />
 		</div>
 	</section>
 {/if}

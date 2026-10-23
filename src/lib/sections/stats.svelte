@@ -23,6 +23,7 @@
 </script>
 
 <script lang="ts">
+	import { textReveal } from '$lib/attachments/text-reveal';
 	import { animate } from '$lib/attachments/animate';
 	import Counter from '$lib/components/counter.svelte';
 	import SectionCopy from '$lib/components/section-copy.svelte';
@@ -37,13 +38,15 @@
 		...copy
 	}: StatsProps = $props();
 
+	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
+
 	const stagger = animate({ variant: 'up', stagger: 0.24, once: false, duration: 0.5 });
 </script>
 
 {#if !hidden}
 	<section {id} class="stats {className ?? ''}" class:full-screen={fullScreen}>
 		<div class="inner">
-			<SectionCopy {...copy} />
+			<SectionCopy {...copy} titleAttach={isStatic ? undefined : reveal} />
 
 			{#if stats.length}
 				<ul class="list" {@attach isStatic ? undefined : stagger}>

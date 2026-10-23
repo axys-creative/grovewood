@@ -4,3 +4,11 @@
 .text-split__lines {
 	display: inline-block;
 }
+
+// Negative letter-spacing shortens the last letter's box, so a clipping mask cuts off its right edge; the padding makes room and the margin gives the space back.
+.text-split__chars-mask,
+.text-split__words-mask,
+.text-split__lines-mask {
+	padding-inline-end: 0.12em;
+	margin-inline-end: -0.12em;
+}

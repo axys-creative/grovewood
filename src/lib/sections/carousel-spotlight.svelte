@@ -27,6 +27,8 @@
 		fullScreen?: boolean;
 		/** Renders nothing. */
 		hidden?: boolean;
+		/** Skips the scroll entrance, for the CMS preview. */
+		static?: boolean;
 		/** The section's anchor, so a link or the CMS preview can point to `#id`. */
 		id?: string;
 		class?: string;
@@ -34,6 +36,7 @@
 </script>
 
 <script lang="ts">
+	import { textReveal } from '$lib/attachments/text-reveal';
 	import { onMount } from 'svelte';
 	import { carouselDrag } from '$lib/attachments/carousel-drag';
 	import RichText from '$lib/components/rich-text.svelte';
@@ -52,10 +55,13 @@
 		interval = 3200,
 		fullScreen = false,
 		hidden = false,
+		static: isStatic = false,
 		id,
 		class: className,
 		...copy
 	}: CarouselSpotlightProps = $props();
+
+	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
 
 	const count = $derived(slides.length);
 	const looping = $derived(loop && count > 1);
@@ -173,7 +179,9 @@
 		onfocusout={() => (focused = false)}
 	>
 		<div class="inner">
-			<header class="header"><SectionCopy {...copy} align="center" /></header>
+			<header class="header">
+				<SectionCopy {...copy} align="center" titleAttach={isStatic ? undefined : reveal} />
+			</header>
 
 			<!-- svelte-ignore a11y_no_noninteractive_tabindex, a11y_no_noninteractive_element_interactions -->
 			<div

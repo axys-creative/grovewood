@@ -8,7 +8,7 @@
 			"textDescription": "Call our office to speak with a real person",
 			"url": "tel:8017854622",
 			"newTab": false,
-			"type": "secondary",
+			"type": "outline",
 			"iconStart": "/uploads/phone.svg"
 		}
 	}

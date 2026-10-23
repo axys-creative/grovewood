@@ -13,19 +13,19 @@
 			scale var(--animate-duration) var(--animate-ease, var(--ease)) var(--animate-delay);
 
 		&--up {
-			translate: 0 24px;
+			translate: 0 var(--animate-distance, 24px);
 		}
 
 		&--down {
-			translate: 0 -24px;
+			translate: 0 calc(var(--animate-distance, 24px) * -1);
 		}
 
 		&--left {
-			translate: -24px 0;
+			translate: calc(var(--animate-distance, 24px) * -1) 0;
 		}
 
 		&--right {
-			translate: 24px 0;
+			translate: var(--animate-distance, 24px) 0;
 		}
 
 		&--scale {

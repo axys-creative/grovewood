@@ -23,7 +23,12 @@
 <div class="cta-group {justify}">
 	<Button {...primary} type={primary.type ?? 'solid'} {@attach textRoll()} {@attach pull()} />
 	{#if secondary}
-		<Button {...secondary} type={secondary.type ?? 'text'} {@attach textRoll()} {@attach pull()} />
+		<Button
+			{...secondary}
+			type={secondary.type ?? 'outline'}
+			{@attach textRoll()}
+			{@attach pull()}
+		/>
 	{/if}
 </div>
 

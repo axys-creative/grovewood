@@ -21,7 +21,6 @@
 			"textDescription": "Call Grovewood to schedule an appointment",
 			"url": "tel:8017854622",
 			"newTab": false,
-			"type": "secondary",
 			"iconStart": "/uploads/phone.svg"
 		}
 	}

@@ -78,6 +78,8 @@
 	export type CalendarBookingProps = {
 		/** Text of the fixed button that opens the popover. */
 		triggerText?: string;
+		/** Look of the fixed button: `highlight` (green), `primary` (solid black) or `secondary` (outline). */
+		triggerStyle?: 'highlight' | 'primary' | 'secondary';
 		/** The copy of each step. Anything left out falls back to the default. */
 		steps?: BookingSteps;
 		/** The Netlify form name. */
@@ -96,7 +98,9 @@
 
 <script lang="ts">
 	import { env } from '$env/dynamic/public';
+	import { magnet } from '$lib/attachments/magnet';
 	import { recaptcha } from '$lib/attachments/recaptcha';
+	import { textRoll } from '$lib/attachments/text-roll';
 	import { onMount, untrack } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 	import { alerts } from '$lib/utils/alerts.svelte';
@@ -107,6 +111,7 @@
 
 	let {
 		triggerText = 'Book a session',
+		triggerStyle = 'highlight',
 		steps: stepCopy,
 		formName = 'booking',
 		onbook,
@@ -115,6 +120,14 @@
 		demo = false,
 		class: className
 	}: CalendarBookingProps = $props();
+
+	const pull = () =>
+		magnet({
+			x: 0.24,
+			y: 0.64,
+			returnDuration: 350,
+			returnEase: 'cubic-bezier(0, 1.64, 0.63, 1.92)'
+		});
 
 	const id = $props.id();
 	const steps = 4;
@@ -708,13 +721,21 @@
 	{/if}
 
 	{#if !inline}
-		<div class="trigger" class:nudged={navOpen} class:parked={lift > 0} bind:this={trigger}>
+		<div
+			class="trigger {triggerStyle}"
+			class:nudged={navOpen}
+			class:parked={lift > 0}
+			bind:this={trigger}
+		>
 			<Button
 				text={triggerText}
+				type={triggerStyle === 'secondary' ? 'outline' : 'solid'}
 				iconStart="icon-calendar"
 				controls="{id}-panel"
 				expanded={open}
 				onclick={() => (open = !open)}
+				{@attach textRoll()}
+				{@attach pull()}
 			/>
 		</div>
 	{/if}
@@ -738,6 +759,17 @@
 
 	.trigger {
 		--btn-gap: 12px;
+
+		&.highlight {
+			--btn-bg: var(--color-accent);
+			--btn-text: var(--color-on-accent);
+
+			:global(.button) {
+				@include mixins.desktop-hover {
+					border-color: var(--color-on-accent);
+				}
+			}
+		}
 
 		@include mixins.mq-motion-allow {
 			transition: translate 0.6s var(--ease);

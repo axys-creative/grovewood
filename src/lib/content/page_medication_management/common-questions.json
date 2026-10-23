@@ -9,7 +9,6 @@
 			"textDescription": "Call us to ask a question",
 			"url": "tel:8017854622",
 			"newTab": false,
-			"type": "outline",
 			"iconStart": "/uploads/phone.svg"
 		}
 	},

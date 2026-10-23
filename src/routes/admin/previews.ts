@@ -78,7 +78,8 @@ const previews: Record<string, Preview> = {
 				...data,
 				cta: { ...cta, secondary: cta.secondary?.text ? cta.secondary : undefined },
 				slides: data.slides ?? [],
-				autoplay: false
+				autoplay: false,
+				static: true
 			};
 		}
 	},
@@ -87,12 +88,13 @@ const previews: Record<string, Preview> = {
 		props: (data) => ({
 			...data,
 			cta: data.cta ? withCta(data) : undefined,
-			items: data.items ?? []
+			items: data.items ?? [],
+			static: true
 		})
 	},
 	carousel_testimonials: {
 		component: CarouselTestimonials as unknown as Section,
-		props: (data) => ({ ...data, testimonials: data.testimonials ?? [] })
+		props: (data) => ({ ...data, testimonials: data.testimonials ?? [], static: true })
 	},
 	image_grid: {
 		component: ImageGrid as unknown as Section,
@@ -131,7 +133,7 @@ const previews: Record<string, Preview> = {
 };
 
 const componentStyles =
-	'style[data-vite-dev-id]:not([data-vite-dev-id*="/admin/"]), link[href*="/_app/"][rel="stylesheet"]';
+	'style[data-vite-dev-id]:not([data-vite-dev-id$="/admin/admin.scss"]), link[href*="/_app/"][rel="stylesheet"]';
 
 function syncStyles(doc: Document) {
 	const upsert = (key: string, build: () => HTMLElement, update?: (el: HTMLElement) => void) => {

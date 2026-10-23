@@ -1,7 +1,9 @@
 <script lang="ts">
 	import '../../styles/styles.scss';
 	import AlertStack from '$lib/components/alert-stack.svelte';
-	import CalendarBooking from '$lib/components/calendar-booking.svelte';
+	import CalendarBooking, {
+		type CalendarBookingProps
+	} from '$lib/components/calendar-booking.svelte';
 	import booking from '$lib/content/global/booking.json';
 	import FooterSimple, { type FooterSimpleProps } from '$lib/components/footer-simple.svelte';
 	import PageTransition from '$lib/components/page-transition.svelte';
@@ -32,7 +34,7 @@
 	<FooterSimple {...footer as FooterSimpleProps} {logo} socialLinks={social.links} />
 </div>
 
-<CalendarBooking {...booking} />
+<CalendarBooking {...booking as CalendarBookingProps} />
 <AlertStack />
 
 <style lang="scss">

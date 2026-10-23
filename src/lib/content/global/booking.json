@@ -1,5 +1,6 @@
 {
 	"triggerText": "Book a session",
+	"triggerStyle": "highlight",
 	"steps": {
 		"service": {
 			"title": "Pick a service",

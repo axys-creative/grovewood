@@ -19,7 +19,7 @@
 
 		import('lenis').then(({ default: LenisClass }) => {
 			if (destroyed) return;
-			lenis = new LenisClass({ autoRaf: true, lerp: 0.06, anchors: true });
+			lenis = new LenisClass({ autoRaf: true, lerp: 0.16, anchors: true });
 		});
 
 		// Lenis ignores a bare "#" link, so route it to the top.

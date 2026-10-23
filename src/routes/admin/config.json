@@ -115,34 +115,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -189,34 +161,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -315,6 +259,110 @@
 							"widget": "text",
 							"required": false,
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								}
+							]
 						}
 					]
 				},
@@ -468,34 +516,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -542,34 +562,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -884,34 +876,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -958,34 +922,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -1084,6 +1020,110 @@
 							"widget": "text",
 							"required": false,
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								}
+							]
 						}
 					]
 				},
@@ -1166,34 +1206,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -1240,34 +1252,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -1502,34 +1486,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -1576,34 +1532,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -1737,34 +1665,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -1811,34 +1711,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -1965,34 +1837,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -2039,34 +1883,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -2165,6 +1981,110 @@
 							"widget": "text",
 							"required": false,
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								}
+							]
 						}
 					]
 				},
@@ -2247,34 +2167,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -2321,34 +2213,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -2490,34 +2354,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -2564,34 +2400,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -2692,34 +2500,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -2766,34 +2546,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -3141,34 +2893,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -3215,34 +2939,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -3341,6 +3037,110 @@
 							"widget": "text",
 							"required": false,
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								}
+							]
 						}
 					]
 				},
@@ -3423,34 +3223,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -3497,34 +3269,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -3681,6 +3425,101 @@
 					]
 				},
 				{
+					"name": "stats",
+					"label": "Stats",
+					"file": "src/lib/content/page_neurostar_tms/stats.json",
+					"preview_path": "#stats",
+					"fields": [
+						{
+							"name": "hidden",
+							"label": "Hide this section",
+							"widget": "boolean",
+							"default": false,
+							"required": false,
+							"hint": "Keeps everything below saved but doesn’t show the section on the page."
+						},
+						{
+							"name": "eyebrowText",
+							"label": "Eyebrow text",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"name": "eyebrowIcon",
+							"label": "Eyebrow icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon; it takes the eyebrow color."
+						},
+						{
+							"name": "title",
+							"label": "Title",
+							"widget": "string",
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "description",
+							"label": "Description",
+							"widget": "text",
+							"required": false,
+							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "stats",
+							"label": "Stats",
+							"label_singular": "Stat",
+							"widget": "list",
+							"summary": "{{fields.digit}}{{fields.suffix}} {{fields.label}}",
+							"fields": [
+								{
+									"name": "digit",
+									"label": "Number",
+									"widget": "number",
+									"value_type": "int"
+								},
+								{
+									"name": "prefix",
+									"label": "Before the number",
+									"widget": "string",
+									"required": false
+								},
+								{
+									"name": "suffix",
+									"label": "After the number",
+									"widget": "string",
+									"required": false,
+									"hint": "e.g. k+"
+								},
+								{
+									"name": "label",
+									"label": "Label",
+									"widget": "string"
+								},
+								{
+									"name": "spokenLabel",
+									"label": "What screen readers say",
+									"widget": "string",
+									"required": false
+								},
+								{
+									"name": "ticker",
+									"label": "Roll the digits up",
+									"widget": "boolean",
+									"required": false,
+									"default": true
+								},
+								{
+									"name": "comma",
+									"label": "Thousands commas",
+									"widget": "boolean",
+									"required": false,
+									"default": false
+								}
+							]
+						}
+					]
+				},
+				{
 					"name": "common_questions",
 					"label": "Common Questions",
 					"file": "src/lib/content/page_neurostar_tms/common-questions.json",
@@ -3759,34 +3598,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -3833,34 +3644,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -3994,34 +3777,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -4068,34 +3823,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -4222,34 +3949,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -4296,34 +3995,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -4422,6 +4093,110 @@
 							"widget": "text",
 							"required": false,
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								}
+							]
 						}
 					]
 				},
@@ -4504,34 +4279,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -4578,34 +4325,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -4840,34 +4559,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -4914,34 +4605,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -5075,34 +4738,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -5149,34 +4784,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -5530,6 +5137,110 @@
 							"widget": "text",
 							"required": false,
 							"hint": "Style words with [words]{.class}. Syntax and class list: axyscreative.com/tokens"
+						},
+						{
+							"name": "cta",
+							"label": "Call to action",
+							"widget": "object",
+							"required": false,
+							"fields": [
+								{
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								},
+								{
+									"name": "secondary",
+									"label": "Secondary button",
+									"widget": "object",
+									"required": false,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
+								}
+							]
 						}
 					]
 				},
@@ -5612,34 +5323,6 @@
 											"default": false
 										},
 										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
-										},
-										{
 											"name": "iconStart",
 											"label": "Icon before text",
 											"widget": "image",
@@ -5686,34 +5369,6 @@
 											"widget": "boolean",
 											"required": false,
 											"default": false
-										},
-										{
-											"name": "type",
-											"label": "Style",
-											"widget": "select",
-											"required": false,
-											"options": [
-												{
-													"label": "Solid",
-													"value": "solid"
-												},
-												{
-													"label": "Secondary",
-													"value": "secondary"
-												},
-												{
-													"label": "Outline",
-													"value": "outline"
-												},
-												{
-													"label": "Underline",
-													"value": "underline"
-												},
-												{
-													"label": "Text",
-													"value": "text"
-												}
-											]
 										},
 										{
 											"name": "iconStart",
@@ -5988,14 +5643,6 @@
 									"hint": "Optional aria-label for screen readers"
 								},
 								{
-									"name": "type",
-									"label": "Style",
-									"widget": "select",
-									"options": ["solid", "outline", "underline", "text"],
-									"default": "underline",
-									"required": false
-								},
-								{
 									"name": "iconStart",
 									"label": "Icon before text",
 									"widget": "image",
@@ -6043,31 +5690,6 @@
 									"widget": "string",
 									"required": false,
 									"hint": "Optional aria-label for screen readers"
-								},
-								{
-									"name": "type",
-									"label": "Style",
-									"widget": "select",
-									"options": [
-										{
-											"label": "Underline",
-											"value": "underline"
-										},
-										{
-											"label": "Text",
-											"value": "text"
-										},
-										{
-											"label": "Solid",
-											"value": "solid"
-										},
-										{
-											"label": "Outline",
-											"value": "outline"
-										}
-									],
-									"default": "underline",
-									"required": false
 								}
 							]
 						},
@@ -6483,14 +6105,6 @@
 									"hint": "Optional aria-label for screen readers"
 								},
 								{
-									"name": "type",
-									"label": "Style",
-									"widget": "select",
-									"options": ["solid", "outline", "underline", "text"],
-									"default": "underline",
-									"required": false
-								},
-								{
 									"name": "iconStart",
 									"label": "Icon before text",
 									"widget": "image",
@@ -6563,6 +6177,28 @@
 							"widget": "string",
 							"default": "Book a session",
 							"hint": "The text on the button that opens the booking window."
+						},
+						{
+							"name": "triggerStyle",
+							"label": "Button style",
+							"widget": "select",
+							"required": false,
+							"default": "highlight",
+							"options": [
+								{
+									"label": "Highlight (green)",
+									"value": "highlight"
+								},
+								{
+									"label": "Primary (black)",
+									"value": "primary"
+								},
+								{
+									"label": "Secondary (outline)",
+									"value": "secondary"
+								}
+							],
+							"hint": "How the floating button looks. Highlight helps it stand out from the page’s other buttons."
 						},
 						{
 							"name": "steps",
