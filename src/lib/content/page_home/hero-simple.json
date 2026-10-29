@@ -1,26 +1,26 @@
 {
-	"hidden": false,
-	"eyebrowText": "THE GROVEWOOD DIFFERENCE",
-	"title": "We help people change.",
-	"description": "It's a four-word mission statement backed by a team with decades of experience and a love for the work we do. Everything about our practice, from the office layout to the services we provide, is designed to provide maximum therapeutic benefit. We call it the \"Grovewood Difference.\" Hundreds of new clients each year can tell you what that means to them and how it has helped them reach their goals.",
-	"direction": "column",
-	"image": {
-		"src": "/images/home-hero.jpg",
-		"alt": ""
-	},
-	"cta": {
-		"primary": {
-			"text": "How to Begin",
-			"textDescription": "Learn how to begin at Grovewood",
-			"url": "/assessment",
-			"newTab": false
-		},
-		"secondary": {
-			"text": "Call (801) 785-4622",
-			"textDescription": "Call us to schedule an appointment",
-			"url": "tel:8017854622",
-			"newTab": false,
-			"iconStart": "/uploads/phone.svg"
-		}
-	}
+  "hidden": false,
+  "eyebrowText": "THE GROVEWOOD DIFFERENCE",
+  "title": "We help people change.",
+  "description": "It's a four-word mission statement backed by a team with decades of experience and a love for the work we do. Everything about our practice, from the office layout to the services we provide, is designed to provide maximum therapeutic benefit. We call it the \"The Grovewood Difference.\" Hundreds of new clients each year can tell you what that means to them and how it has helped them reach their goals.",
+  "direction": "column",
+  "image": {
+    "src": "/images/home-hero.jpg",
+    "alt": ""
+  },
+  "cta": {
+    "primary": {
+      "text": "How to Begin",
+      "textDescription": "Learn how to begin at Grovewood",
+      "url": "/assessment",
+      "newTab": false
+    },
+    "secondary": {
+      "text": "Call (801) 785-4622",
+      "textDescription": "Call us to schedule an appointment",
+      "url": "tel:8017854622",
+      "newTab": false,
+      "iconStart": "/uploads/phone.svg"
+    }
+  }
 }
