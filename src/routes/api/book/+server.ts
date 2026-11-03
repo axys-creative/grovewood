@@ -1,6 +1,9 @@
 import { json } from '@sveltejs/kit';
-import { createBooking } from '$lib/server/booking';
+import { createRequest, issueTicket } from '$lib/server/booking';
 import type { RequestHandler } from './$types';
+
+export const GET: RequestHandler = async () =>
+	json({ ticket: issueTicket() }, { headers: { 'Cache-Control': 'no-store' } });
 
 export const POST: RequestHandler = async ({ request, url, getClientAddress }) => {
 	const origin = request.headers.get('origin');
@@ -14,6 +17,6 @@ export const POST: RequestHandler = async ({ request, url, getClientAddress }) =
 		return json({ ok: false, error: 'invalid' }, { status: 400 });
 	}
 
-	const { status, body: result } = await createBooking(body, getClientAddress(), url.origin);
+	const { status, body: result } = await createRequest(body, getClientAddress(), url.origin);
 	return json(result, { status, headers: { 'Cache-Control': 'no-store' } });
 };

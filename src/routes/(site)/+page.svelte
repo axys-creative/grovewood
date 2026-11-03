@@ -5,6 +5,7 @@
 	import ImageGrid from '$lib/sections/image-grid.svelte';
 	import Stats from '$lib/sections/stats.svelte';
 	import TextStack from '$lib/sections/text-stack.svelte';
+	import logo from '$lib/content/global/logo.json';
 	import hero from '$lib/content/page_home/hero-simple.json';
 	import textStack from '$lib/content/page_home/text-stack.json';
 	import imageGrid from '$lib/content/page_home/image-grid.json';
@@ -20,7 +21,7 @@
 	});
 </script>
 
-<HeroSimple id="hero" {...hero as ComponentProps<typeof HeroSimple>} />
+<HeroSimple id="hero" {logo} {...hero as ComponentProps<typeof HeroSimple>} />
 <TextStack id="text-stack" {...textStack} />
 <ImageGrid id="image-grid" {...imageGrid} />
 <TextStack id="text-invite" {...invite as ComponentProps<typeof TextStack>} />

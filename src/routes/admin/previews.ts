@@ -51,7 +51,7 @@ const previews: Record<string, Preview> = {
 		component: BookingPreview as unknown as Section,
 		props: (data) => ({
 			...data,
-			steps: data.steps ?? {}
+			form: data.form ?? {}
 		})
 	},
 	header_simple: {
@@ -126,7 +126,8 @@ const previews: Record<string, Preview> = {
 			const cta = (data.cta ?? {}) as { primary?: unknown; secondary?: { text?: string } };
 			return {
 				...data,
-				cta: { ...cta, secondary: cta.secondary?.text ? cta.secondary : undefined }
+				cta: { ...cta, secondary: cta.secondary?.text ? cta.secondary : undefined },
+				static: true
 			};
 		}
 	}

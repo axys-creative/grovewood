@@ -36,7 +36,7 @@
 </script>
 
 <script lang="ts">
-	import { textReveal } from '$lib/attachments/text-reveal';
+	import { textFade } from '$lib/attachments/text-fade';
 	import { onMount } from 'svelte';
 	import { carouselDrag } from '$lib/attachments/carousel-drag';
 	import RichText from '$lib/components/rich-text.svelte';
@@ -61,7 +61,7 @@
 		...copy
 	}: CarouselSpotlightProps = $props();
 
-	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
+	const reveal = textFade();
 
 	const count = $derived(slides.length);
 	const looping = $derived(loop && count > 1);
@@ -315,7 +315,7 @@
 		}
 
 		&:focus-visible {
-			outline: 2px solid var(--color-accent-text);
+			outline: 2px solid var(--color-accent);
 			outline-offset: -2px;
 		}
 	}
@@ -416,7 +416,7 @@
 
 		&:focus-visible {
 			scale: 1.25;
-			outline: 2px solid var(--color-accent-text);
+			outline: 2px solid var(--color-accent);
 			outline-offset: 4px;
 		}
 

@@ -5,6 +5,8 @@
 	import type { SocialLink } from './social-links.svelte';
 
 	export type FooterContactLink = {
+		/** Shown before the link, followed by a colon. */
+		label?: string;
 		/** `{.br}` is a line break. */
 		text: string;
 		url: string;
@@ -14,8 +16,8 @@
 	export type FooterSimpleProps = {
 		logo?: LogoProps;
 		message?: string;
-		/** Address, phone and email, shown under the logo with a label each. */
-		contact?: Partial<Record<'address' | 'phone' | 'email', FooterContactLink>>;
+		/** Links such as address, phone and email, shown under the logo with their labels. */
+		contact?: FooterContactLink[];
 		socialLinks?: SocialLink[];
 		/** Up to three columns of links. */
 		linksets?: { title?: string; links: ButtonProps[] }[];
@@ -41,6 +43,7 @@
 <script lang="ts">
 	import { glass as glassEffect } from '$lib/attachments/glass';
 	import { textRoll } from '$lib/attachments/text-roll';
+	import { textUnderline } from '$lib/attachments/text-underline';
 	import site from '$lib/content/meta/site.json';
 	import BackToTop from './back-to-top.svelte';
 	import Logo from './logo.svelte';
@@ -52,7 +55,7 @@
 	let {
 		logo,
 		message,
-		contact,
+		contact = [],
 		socialLinks = [],
 		linksets = [],
 		legalLinks = [],
@@ -73,13 +76,7 @@
 		copyright || `©${new Date().getFullYear()} ${site.siteName}. All rights reserved`
 	);
 
-	const contactRows = $derived(
-		[
-			{ label: 'Address:', link: contact?.address },
-			{ label: 'Phone:', link: contact?.phone },
-			{ label: 'Email:', link: contact?.email }
-		].flatMap(({ label, link }) => (link?.text && link.url ? [{ label, link }] : []))
-	);
+	const contactRows = $derived(contact.filter((link) => link.text && link.url));
 </script>
 
 <footer
@@ -97,10 +94,12 @@
 					{#if message}<p class="message">{message}</p>{/if}
 					{#if contactRows.length}
 						<div class="contact">
-							{#each contactRows as { label, link } (label)}
-								<strong>{label}</strong>
+							{#each contactRows as link (`${link.label}|${link.url}`)}
+								{#if link.label}<strong>{link.label}:</strong>{/if}
 								<a
 									class="contact-link"
+									{@attach textRoll()}
+									{@attach textUnderline()}
 									href={link.url}
 									target={link.newTab ? '_blank' : undefined}
 									rel={link.newTab ? 'noopener noreferrer' : undefined}
@@ -235,6 +234,7 @@
 
 	.contact-link {
 		margin-block: 4px 24px;
+		border-radius: 4px;
 		color: var(--btn-link);
 		font-size: 16px;
 		font-weight: var(--btn-font-weight-link);
@@ -352,6 +352,15 @@
 				min-height: 24px;
 				padding-top: 4px;
 			}
+		}
+
+		:global(li:not(:first-child))::before {
+			content: '';
+			align-self: center;
+			width: 1px;
+			height: 1em;
+			margin-inline-end: 1ch;
+			background: var(--color-border);
 		}
 	}
 </style>

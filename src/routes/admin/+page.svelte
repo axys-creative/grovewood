@@ -4,6 +4,7 @@
 	import config from './config.json';
 	import site from '$lib/content/meta/site.json';
 	import { loadIdentity } from '$lib/utils/identity';
+	import { cardThumbnails } from './card-thumbnails';
 	import { sideToggleControls } from './view-controls';
 
 	type Cms = {
@@ -41,6 +42,7 @@
 		// A client-side navigation would leave Decap's #nc-root and the identity widget on the home page.
 		document.body.setAttribute('data-sveltekit-reload', '');
 		const stopControls = sideToggleControls();
+		const stopThumbnails = cardThumbnails();
 
 		loadIdentity().then((identity) => {
 			// Decap's fallback re-init would create a second widget iframe.
@@ -69,6 +71,7 @@
 			if (preload) document.body.setAttribute('data-sveltekit-preload-data', preload);
 			document.body.removeAttribute('data-sveltekit-reload');
 			stopControls();
+			stopThumbnails();
 		};
 	});
 </script>

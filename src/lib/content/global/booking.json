@@ -1,45 +1,39 @@
 {
-	"triggerText": "Book a session",
+	"triggerText": "Request Consultation",
 	"triggerStyle": "highlight",
-	"steps": {
-		"service": {
-			"title": "Pick a service",
-			"services": [
-				{
-					"title": "Initial consultation",
-					"description": "A first conversation about what brings you in and how we can help.",
-					"duration": "30 min"
-				},
-				{
-					"title": "Follow-up visit",
-					"description": "Check in on your progress and adjust your plan.",
-					"duration": "30 min"
-				}
-			]
-		},
-		"when": {
-			"title": "Pick a date and time",
-			"dateLabel": "Pick a date",
-			"timeLabel": "Pick a time",
-			"days": 5,
-			"closedDays": ["Sun"],
-			"timeStart": 8,
-			"timeLength": 2,
-			"timeSlots": 5
-		},
-		"details": {
-			"title": "Your details",
-			"submitText": "Book session",
-			"sendingText": "Booking…",
+	"triggerIcon": "/icons/icon-calendar.svg",
+	"form": {
+		"step1": {
+			"title": "Request a consultation",
+			"intro": "Tell us a little about you and we’ll reach out to set up your initial consultation.",
 			"showFirstName": true,
 			"showLastName": true,
 			"showEmail": true,
 			"showPhone": true
 		},
-		"done": {
-			"title": "You’re all set",
-			"heading": "Booking confirmed",
-			"message": "Your appointment is scheduled."
+		"step2": {
+			"title": "A little more about you",
+			"interestLabel": "What are you interested in?",
+			"interests": [
+				"Talk therapy",
+				"Medication management",
+				"NeuroStar TMS",
+				"Assessment",
+				"Not sure yet"
+			],
+			"contactLabel": "Best way to reach you",
+			"messageLabel": "Anything you’d like us to know?",
+			"privacyNote": "Please don’t include medical details here. We’ll talk through those when we connect.",
+			"submitText": "Send request",
+			"sendingText": "Sending…",
+			"showInterest": true,
+			"showContactMethod": true,
+			"showMessage": true
+		},
+		"step3": {
+			"title": "Request sent",
+			"heading": "Thank you",
+			"message": "We received your request and will be in touch soon."
 		}
 	}
 }

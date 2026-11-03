@@ -2,6 +2,7 @@
 	import type { Attachment } from 'svelte/attachments';
 	import { glass } from '$lib/attachments/glass';
 	import { textRoll } from '$lib/attachments/text-roll';
+	import { textUnderline } from '$lib/attachments/text-underline';
 	import Button, { type ButtonProps } from './button.svelte';
 
 	type Props = {
@@ -102,7 +103,14 @@
 	>
 		<ul class="list">
 			{#each links as link (`${link.url}|${link.text}`)}
-				<li><Button {...link} type={link.type ?? 'text'} {@attach textRoll()} /></li>
+				<li>
+					<Button
+						{...link}
+						type={link.type ?? 'text'}
+						{@attach textRoll()}
+						{@attach (link.type ?? 'text') === 'text' ? textUnderline() : undefined}
+					/>
+				</li>
 			{/each}
 		</ul>
 	</div>

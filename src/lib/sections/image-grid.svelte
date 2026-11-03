@@ -37,7 +37,7 @@
 <script lang="ts">
 	import { animate } from '$lib/attachments/animate';
 	import { push } from '$lib/attachments/push';
-	import { textReveal } from '$lib/attachments/text-reveal';
+	import { textFade } from '$lib/attachments/text-fade';
 	import SectionCopy from '$lib/components/section-copy.svelte';
 	import { imageProps } from '$lib/utils/image';
 
@@ -58,7 +58,7 @@
 		description
 	}: ImageGridProps = $props();
 
-	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
+	const reveal = textFade();
 	const stagger = animate({
 		variant: 'scale',
 		stagger: 0.1,

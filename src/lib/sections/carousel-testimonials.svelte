@@ -31,7 +31,7 @@
 
 <script lang="ts">
 	import { animate } from '$lib/attachments/animate';
-	import { textReveal } from '$lib/attachments/text-reveal';
+	import { textFade } from '$lib/attachments/text-fade';
 	import { onMount } from 'svelte';
 	import { carouselDrag } from '$lib/attachments/carousel-drag';
 	import { magnet } from '$lib/attachments/magnet';
@@ -51,7 +51,7 @@
 		...copy
 	}: CarouselTestimonialsProps = $props();
 
-	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
+	const reveal = textFade();
 	const stagger = animate({ variant: 'scale', stagger: 0.1, once: false, duration: 0.5 });
 
 	let track = $state<HTMLElement>();
@@ -285,7 +285,7 @@
 		}
 
 		&:focus-visible {
-			outline: 2px solid var(--color-accent-text);
+			outline: 2px solid var(--color-accent);
 			outline-offset: -2px;
 		}
 	}

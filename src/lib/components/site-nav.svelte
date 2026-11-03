@@ -42,10 +42,8 @@
 
 <script lang="ts">
 	import { glass } from '$lib/attachments/glass';
-	import { push } from '$lib/attachments/push';
 	import { scribble } from '$lib/attachments/scribble';
 	import { textRoll } from '$lib/attachments/text-roll';
-	import { imageProps } from '$lib/utils/image';
 	import Button from './button.svelte';
 	import Eyebrow from './eyebrow.svelte';
 	import MenuLinks from './menu-links.svelte';
@@ -86,16 +84,6 @@
 			behind.forEach((el) => (el.inert = false));
 			document.body.style.overflow = '';
 		};
-	});
-
-	// The center variant shows the hovered link's pictures. They are put in the page, and so start loading, the first
-	// time the navigation opens, so each is already there to transition when its link is first pointed at.
-	let active = $state<number | null>(null);
-	let loaded = $state(false);
-
-	$effect(() => {
-		if (open) loaded = true;
-		else active = null;
 	});
 
 	const onclick = (event: MouseEvent) => {
@@ -169,29 +157,6 @@
 			{/if}
 		</div>
 	{:else if variant === 'center'}
-		<div class="previews" aria-hidden="true">
-			{#each links as link, index (`${link.url}|${link.text}`)}
-				{#if loaded && link.images?.length}
-					<div class="preview" class:shown={active === index}>
-						{#each link.images.slice(0, 4) as image, picture (picture)}
-							<div
-								class="picture picture-{picture + 1}"
-								style="--order: {picture}"
-								{@attach push()}
-							>
-								<img
-									class="image"
-									{...imageProps(image.src, { sizes: '240px' })}
-									alt=""
-									draggable="false"
-								/>
-							</div>
-						{/each}
-					</div>
-				{/if}
-			{/each}
-		</div>
-
 		<div class="middle">
 			<div class="middle-links">
 				<MenuLinks
@@ -201,9 +166,6 @@
 					direction="column"
 					type={linkType}
 					landmark={false}
-					onactive={(index) => {
-						if (index !== null) active = index;
-					}}
 					linkAttach={scribble({ curve: 'random', hover: true })}
 				/>
 				{@render buttons()}
@@ -331,102 +293,6 @@
 		}
 	}
 
-	// The pictures of the hovered link stagger in on either side of the links, two a side, tilted opposite ways. Only
-	// where there is a mouse and room.
-	.previews {
-		position: absolute;
-		inset: 0;
-		z-index: 0;
-		display: none;
-		pointer-events: none;
-
-		@include mixins.min-lg {
-			@media (hover: hover) {
-				display: block;
-			}
-		}
-	}
-
-	.preview {
-		position: absolute;
-		inset: 0;
-	}
-
-	.picture {
-		--tilt: 0deg;
-		--side: 12%;
-		--top: 24%;
-
-		position: absolute;
-		top: var(--top);
-		width: clamp(140px, 15vw, 240px);
-		aspect-ratio: 4 / 5;
-		pointer-events: none;
-	}
-
-	.image {
-		display: block;
-		width: 100%;
-		height: 100%;
-		border-radius: var(--radius-card, 8px);
-		object-fit: cover;
-		opacity: 0;
-		rotate: var(--tilt);
-		scale: 0.7;
-
-		@include mixins.mq-motion-allow {
-			transition:
-				opacity 0.3s ease,
-				scale 0.3s ease;
-		}
-	}
-
-	.picture-1,
-	.picture-2 {
-		left: var(--side);
-	}
-
-	.picture-3,
-	.picture-4 {
-		right: var(--side);
-	}
-
-	.picture-1 {
-		--tilt: -7deg;
-	}
-
-	.picture-2 {
-		--tilt: 6deg;
-		--side: 20%;
-		--top: 56%;
-	}
-
-	.picture-3 {
-		--tilt: 7deg;
-		--top: 20%;
-	}
-
-	.picture-4 {
-		--tilt: -6deg;
-		--side: 20%;
-		--top: 54%;
-	}
-
-	.shown .picture {
-		pointer-events: auto;
-	}
-
-	.shown .image {
-		opacity: 1;
-		scale: 1;
-
-		@include mixins.mq-motion-allow {
-			transition:
-				opacity 0.5s var(--ease) calc(0.35s + var(--order) * 0.08s),
-				scale 0.7s var(--ease) calc(0.35s + var(--order) * 0.08s);
-		}
-	}
-
 	// The center variant: the links sit in the middle of the screen, and the social links rest at the bottom.
 	.middle {
 		position: relative;
@@ -437,8 +303,6 @@
 		align-items: center;
 		width: 100%;
 		min-height: 520px;
-		// Lets the pointer reach the pictures behind; what is interactive turns it back on.
-		pointer-events: none;
 		padding: 112px var(--body-padding) var(--body-padding);
 
 		@include mixins.max-md {
@@ -468,12 +332,6 @@
 
 	.middle-links :global(.menu-links) {
 		align-items: center;
-	}
-
-	.middle-links :global(.menu-links),
-	.middle-links .ctas,
-	.connect {
-		pointer-events: auto;
 	}
 
 	.connect {

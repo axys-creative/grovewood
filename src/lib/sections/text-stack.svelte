@@ -18,7 +18,7 @@
 </script>
 
 <script lang="ts">
-	import { textReveal } from '$lib/attachments/text-reveal';
+	import { textFade } from '$lib/attachments/text-fade';
 	import SectionCopy from '$lib/components/section-copy.svelte';
 
 	let {
@@ -30,7 +30,7 @@
 		...copy
 	}: TextStackProps = $props();
 
-	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
+	const reveal = textFade();
 </script>
 
 {#if !hidden}

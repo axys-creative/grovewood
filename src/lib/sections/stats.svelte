@@ -23,7 +23,7 @@
 </script>
 
 <script lang="ts">
-	import { textReveal } from '$lib/attachments/text-reveal';
+	import { textFade } from '$lib/attachments/text-fade';
 	import { animate } from '$lib/attachments/animate';
 	import Counter from '$lib/components/counter.svelte';
 	import SectionCopy from '$lib/components/section-copy.svelte';
@@ -38,7 +38,7 @@
 		...copy
 	}: StatsProps = $props();
 
-	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
+	const reveal = textFade();
 
 	const stagger = animate({ variant: 'up', stagger: 0.24, once: false, duration: 0.5 });
 </script>

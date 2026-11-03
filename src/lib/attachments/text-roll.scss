@@ -30,3 +30,14 @@
 		}
 	}
 }
+
+// Longer text rolls faster so it does not take long to finish.
+.text-roll--long {
+	--text-roll-stagger: 0.012s;
+	--text-roll-duration: 0.5s;
+}
+
+.text-roll--longest {
+	--text-roll-stagger: 0.006s;
+	--text-roll-duration: 0.4s;
+}

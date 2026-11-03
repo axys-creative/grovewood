@@ -259,6 +259,7 @@
 	}
 
 	.text {
+		border-radius: 4px;
 		color: var(--btn-link);
 		font-weight: var(--btn-font-weight-link);
 

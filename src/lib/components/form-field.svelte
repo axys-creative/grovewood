@@ -270,13 +270,17 @@
 		input,
 		textarea,
 		select {
-			padding: 0.85em 1em;
+			padding: var(--btn-padding);
 			border-radius: var(--radius-btn);
 		}
 
+		select {
+			padding-inline-end: 2.5em;
+		}
+
 		label {
-			top: calc(0.5em + 0.85em);
-			left: 1em;
+			top: calc(0.5em + 15px);
+			left: 30px;
 		}
 
 		input:focus ~ label,
@@ -285,7 +289,7 @@
 		textarea:not(:placeholder-shown) ~ label,
 		&.floated label {
 			top: 0.5em;
-			left: 0.75em;
+			left: calc(30px - 0.35em);
 			padding-inline: 0.35em;
 			translate: 0 -50%;
 			background: var(--field-label-bg, var(--color-bg));
@@ -300,7 +304,8 @@
 		overflow: hidden;
 		line-height: 1.2;
 		white-space: nowrap;
-		opacity: 0.75;
+		// Dimmed through the color, since an opacity would make the label's background see-through.
+		color: color-mix(in srgb, currentColor 75%, transparent);
 		pointer-events: none;
 
 		@include mixins.mq-motion-allow {
@@ -309,13 +314,13 @@
 				left 0.25s ease,
 				translate 0.25s ease,
 				font-size 0.25s ease,
-				opacity 0.25s ease;
+				color 0.25s ease;
 		}
 	}
 
 	.field:hover label,
 	.field:focus-within label {
-		opacity: 1;
+		color: inherit;
 	}
 
 	.underline {

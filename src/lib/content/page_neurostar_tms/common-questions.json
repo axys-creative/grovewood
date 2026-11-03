@@ -12,7 +12,7 @@
 			"iconStart": "/uploads/phone.svg"
 		}
 	},
-	"icon": "chevron-down",
+	"plus": true,
 	"singleOpen": true,
 	"items": [
 		{

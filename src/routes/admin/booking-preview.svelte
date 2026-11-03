@@ -6,7 +6,12 @@
 		type CalendarBookingProps
 	} from '$lib/components/calendar-booking.svelte';
 
-	let { triggerText, triggerStyle = 'highlight', ...rest }: CalendarBookingProps = $props();
+	let {
+		triggerText,
+		triggerStyle = 'highlight',
+		triggerIcon,
+		...rest
+	}: CalendarBookingProps = $props();
 
 	const pull = () =>
 		magnet({
@@ -22,7 +27,7 @@
 		<Button
 			text={triggerText}
 			type={triggerStyle === 'secondary' ? 'outline' : 'solid'}
-			iconStart="icon-calendar"
+			iconStart={triggerIcon || undefined}
 			{@attach textRoll()}
 			{@attach pull()}
 		/>

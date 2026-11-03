@@ -52,6 +52,7 @@
 		justify-content: center;
 		width: 24px;
 		height: 24px;
+		border-radius: 4px;
 		color: var(--color-text);
 
 		@include mixins.mq-motion-allow {
@@ -76,7 +77,6 @@
 		width: 40px;
 		height: 40px;
 		border: 1px solid var(--color-accent);
-		border-radius: var(--radius-btn);
 		background: var(--color-accent);
 		color: var(--color-on-accent);
 

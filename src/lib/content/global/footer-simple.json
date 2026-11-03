@@ -7,23 +7,26 @@
 	"divider": true,
 	"showThemeToggle": false,
 	"linkType": "text",
-	"contact": {
-		"address": {
+	"contact": [
+		{
+			"label": "Address",
 			"text": "233 South Pleasant Grove Boulevard, Suite 203,{.br}Pleasant Grove, Utah 84062",
 			"url": "https://maps.app.goo.gl/AoxHGurDNWnvuKB48",
 			"newTab": false
 		},
-		"phone": {
+		{
+			"label": "Phone",
 			"text": "(801) 785-4622",
 			"url": "tel:+8017854622",
 			"newTab": false
 		},
-		"email": {
+		{
+			"label": "Email",
 			"text": "info@grovewoodutah.com",
 			"url": "mailto:info@grovewoodutah.com",
 			"newTab": false
 		}
-	},
+	],
 	"linksets": [
 		{
 			"title": "",

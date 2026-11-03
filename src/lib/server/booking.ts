@@ -3,64 +3,35 @@ import { dev } from '$app/environment';
 import { env } from '$env/dynamic/private';
 import { getStore } from '@netlify/blobs';
 import config from '$lib/content/global/booking.json';
-import { isClosed, isIsoDate, slotLabels } from '$lib/utils/booking-rules';
+import site from '$lib/content/meta/site.json';
 
-type Entry = Record<string, unknown>;
+export const contactMethods = ['Phone call', 'Text message', 'Email'];
 
-type Store = {
-	get: (key: string) => Promise<Entry | null>;
-	set: (key: string, value: Entry) => Promise<void>;
-	/** Writes only when the key is free. Returns false when someone else already holds it. */
-	create: (key: string, value: Entry) => Promise<boolean>;
-	list: (prefix: string) => Promise<string[]>;
-};
-
-const memory = new Map<string, Entry>();
-
-// Netlify Blobs is only there on Netlify, so local dev keeps bookings in memory.
-const store: Store = dev
-	? {
-			get: async (key) => memory.get(key) ?? null,
-			set: async (key, value) => void memory.set(key, value),
-			create: async (key, value) => {
-				if (memory.has(key)) return false;
-				memory.set(key, value);
-				return true;
-			},
-			list: async (prefix) => [...memory.keys()].filter((key) => key.startsWith(prefix))
-		}
-	: (() => {
-			const blobs = () => getStore({ name: 'bookings', consistency: 'strong' });
-			return {
-				get: async (key) => (await blobs().get(key, { type: 'json' })) as Entry | null,
-				set: async (key, value) => void (await blobs().setJSON(key, value)),
-				create: async (key, value) => {
-					const result = await blobs().setJSON(key, value, { onlyIfNew: true });
-					return result.modified;
-				},
-				list: async (prefix) => (await blobs().list({ prefix })).blobs.map((blob) => blob.key)
-			};
-		})();
-
-const when = config.steps.when;
+const { step1, step2 } = config.form;
 const shown = {
-	firstName: config.steps.details.showFirstName ?? true,
-	lastName: config.steps.details.showLastName ?? true,
-	email: config.steps.details.showEmail ?? true,
-	phone: config.steps.details.showPhone ?? true
+	firstName: step1.showFirstName ?? true,
+	lastName: step1.showLastName ?? true,
+	email: step1.showEmail ?? true,
+	phone: step1.showPhone ?? true,
+	interest: step2.showInterest ?? true,
+	contactMethod: step2.showContactMethod ?? true,
+	message: step2.showMessage ?? true
 };
-const days = when.days ?? 5;
-const labels = slotLabels(when.timeStart ?? 8, when.timeLength ?? 2, when.timeSlots ?? 5);
 
 const MIN_AGE_MS = 4_000;
 const MAX_AGE_MS = 2 * 60 * 60 * 1000;
 const IP_LIMIT = 5;
 const EMAIL_LIMIT = 3;
+const HOUR = 60 * 60 * 1000;
+const DAY = 24 * HOUR;
+
+// Local dev and a deploy with BOOKING_RATE_LIMIT=off skip the limits, so testing is never blocked.
+const limited = !dev && env.BOOKING_RATE_LIMIT !== 'off';
 
 const secret = () => env.BOOKING_SECRET || env.RECAPTCHA_SECRET || 'dev-secret';
 const sign = (value: string) => createHmac('sha256', secret()).update(value).digest('hex');
 
-/** A signed timestamp handed out with the availability. A real visitor needs seconds to fill the form. */
+/** A signed timestamp handed out when the popover opens. A real visitor needs seconds to fill the form. */
 export const issueTicket = () => {
 	const stamp = String(Date.now());
 	return `${stamp}.${sign(stamp)}`;
@@ -75,15 +46,38 @@ function ticketAge(ticket: string) {
 	return Date.now() - Number(stamp);
 }
 
-/** Taken slots by date: `{ '2026-10-14': [0, 3] }`, the numbers being indexes into the day's time slots. */
-export async function takenSlots() {
-	const taken: Record<string, number[]> = {};
-	for (const key of await store.list('slot/')) {
-		const [, date, index] = key.split('/');
-		(taken[date] ??= []).push(Number(index));
+/** Counts an attempt under `key` for the current window. Returns true while still within `max`. A storage failure lets it through, so a lead is never lost to it. */
+async function allow(key: string, max: number, windowMs: number) {
+	if (!limited) return true;
+	try {
+		const store = getStore({ name: 'limits', consistency: 'strong' });
+		const slot = `${createHash('sha256').update(key).digest('hex').slice(0, 24)}/${Math.floor(Date.now() / windowMs)}`;
+		const used = Number(
+			((await store.get(slot, { type: 'json' })) as { count?: number } | null)?.count ?? 0
+		);
+		if (used >= max) return false;
+		await store.setJSON(slot, { count: used + 1 });
+		return true;
+	} catch (error) {
+		console.error('Rate limit check failed', error);
+		return true;
 	}
-	return taken;
 }
+
+const text = (value: unknown, max: number) =>
+	typeof value === 'string' ? value.trim().slice(0, max) : '';
+
+export type RequestResult = {
+	status: number;
+	body: { ok: boolean; error?: string; emailed?: boolean };
+};
+
+const fail = (status: number, error: string): RequestResult => ({
+	status,
+	body: { ok: false, error }
+});
+
+const escape = (value: string) => value.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`);
 
 async function verifyCaptcha(token: string, ip: string) {
 	if (!env.RECAPTCHA_SECRET) return true;
@@ -100,55 +94,16 @@ async function verifyCaptcha(token: string, ip: string) {
 	}
 }
 
-/** Counts an attempt under `key` for the current window. Returns true while still within `max`. */
-async function allow(key: string, max: number, windowMs: number) {
-	const full = `limit/${createHash('sha256').update(key).digest('hex').slice(0, 24)}/${Math.floor(Date.now() / windowMs)}`;
-	const used = Number((await store.get(full))?.count ?? 0);
-	if (used >= max) return false;
-	await store.set(full, { count: used + 1 });
-	return true;
-}
-
-const text = (value: unknown, max: number) =>
-	typeof value === 'string' ? value.trim().slice(0, max) : '';
-
-export type BookingResult = {
-	status: number;
-	body: { ok: boolean; error?: string; emailed?: boolean };
-};
-
-const fail = (status: number, error: string): BookingResult => ({
-	status,
-	body: { ok: false, error }
-});
-
-const escape = (value: string) => value.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`);
-
 /** Emails the visitor through Resend. Returns false when it is not set up or the send fails. */
-async function sendConfirmation(details: {
-	to: string;
-	firstName: string;
-	service: string;
-	date: string;
-	time: string;
-}) {
+async function sendConfirmation(details: { to: string; firstName: string; interest: string }) {
 	if (!env.RESEND_API_KEY || !env.BOOKING_FROM) {
 		console.warn('Confirmation email skipped: RESEND_API_KEY or BOOKING_FROM is not set');
 		return false;
 	}
 
-	const day = new Date(`${details.date}T12:00:00Z`).toLocaleDateString('en-US', {
-		weekday: 'long',
-		month: 'long',
-		day: 'numeric',
-		timeZone: 'UTC'
-	});
 	const lines = [
 		details.firstName ? `Hi ${details.firstName},` : 'Hi,',
-		'Your appointment is scheduled.',
-		`Service: ${details.service}`,
-		`Date: ${day}`,
-		`Time: ${details.time}`
+		`Thank you for reaching out to ${site.siteName}. We received your request${details.interest ? ` about ${details.interest}` : ''} and will be in touch soon to set up your initial consultation.`
 	];
 
 	try {
@@ -162,7 +117,7 @@ async function sendConfirmation(details: {
 				from: env.BOOKING_FROM,
 				to: [details.to],
 				reply_to: env.BOOKING_REPLY_TO || undefined,
-				subject: 'Your booking is confirmed',
+				subject: 'We received your request',
 				text: lines.join('\n\n'),
 				html: lines.map((line) => `<p>${escape(line)}</p>`).join('')
 			})
@@ -176,11 +131,11 @@ async function sendConfirmation(details: {
 	}
 }
 
-export async function createBooking(
+export async function createRequest(
 	input: unknown,
 	ip: string,
 	origin: string
-): Promise<BookingResult> {
+): Promise<RequestResult> {
 	const data = (input && typeof input === 'object' ? input : {}) as Record<string, unknown>;
 
 	// A bot that fills the hidden field is told it worked, so it does not adapt.
@@ -191,45 +146,32 @@ export async function createBooking(
 	const lastName = shown.lastName ? text(data.lastName, 60) : '';
 	const email = shown.email ? text(data.email, 120).toLowerCase() : '';
 	const phone = shown.phone ? text(data.phone, 20).replace(/\D/g, '') : '';
-	const date = text(data.date, 10);
-	const service = config.steps.service.services.find((item) => item.title === data.service);
-	const slot = typeof data.slot === 'number' ? data.slot : -1;
+	const interest = shown.interest ? text(data.interest, 80) : '';
+	const contactMethod = shown.contactMethod ? text(data.contactMethod, 20) : '';
+	const message = shown.message ? text(data.message, 1000) : '';
 
-	if ((shown.firstName && !firstName) || (shown.lastName && !lastName)) return fail(400, 'invalid');
+	if (shown.firstName && !firstName) return fail(400, 'invalid');
 	if (shown.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail(400, 'invalid');
-	if (shown.phone && (phone.length < 7 || phone.length > 15)) return fail(400, 'invalid');
-	if (!service || !Number.isInteger(slot) || !labels[slot]) return fail(400, 'invalid');
-	if (!isIsoDate(date) || isClosed(date, when.closedDays)) return fail(400, 'invalid');
+	const phoneValid = phone.length >= 7 && phone.length <= 15;
+	if (shown.phone && (phone ? !phoneValid : !shown.email)) return fail(400, 'invalid');
+	if (interest && !step2.interests.includes(interest)) return fail(400, 'invalid');
+	if (contactMethod && !contactMethods.includes(contactMethod)) return fail(400, 'invalid');
 
-	// A day beyond what the popover offers (with room for time zones) is not bookable.
-	const day = new Date(`${date}T12:00:00Z`).getTime();
-	const spread = (day - Date.now()) / 86_400_000;
-	if (spread < -1 || spread > days + 4) return fail(400, 'invalid');
-
-	const age = ticketAge(text(data.ticket, 200));
-	if (age === null || age > MAX_AGE_MS) return fail(400, 'expired');
-	if (age < MIN_AGE_MS) return fail(429, 'too-fast');
+	if (limited) {
+		const age = ticketAge(text(data.ticket, 200));
+		if (age === null || age > MAX_AGE_MS) return fail(400, 'expired');
+		if (age < MIN_AGE_MS) return fail(429, 'too-fast');
+	}
 
 	if (!(await verifyCaptcha(text(data.captcha, 4000), ip))) return fail(400, 'captcha');
 
 	const within =
-		(await allow(`ip:${ip}`, IP_LIMIT, 60 * 60 * 1000)) &&
-		(!email || (await allow(`email:${email}`, EMAIL_LIMIT, 24 * 60 * 60 * 1000)));
+		(await allow(`ip:${ip}`, IP_LIMIT, HOUR)) &&
+		(!email || (await allow(`email:${email}`, EMAIL_LIMIT, DAY)));
 	if (!within) return fail(429, 'rate-limit');
 
-	const reserved = await store.create(`slot/${date}/${slot}`, {
-		service: service.title,
-		time: labels[slot],
-		firstName,
-		lastName,
-		email,
-		phone,
-		bookedAt: new Date().toISOString()
-	});
-	if (!reserved) return fail(409, 'taken');
-
-	// Tells the site owner through Netlify Forms. A failed notice never undoes the booking. The post goes to the
-	// static page that holds the form, since the site's other paths are answered by the server, not Netlify Forms.
+	// Netlify Forms keeps the request and emails the site owner, so a failed post is a lost lead. The post goes to
+	// the static page that holds the form, since the site's other paths are answered by the server, not Netlify Forms.
 	if (!dev) {
 		try {
 			const response = await fetch(`${origin}/booking-form.html`, {
@@ -237,30 +179,30 @@ export async function createBooking(
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 				body: new URLSearchParams({
 					'form-name': 'booking',
-					service: service.title,
-					date,
-					time: labels[slot],
 					firstName,
 					lastName,
 					email,
-					phone
+					phone,
+					interest,
+					contactMethod,
+					message
 				}).toString()
 			});
-			if (!response.ok) console.error('Netlify form notice failed', response.status);
+			if (!response.ok) {
+				console.error('Netlify form post failed', response.status);
+				return fail(502, 'unavailable');
+			}
 		} catch (error) {
-			console.error('Netlify form notice failed', error);
+			console.error('Netlify form post failed', error);
+			return fail(502, 'unavailable');
 		}
 	}
 
+	// One confirmation per address a day, so the form cannot be used to flood someone's inbox.
 	const emailed =
 		!!email &&
-		(await sendConfirmation({
-			to: email,
-			firstName,
-			service: service.title,
-			date,
-			time: labels[slot]
-		}));
+		(await allow(`confirm:${email}`, 1, DAY)) &&
+		(await sendConfirmation({ to: email, firstName, interest }));
 
 	return { status: 200, body: { ok: true, emailed } };
 }

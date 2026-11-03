@@ -51,6 +51,7 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 12px;
+		border-radius: 4px;
 		color: var(--color-text);
 		font-family: var(--font-heading);
 		font-weight: 700;

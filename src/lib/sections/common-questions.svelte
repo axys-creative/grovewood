@@ -7,8 +7,8 @@
 		'eyebrowText' | 'eyebrowIcon' | 'eyebrowDot' | 'title' | 'description' | 'cta'
 	> & {
 		items: AccordionProps['items'];
-		/** An icon name from `static/icons` at the end of each question. */
-		icon?: string;
+		/** A plus sign at the end of each question that turns into a minus when open. */
+		plus?: boolean;
 		/** Opening a question closes the others. */
 		singleOpen?: boolean;
 		/** The section's anchor, so a link or the CMS preview can point to `#id`. */
@@ -25,13 +25,13 @@
 
 <script lang="ts">
 	import { animate } from '$lib/attachments/animate';
-	import { textReveal } from '$lib/attachments/text-reveal';
+	import { textFade } from '$lib/attachments/text-fade';
 	import Accordion from '$lib/components/accordion.svelte';
 	import SectionCopy from '$lib/components/section-copy.svelte';
 
 	let {
 		items = [],
-		icon,
+		plus = false,
 		singleOpen = false,
 		id,
 		fullScreen = false,
@@ -41,7 +41,7 @@
 		...copy
 	}: CommonQuestionsProps = $props();
 
-	const reveal = textReveal({ type: 'words', duration: 0.64, ease: 'back.out(2)' });
+	const reveal = textFade();
 	const slideIn = animate({ variant: 'right', once: false });
 </script>
 
@@ -54,7 +54,7 @@
 
 			{#if items.length}
 				<div class="questions">
-					<Accordion {items} {icon} {singleOpen} itemAttach={isStatic ? undefined : slideIn} />
+					<Accordion {items} {plus} {singleOpen} itemAttach={isStatic ? undefined : slideIn} />
 				</div>
 			{/if}
 		</div>

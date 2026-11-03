@@ -16,6 +16,8 @@
 		/** The glass attachment's background: refraction in Chrome, blur elsewhere. Wins over `blur`. */
 		glass?: boolean;
 		hideOnScroll?: boolean;
+		/** Hides the logo until the page scrolls, for a page that shows it in its hero. */
+		logoHandoff?: boolean;
 	};
 </script>
 
@@ -43,6 +45,7 @@
 		blur = false,
 		glass = false,
 		hideOnScroll = true,
+		logoHandoff = false,
 		showSkipLink = true,
 		navButton = {},
 		navFooterLinks = [],
@@ -117,9 +120,11 @@
 	class:bordered={border}
 	class:blur={blur && !glass}
 	class:has-glass={glass}
+	class:hide-on-scroll={hideOnScroll}
+	class:logo-handoff={logoHandoff}
 	data-nav-open={open || undefined}
 	bind:this={headerElement}
-	{@attach hideOnScroll ? watchScroll() : undefined}
+	{@attach hideOnScroll || logoHandoff ? watchScroll() : undefined}
 >
 	{#if glass}<div class="glass-layer" aria-hidden="true" {@attach glassEffect()}></div>{/if}
 
@@ -179,10 +184,10 @@
 		@include mixins.mq-motion-allow {
 			transition: translate var(--duration) var(--ease);
 		}
+	}
 
-		&:global([data-scroll-down]):not(:focus-within):not([data-nav-open]) {
-			translate: 0 -100%;
-		}
+	.hide-on-scroll:global([data-scroll-down]):not(:focus-within):not([data-nav-open]) {
+		translate: 0 -100%;
 	}
 
 	.bordered {
@@ -196,10 +201,10 @@
 		margin: var(--float-offset) auto 0;
 		display: block;
 		border-radius: var(--radius);
+	}
 
-		&:global([data-scroll-down]):not(:focus-within):not([data-nav-open]) {
-			translate: 0 calc(-100% - var(--float-offset) * 2);
-		}
+	.float.hide-on-scroll:global([data-scroll-down]):not(:focus-within):not([data-nav-open]) {
+		translate: 0 calc(-100% - var(--float-offset) * 2);
 	}
 
 	.float.bordered {
@@ -251,8 +256,17 @@
 		}
 	}
 
-	[data-nav-open] .logo-mask :global(.logo) {
+	[data-nav-open] .logo-mask :global(.logo),
+	.logo-handoff:not(:global([data-scroll-away])) .logo-mask :global(.logo) {
 		translate: 0 -100%;
+	}
+
+	.logo-handoff:not(:global([data-scroll-away])) .logo-mask {
+		visibility: hidden;
+
+		@include mixins.mq-motion-allow {
+			transition: visibility 0s 0.6s;
+		}
 	}
 
 	.float .inner {

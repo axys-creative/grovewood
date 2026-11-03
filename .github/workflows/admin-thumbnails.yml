@@ -1,0 +1,41 @@
+name: Admin thumbnails
+
+on:
+  push:
+    branches: [main]
+    paths: ['src/lib/content/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: admin-thumbnails
+
+jobs:
+  thumbnails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium
+      - run: bun run build
+      - name: Screenshot changed sections
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            bun scripts/thumbnails.ts --since "${{ github.event.before }}"
+          else
+            bun scripts/thumbnails.ts --all
+          fi
+      - name: Commit thumbnails
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add static/admin-thumbs
+          git diff --cached --quiet && exit 0
+          git commit -m "Update admin thumbnails"
+          git pull --rebase
+          git push

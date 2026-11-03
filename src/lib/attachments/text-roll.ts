@@ -2,7 +2,7 @@ import type { Attachment } from 'svelte/attachments';
 import './text-roll.scss';
 
 export type TextRollOptions = {
-	/** Seconds between each letter starting to roll. */
+	/** Seconds between each letter starting to roll. Longer text rolls faster by default (see `text-roll.scss`). */
 	stagger?: number;
 	/** Seconds each letter takes to roll. */
 	duration?: number;
@@ -11,9 +11,12 @@ export type TextRollOptions = {
 };
 
 /** Rolls each letter up and out as the pointer or keyboard focus arrives, replaced by a copy from below. */
+const LONG = 12;
+const LONGEST = 30;
+
 export function textRoll({
-	stagger = 0.02,
-	duration = 0.6,
+	stagger,
+	duration,
 	target: targetOption
 }: TextRollOptions = {}): Attachment<HTMLElement> {
 	return (el) => {
@@ -26,32 +29,51 @@ export function textRoll({
 			el.querySelector<HTMLElement>('.label') ??
 			el;
 		const original = Array.from(target.childNodes);
-		const text = target.textContent ?? '';
+		// Text is split into lines at each <br>, so a break from the CMS is kept.
+		const lines: string[] = [''];
+		const walker = document.createTreeWalker(
+			target,
+			NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT
+		);
+		for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+			if (node.nodeType === Node.TEXT_NODE) lines[lines.length - 1] += node.textContent ?? '';
+			else if ((node as Element).tagName === 'BR') lines.push('');
+		}
 
 		const readable = document.createElement('span');
 		readable.className = 'visually-hidden';
-		readable.textContent = text;
+		readable.textContent = lines.join(' ');
 
-		const chars = document.createElement('span');
-		chars.className = 'text-roll__chars';
-		chars.setAttribute('aria-hidden', 'true');
-		[...text].forEach((char, index) => {
-			const span = document.createElement('span');
-			span.className = 'text-roll__char';
-			span.dataset.char = char;
-			span.textContent = char;
-			span.style.setProperty('--text-roll-index', String(index));
-			chars.append(span);
+		const rows = lines.map((text, row) => {
+			const chars = document.createElement('span');
+			chars.className = 'text-roll__chars';
+			chars.setAttribute('aria-hidden', 'true');
+			const offset = lines.slice(0, row).reduce((sum, line) => sum + [...line].length, 0);
+			[...text].forEach((char, index) => {
+				const span = document.createElement('span');
+				span.className = 'text-roll__char';
+				span.dataset.char = char;
+				span.textContent = char;
+				span.style.setProperty('--text-roll-index', String(offset + index));
+				chars.append(span);
+			});
+			return chars;
 		});
 
-		target.replaceChildren(readable, chars);
+		target.replaceChildren(
+			readable,
+			...rows.flatMap((chars, row) => (row ? [document.createElement('br'), chars] : [chars]))
+		);
+		const length = lines.reduce((sum, line) => sum + [...line].length, 0);
 		el.classList.add('text-roll');
-		el.style.setProperty('--text-roll-stagger', `${stagger}s`);
-		el.style.setProperty('--text-roll-duration', `${duration}s`);
+		if (length > LONGEST) el.classList.add('text-roll--longest');
+		else if (length > LONG) el.classList.add('text-roll--long');
+		if (stagger !== undefined) el.style.setProperty('--text-roll-stagger', `${stagger}s`);
+		if (duration !== undefined) el.style.setProperty('--text-roll-duration', `${duration}s`);
 
 		return () => {
 			target.replaceChildren(...original);
-			el.classList.remove('text-roll');
+			el.classList.remove('text-roll', 'text-roll--long', 'text-roll--longest');
 			el.style.removeProperty('--text-roll-stagger');
 			el.style.removeProperty('--text-roll-duration');
 		};

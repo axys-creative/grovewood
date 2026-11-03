@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { textFade } from '$lib/attachments/text-fade';
+	import { watchScroll } from '$lib/attachments/watch-scroll';
+	import Logo, { type LogoProps } from '$lib/components/logo.svelte';
 	import SectionCopy, { type SectionCopyProps } from '$lib/components/section-copy.svelte';
 	import { imageProps } from '$lib/utils/image';
 
@@ -8,7 +11,9 @@
 		fullScreen = true,
 		hidden = false,
 		image,
+		logo,
 		direction = 'column',
+		static: isStatic = false,
 		...props
 	}: SectionCopyProps & {
 		/** The section's anchor, so a link or the CMS preview can point to `#id`. */
@@ -19,10 +24,15 @@
 		hidden?: boolean;
 		/** A picture beside the copy (below it on small screens), or below it at full width with `column`. */
 		image?: { src: string; alt?: string };
+		/** A logo in the eyebrow's place. The header's logo takes over once the page scrolls. */
+		logo?: LogoProps;
 		/** `column` centers the copy, with a picture below it at full width. `row` aligns it to the start, with the picture beside it from `lg` up. */
 		direction?: 'column' | 'row';
+		/** Skips the scroll effect on the title, for the CMS preview. */
+		static?: boolean;
 	} = $props();
 
+	const reveal = textFade();
 	const row = $derived(direction === 'row');
 	const stacked = $derived(!!image && !row);
 </script>
@@ -39,7 +49,13 @@
 	>
 		<div class="inner">
 			<div class="copy">
-				<SectionCopy level={1} align={row ? 'start' : 'center'} {...props} />
+				{#if logo}<div class="logo" {@attach watchScroll()}><Logo {...logo} /></div>{/if}
+				<SectionCopy
+					level={1}
+					align={row ? 'start' : 'center'}
+					{...props}
+					titleAttach={isStatic ? undefined : reveal}
+				/>
 			</div>
 
 			{#if image?.src}
@@ -102,8 +118,34 @@
 
 	.copy {
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-eyebrow-title);
 		width: 100%;
+	}
+
+	.logo {
+		--logo-height: clamp(48px, 6vw, 72px);
+
+		display: flex;
+		overflow: clip;
+
+		@include mixins.mq-motion-allow {
+			:global(.logo) {
+				transition: translate 0.5s var(--ease);
+			}
+		}
+
+		&:global([data-scroll-away]) :global(.logo) {
+			translate: 0 -100%;
+			visibility: hidden;
+
+			@include mixins.mq-motion-allow {
+				transition:
+					translate 0.5s var(--ease),
+					visibility 0s 0.5s;
+			}
+		}
 	}
 
 	.row.has-image .copy {
@@ -111,7 +153,7 @@
 	}
 
 	.row .copy {
-		justify-content: flex-start;
+		align-items: flex-start;
 	}
 
 	.media {

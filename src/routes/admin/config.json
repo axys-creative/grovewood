@@ -1552,11 +1552,12 @@
 							]
 						},
 						{
-							"name": "icon",
-							"label": "Question icon",
-							"widget": "string",
+							"name": "plus",
+							"label": "Plus sign on questions",
+							"widget": "boolean",
 							"required": false,
-							"hint": "Icon file name without .svg (e.g. chevron-down)."
+							"default": true,
+							"hint": "A plus that turns into a minus when open."
 						},
 						{
 							"name": "singleOpen",
@@ -2566,11 +2567,12 @@
 							]
 						},
 						{
-							"name": "icon",
-							"label": "Question icon",
-							"widget": "string",
+							"name": "plus",
+							"label": "Plus sign on questions",
+							"widget": "boolean",
 							"required": false,
-							"hint": "Icon file name without .svg (e.g. chevron-down)."
+							"default": true,
+							"hint": "A plus that turns into a minus when open."
 						},
 						{
 							"name": "singleOpen",
@@ -3664,11 +3666,12 @@
 							]
 						},
 						{
-							"name": "icon",
-							"label": "Question icon",
-							"widget": "string",
+							"name": "plus",
+							"label": "Plus sign on questions",
+							"widget": "boolean",
 							"required": false,
-							"hint": "Icon file name without .svg (e.g. chevron-down)."
+							"default": true,
+							"hint": "A plus that turns into a minus when open."
 						},
 						{
 							"name": "singleOpen",
@@ -4625,11 +4628,12 @@
 							]
 						},
 						{
-							"name": "icon",
-							"label": "Question icon",
-							"widget": "string",
+							"name": "plus",
+							"label": "Plus sign on questions",
+							"widget": "boolean",
 							"required": false,
-							"hint": "Icon file name without .svg (e.g. chevron-down)."
+							"default": true,
+							"hint": "A plus that turns into a minus when open."
 						},
 						{
 							"name": "singleOpen",
@@ -5584,29 +5588,6 @@
 											"hint": "An SVG icon; it takes the text color."
 										}
 									]
-								},
-								{
-									"name": "images",
-									"label": "Hover pictures",
-									"label_singular": "Picture",
-									"widget": "list",
-									"required": false,
-									"max": 4,
-									"summary": "{{fields.alt}}",
-									"hint": "Up to four. They fade in beside the links when the link is hovered in the Header Basic menu.",
-									"fields": [
-										{
-											"name": "src",
-											"label": "Image",
-											"widget": "image"
-										},
-										{
-											"name": "alt",
-											"label": "Description",
-											"widget": "string",
-											"required": false
-										}
-									]
 								}
 							]
 						},
@@ -5931,93 +5912,36 @@
 						{
 							"name": "contact",
 							"label": "Contact",
-							"widget": "object",
+							"label_singular": "Link",
+							"widget": "list",
 							"required": false,
-							"hint": "Shown under the logo. Leave a part empty to hide it.",
+							"summary": "{{fields.label}}: {{fields.text}}",
+							"hint": "Shown under the logo, each with its label.",
 							"fields": [
 								{
-									"name": "address",
-									"label": "Address",
-									"widget": "object",
+									"name": "label",
+									"label": "Label",
+									"widget": "string",
 									"required": false,
-									"fields": [
-										{
-											"name": "text",
-											"label": "Text",
-											"widget": "string",
-											"required": false,
-											"hint": "Use {.br} for a line break."
-										},
-										{
-											"name": "url",
-											"label": "URL",
-											"widget": "string",
-											"required": false
-										},
-										{
-											"name": "newTab",
-											"label": "Open in new tab",
-											"widget": "boolean",
-											"default": false,
-											"required": false
-										}
-									]
+									"hint": "Shown before the link, e.g. Address."
 								},
 								{
-									"name": "phone",
-									"label": "Phone",
-									"widget": "object",
-									"required": false,
-									"fields": [
-										{
-											"name": "text",
-											"label": "Text",
-											"widget": "string",
-											"required": false,
-											"hint": "Use {.br} for a line break."
-										},
-										{
-											"name": "url",
-											"label": "URL",
-											"widget": "string",
-											"required": false
-										},
-										{
-											"name": "newTab",
-											"label": "Open in new tab",
-											"widget": "boolean",
-											"default": false,
-											"required": false
-										}
-									]
+									"name": "text",
+									"label": "Text",
+									"widget": "string",
+									"hint": "Use {.br} for a line break."
 								},
 								{
-									"name": "email",
-									"label": "Email",
-									"widget": "object",
-									"required": false,
-									"fields": [
-										{
-											"name": "text",
-											"label": "Text",
-											"widget": "string",
-											"required": false,
-											"hint": "Use {.br} for a line break."
-										},
-										{
-											"name": "url",
-											"label": "URL",
-											"widget": "string",
-											"required": false
-										},
-										{
-											"name": "newTab",
-											"label": "Open in new tab",
-											"widget": "boolean",
-											"default": false,
-											"required": false
-										}
-									]
+									"name": "url",
+									"label": "URL",
+									"widget": "string"
+								},
+								{
+									"name": "newTab",
+									"label": "Open in new tab",
+									"widget": "boolean",
+									"default": false,
+									"required": false
 								}
 							]
 						},
@@ -6201,16 +6125,25 @@
 							"hint": "How the floating button looks. Highlight helps it stand out from the page’s other buttons."
 						},
 						{
-							"name": "steps",
-							"label": "Steps",
+							"name": "triggerIcon",
+							"label": "Button icon",
+							"widget": "image",
+							"required": false,
+							"hint": "An SVG icon shown before the button text. Remove the image to show the button without an icon."
+						},
+						{
+							"name": "form",
+							"label": "Form",
 							"widget": "object",
+							"collapsed": false,
+							"hint": "The request form visitors fill in, in two steps and a confirmation. The owner is emailed each request through Netlify Forms.",
 							"fields": [
 								{
-									"name": "service",
-									"label": "Step 1 · Service",
+									"name": "step1",
+									"label": "Step 1 · Contact info",
 									"widget": "object",
-									"collapsed": false,
-									"hint": "Choosing a service, and the services offered.",
+									"collapsed": true,
+									"hint": "Name, email and phone.",
 									"fields": [
 										{
 											"name": "title",
@@ -6218,136 +6151,10 @@
 											"widget": "string"
 										},
 										{
-											"name": "services",
-											"label": "Services",
-											"widget": "list",
-											"summary": "{{fields.title}}",
-											"fields": [
-												{
-													"name": "title",
-													"label": "Title",
-													"widget": "string"
-												},
-												{
-													"name": "description",
-													"label": "Description",
-													"widget": "text",
-													"required": false
-												},
-												{
-													"name": "duration",
-													"label": "Length",
-													"widget": "string",
-													"default": "30 min",
-													"required": false,
-													"hint": "Shown on the service card, such as “30 min” or “1 hour”."
-												},
-												{
-													"name": "price",
-													"label": "Price",
-													"widget": "string",
-													"required": false,
-													"hint": "Shown on the confirmation. Leave empty for free."
-												}
-											]
-										}
-									]
-								},
-								{
-									"name": "when",
-									"label": "Step 2 · Date and time",
-									"widget": "object",
-									"collapsed": false,
-									"hint": "Choosing a day and a time, and which days and times are offered.",
-									"fields": [
-										{
-											"name": "title",
-											"label": "Heading",
-											"widget": "string"
-										},
-										{
-											"name": "dateLabel",
-											"label": "Date label",
-											"widget": "string"
-										},
-										{
-											"name": "days",
-											"label": "Days offered",
-											"widget": "number",
-											"value_type": "int",
-											"min": 1,
-											"max": 14,
-											"default": 5,
-											"hint": "How many bookable days are shown, starting tomorrow. Sundays are skipped."
-										},
-										{
-											"name": "closedDays",
-											"label": "Closed days",
-											"widget": "select",
-											"multiple": true,
-											"required": false,
-											"options": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-											"default": ["Sun"],
-											"hint": "Weekdays that can’t be booked. They still appear in the list, greyed out, and don’t count toward the days offered."
-										},
-										{
-											"name": "timeLabel",
-											"label": "Time label",
-											"widget": "string"
-										},
-										{
-											"name": "timeStart",
-											"label": "First time slot (hour)",
-											"widget": "number",
-											"value_type": "int",
-											"min": 0,
-											"max": 23,
-											"default": 8,
-											"hint": "The hour the first time slot starts, 0 to 23 (8 is 8 AM)."
-										},
-										{
-											"name": "timeLength",
-											"label": "Slot length (hours)",
-											"widget": "number",
-											"value_type": "int",
-											"min": 1,
-											"max": 12,
-											"default": 2,
-											"hint": "How long each time slot is, in hours."
-										},
-										{
-											"name": "timeSlots",
-											"label": "Slots per day",
-											"widget": "number",
-											"value_type": "int",
-											"min": 1,
-											"max": 12,
-											"default": 5,
-											"hint": "How many time slots are offered each day."
-										}
-									]
-								},
-								{
-									"name": "details",
-									"label": "Step 3 · Details",
-									"widget": "object",
-									"collapsed": false,
-									"hint": "The visitor’s contact details. Keep at least one way to reach them.",
-									"fields": [
-										{
-											"name": "title",
-											"label": "Heading",
-											"widget": "string"
-										},
-										{
-											"name": "submitText",
-											"label": "Book button",
-											"widget": "string"
-										},
-										{
-											"name": "sendingText",
-											"label": "Book button while sending",
-											"widget": "string"
+											"name": "intro",
+											"label": "Intro",
+											"widget": "text",
+											"required": false
 										},
 										{
 											"name": "showFirstName",
@@ -6371,7 +6178,7 @@
 											"widget": "boolean",
 											"default": true,
 											"required": false,
-											"hint": "Turn off to stop asking. Without an email no confirmation message is sent to the visitor."
+											"hint": "Turn off to stop asking. Without an email no confirmation message is sent to the visitor, and the phone number becomes required."
 										},
 										{
 											"name": "showPhone",
@@ -6384,11 +6191,97 @@
 									]
 								},
 								{
-									"name": "done",
-									"label": "Step 4 · Done",
+									"name": "step2",
+									"label": "Step 2 · General info",
 									"widget": "object",
-									"collapsed": false,
-									"hint": "Shown after the booking is sent.",
+									"collapsed": true,
+									"hint": "A few questions about what they need.",
+									"fields": [
+										{
+											"name": "title",
+											"label": "Heading",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "interestLabel",
+											"label": "Interest dropdown label",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "interests",
+											"label": "Interest options",
+											"widget": "list",
+											"required": false,
+											"field": {
+												"name": "interest",
+												"label": "Option",
+												"widget": "string"
+											},
+											"hint": "The choices in the “what are you interested in” dropdown. Leave empty to hide it."
+										},
+										{
+											"name": "contactLabel",
+											"label": "Contact method label",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "messageLabel",
+											"label": "Message label",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "privacyNote",
+											"label": "Note under the form",
+											"widget": "text",
+											"required": false,
+											"hint": "Small print, such as a reminder not to share medical details."
+										},
+										{
+											"name": "submitText",
+											"label": "Send button",
+											"widget": "string"
+										},
+										{
+											"name": "sendingText",
+											"label": "Send button while sending",
+											"widget": "string"
+										},
+										{
+											"name": "showInterest",
+											"label": "Ask what they are interested in",
+											"widget": "boolean",
+											"default": true,
+											"required": false,
+											"hint": "Turn off to stop asking."
+										},
+										{
+											"name": "showContactMethod",
+											"label": "Ask for best way to reach them",
+											"widget": "boolean",
+											"default": true,
+											"required": false,
+											"hint": "Turn off to stop asking."
+										},
+										{
+											"name": "showMessage",
+											"label": "Ask for a message",
+											"widget": "boolean",
+											"default": true,
+											"required": false,
+											"hint": "Turn off to stop asking."
+										}
+									]
+								},
+								{
+									"name": "step3",
+									"label": "Step 3 · Submission complete",
+									"widget": "object",
+									"collapsed": true,
+									"hint": "Shown after the request is sent.",
 									"fields": [
 										{
 											"name": "title",
