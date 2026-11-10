@@ -49,14 +49,26 @@ export function textRoll({
 			chars.className = 'text-roll__chars';
 			chars.setAttribute('aria-hidden', 'true');
 			const offset = lines.slice(0, row).reduce((sum, line) => sum + [...line].length, 0);
-			[...text].forEach((char, index) => {
-				const span = document.createElement('span');
-				span.className = 'text-roll__char';
-				span.dataset.char = char;
-				span.textContent = char;
-				span.style.setProperty('--text-roll-index', String(offset + index));
-				chars.append(span);
-			});
+			let index = offset;
+			for (const part of text.split(/(\s+)/)) {
+				if (!part) continue;
+				if (/^\s+$/.test(part)) {
+					chars.append(' ');
+					index += [...part].length;
+					continue;
+				}
+				const word = document.createElement('span');
+				word.className = 'text-roll__word';
+				for (const char of part) {
+					const span = document.createElement('span');
+					span.className = 'text-roll__char';
+					span.dataset.char = char;
+					span.textContent = char;
+					span.style.setProperty('--text-roll-index', String(index++));
+					word.append(span);
+				}
+				chars.append(word);
+			}
 			return chars;
 		});
 

@@ -114,6 +114,7 @@
 		flex-direction: column;
 		align-items: flex-start;
 		width: 100%;
+		overflow-x: clip;
 	}
 
 	.accordion > :global(.button) {

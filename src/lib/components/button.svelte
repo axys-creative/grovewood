@@ -117,6 +117,7 @@
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: center;
+		text-align: center;
 		gap: var(--btn-gap);
 		padding: 0;
 		border: 0;
