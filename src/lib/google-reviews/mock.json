@@ -1,0 +1,118 @@
+{
+	"syncedAt": "2026-11-01T06:00:00Z",
+	"summary": {
+		"rating": 4.7,
+		"count": 12
+	},
+	"approvedIds": ["mk-001", "mk-002", "mk-003", "mk-005", "mk-008", "mk-010"],
+	"reviews": [
+		{
+			"reviewId": "mk-001",
+			"rating": 5,
+			"comment": "Everything about my experience at Grovewood felt thoughtful. The front desk was kind, my therapist listened without rushing me, and I left my first session feeling like I had a plan. Highly recommend.",
+			"displayName": "Hannah R.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-10-28T16:00:00Z",
+			"updateTime": "2026-10-28T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-002",
+			"rating": 5,
+			"comment": "The TMS team walked me through every step and checked in each week. I'm sleeping better and feel more like myself again. Grateful for the care.",
+			"displayName": "Marcus T.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-10-14T16:00:00Z",
+			"updateTime": "2026-10-14T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-003",
+			"rating": 5,
+			"comment": "Clean, calm office and easy scheduling. My appointments always start on time.",
+			"displayName": "Priya S.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-09-30T16:00:00Z",
+			"updateTime": "2026-09-30T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-004",
+			"rating": 4,
+			"comment": "Really good experience overall. Wait for my first appointment was a little longer than I hoped, but the care once I was in was excellent.",
+			"displayName": "Daniel W.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-09-12T16:00:00Z",
+			"updateTime": "2026-09-12T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-005",
+			"rating": 5,
+			"comment": "I had been putting off getting help for years. The assessment was thorough, the explanations were clear, and I never felt judged. I'm so glad I finally made the call. The whole team has been warm and professional from the first phone call to every follow-up.",
+			"displayName": "Camille B.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-08-22T16:00:00Z",
+			"updateTime": "2026-08-22T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-006",
+			"rating": 1,
+			"comment": "Had trouble getting a call back about billing.",
+			"displayName": "Anonymous",
+			"profilePhotoUrl": null,
+			"createTime": "2026-08-05T16:00:00Z",
+			"updateTime": "2026-08-05T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-007",
+			"rating": 5,
+			"comment": "",
+			"displayName": "Jordan L.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-07-29T16:00:00Z",
+			"updateTime": "2026-07-29T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-008",
+			"rating": 5,
+			"comment": "My psychiatrist took the time to explain my options and answer every question. I never felt like just another appointment.",
+			"displayName": "Elise M.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-07-11T16:00:00Z",
+			"updateTime": "2026-07-11T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-009",
+			"rating": 3,
+			"comment": "Good provider, but parking can be tricky at busy times.",
+			"displayName": "Tom A.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-06-27T16:00:00Z",
+			"updateTime": "2026-06-27T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-010",
+			"rating": 5,
+			"comment": "Compassionate, professional, and organized. Telehealth worked smoothly for me.",
+			"displayName": "Rachel K.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-06-02T16:00:00Z",
+			"updateTime": "2026-06-02T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-011",
+			"rating": 2,
+			"comment": "Scheduling took a while and I felt unsure about next steps after my visit.",
+			"displayName": "Sam P.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-05-18T16:00:00Z",
+			"updateTime": "2026-05-18T16:00:00Z"
+		},
+		{
+			"reviewId": "mk-012",
+			"rating": 5,
+			"comment": "Five stars. The staff made a hard step feel manageable.",
+			"displayName": "Nathan G.",
+			"profilePhotoUrl": null,
+			"createTime": "2026-04-30T16:00:00Z",
+			"updateTime": "2026-04-30T16:00:00Z"
+		}
+	]
+}

@@ -4,6 +4,9 @@ const TOKEN_PATTERN = /(confirmation|invite|recovery|email_change|access)_token=
 export type NetlifyIdentity = {
 	init: () => void;
 	on: (event: string, callback: () => void) => void;
+	open: (tab?: 'login' | 'signup') => void;
+	close?: () => void;
+	currentUser: () => { jwt: () => Promise<string> } | null;
 };
 
 type IdentityWindow = { netlifyIdentity?: NetlifyIdentity };

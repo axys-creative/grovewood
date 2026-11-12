@@ -33,6 +33,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"cms": "decap-server",
+		"google-auth": "bun scripts/google-auth.ts",
 		"thumbnails": "vite build && bun scripts/thumbnails.ts --all"
 	},
 	"type": "module",

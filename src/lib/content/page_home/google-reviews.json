@@ -1,0 +1,14 @@
+{
+	"hidden": false,
+	"eyebrowText": "GOOGLE REVIEWS",
+	"title": "What our clients are saying about \"The Grovewood Difference\"",
+	"label": "Google reviews",
+	"cta": {
+		"primary": {
+			"text": "Leave us a review",
+			"textDescription": "Leave Grovewood a review on Google",
+			"url": "https://search.google.com/local/writereview?placeid=ChIJxW9BxAiETYcR7_viQRihU2M",
+			"newTab": true
+		}
+	}
+}

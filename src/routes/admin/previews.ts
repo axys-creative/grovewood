@@ -6,6 +6,8 @@ import CarouselTestimonials from '$lib/sections/carousel-testimonials.svelte';
 import CommonQuestions from '$lib/sections/common-questions.svelte';
 import FooterSimple from '$lib/components/footer-simple.svelte';
 import HeaderSimple from '$lib/components/header-simple.svelte';
+import GoogleReviews from '$lib/sections/google-reviews.svelte';
+import mockReviews from '$lib/google-reviews/mock.json';
 import HeroSimple from '$lib/sections/hero-simple.svelte';
 import logo from '$lib/content/global/logo.json';
 import navigation from '$lib/content/global/navigation.json';
@@ -89,6 +91,18 @@ const previews: Record<string, Preview> = {
 			...data,
 			cta: data.cta ? withCta(data) : undefined,
 			items: data.items ?? [],
+			static: true
+		})
+	},
+	google_reviews: {
+		component: GoogleReviews as unknown as Section,
+		props: (data) => ({
+			...data,
+			cta: data.cta ? withCta(data) : undefined,
+			reviews: mockReviews.reviews.filter(
+				(review) => mockReviews.approvedIds.includes(review.reviewId) && review.comment
+			),
+			summary: mockReviews.summary,
 			static: true
 		})
 	},

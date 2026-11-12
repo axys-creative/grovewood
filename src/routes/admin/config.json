@@ -3,7 +3,7 @@
 	"backend": {
 		"name": "git-gateway",
 		"branch": "main",
-		"repo": "https://github.com/AXYS-Creative/grovewood.git"
+		"repo": "https://github.com/axys-creative/grovewood.git"
 	},
 	"local_backend": true,
 	"media_folder": "static/uploads",
@@ -584,9 +584,9 @@
 					]
 				},
 				{
-					"name": "carousel_testimonials",
-					"label": "Testimonials",
-					"file": "src/lib/content/page_home/carousel-testimonials.json",
+					"name": "google_reviews",
+					"label": "Google reviews",
+					"file": "src/lib/content/page_home/google-reviews.json",
 					"preview_path": "#testimonials",
 					"fields": [
 						{
@@ -628,47 +628,105 @@
 							"label": "Carousel accessible name",
 							"widget": "string",
 							"required": false,
-							"hint": "Defaults to Testimonials."
+							"hint": "Defaults to Google reviews."
 						},
 						{
-							"name": "testimonials",
-							"label": "Testimonials",
-							"label_singular": "Testimonial",
-							"widget": "list",
-							"summary": "{{fields.name}}",
+							"name": "cta",
+							"label": "Leave-a-review button",
+							"widget": "object",
+							"required": false,
 							"fields": [
 								{
-									"name": "quote",
-									"label": "Quote",
-									"widget": "text"
+									"name": "primary",
+									"label": "Primary button",
+									"widget": "object",
+									"required": true,
+									"fields": [
+										{
+											"name": "text",
+											"label": "Text",
+											"widget": "string"
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string"
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										}
+									]
 								},
 								{
-									"name": "name",
-									"label": "Name",
-									"widget": "string"
-								},
-								{
-									"name": "role",
-									"label": "Role or description",
-									"widget": "string",
-									"required": false
-								},
-								{
-									"name": "image",
-									"label": "Portrait",
+									"name": "secondary",
+									"label": "Secondary button",
 									"widget": "object",
 									"required": false,
 									"fields": [
 										{
-											"name": "src",
-											"label": "Image",
-											"widget": "image"
-										},
-										{
-											"name": "alt",
-											"label": "Alt text",
+											"name": "text",
+											"label": "Text",
 											"widget": "string",
 											"required": false
+										},
+										{
+											"name": "textDescription",
+											"label": "Accessible description",
+											"widget": "string",
+											"required": false,
+											"hint": "Optional aria-label for screen readers"
+										},
+										{
+											"name": "url",
+											"label": "URL",
+											"widget": "string",
+											"required": false
+										},
+										{
+											"name": "newTab",
+											"label": "Open in new tab",
+											"widget": "boolean",
+											"required": false,
+											"default": false
+										},
+										{
+											"name": "iconStart",
+											"label": "Icon before text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
+										},
+										{
+											"name": "iconEnd",
+											"label": "Icon after text",
+											"widget": "image",
+											"required": false,
+											"hint": "An SVG icon; it takes the text color."
 										}
 									]
 								}
