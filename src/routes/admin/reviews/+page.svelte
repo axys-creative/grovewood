@@ -117,26 +117,35 @@
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
+<div class="bar">
+	<a class="back" href="/admin/">← Back to the editor</a>
+	<a class="brand" href="/admin/" aria-label="Back to the editor">
+		<img src="/images/admin/admin-logo-black.svg" alt="" />
+	</a>
+</div>
+
 <main>
 	<header>
-		<h1>Google reviews</h1>
-		<p>
+		<h1>
+			<img src="/images/admin/icon-google.svg" alt="" width="28" height="28" />
+			Google reviews
+		</h1>
+		<p class="lead">
 			Only reviews switched on here appear on the home page, and only those with a message. Changes
 			show within a minute or two.
 		</p>
-		{#if data}
-			<p class="meta">
-				{#if data.source === 'mock'}Showing sample reviews. Nothing has synced from Google yet.
-				{:else if data.source === 'none'}Nothing has synced from Google yet.
-				{:else}Last synced {new Date(data.syncedAt).toLocaleString('en-US')}.{/if}
-				{approved.length} switched on.
-			</p>
-		{/if}
 		<div class="actions">
-			<button type="button" onclick={sync} disabled={syncing || !ready}>
+			<button type="button" class="primary" onclick={sync} disabled={syncing || !ready}>
 				{syncing ? 'Syncing…' : 'Sync now'}
 			</button>
-			<a href="/admin/">Back to the editor</a>
+			{#if data}
+				<p class="meta">
+					{#if data.source === 'mock'}Showing sample reviews. Nothing has synced from Google yet.
+					{:else if data.source === 'none'}Nothing has synced from Google yet.
+					{:else}Last synced {new Date(data.syncedAt).toLocaleString('en-US')}.{/if}
+					<strong>{approved.length} switched on.</strong>
+				</p>
+			{/if}
 		</div>
 		<p class="message" role="status">{message}</p>
 	</header>
@@ -199,18 +208,72 @@
 </main>
 
 <style lang="scss">
+	$text: #313d3e;
+	$muted: #798291;
+	$border: #dfdfe3;
+	$blue: #3a69c7;
+	$page: #eff0f4;
+
+	:global(body) {
+		margin: 0;
+		background: $page;
+		color: $text;
+		font-family:
+			-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+		line-height: 1.5;
+	}
+
+	.bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		height: 3.5rem;
+		padding-inline: 1.25rem;
+		border-bottom: 1px solid $border;
+		background: #fff;
+	}
+
+	.brand img {
+		display: block;
+		height: 1.75rem;
+		width: auto;
+	}
+
+	.back {
+		color: $text;
+		font-size: 0.875rem;
+		font-weight: 500;
+		text-decoration: none;
+
+		&:hover {
+			color: $blue;
+		}
+	}
+
 	main {
 		max-width: 56rem;
 		margin-inline: auto;
-		padding: 2rem 1rem 4rem;
+		padding: 2rem 1.25rem 4rem;
 	}
 
 	h1 {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 		margin: 0 0 0.5rem;
+		font-size: 1.75rem;
+		font-weight: 400;
+		letter-spacing: -0.5px;
 	}
 
 	p {
 		margin: 0.5rem 0;
+	}
+
+	.lead {
+		max-width: 40rem;
+		color: $muted;
 	}
 
 	.meta,
@@ -218,18 +281,29 @@
 	time,
 	.empty {
 		font-size: 0.875rem;
-		opacity: 0.75;
+		color: $muted;
+	}
+
+	.meta {
+		margin: 0;
+
+		strong {
+			color: $text;
+			font-weight: 600;
+		}
 	}
 
 	.actions {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.75rem 1rem;
 		margin-top: 1rem;
 	}
 
 	.message {
 		min-height: 1.5rem;
+		font-size: 0.875rem;
 	}
 
 	button,
@@ -238,13 +312,19 @@
 		font: inherit;
 	}
 
-	.actions button {
-		padding: 0.5rem 1rem;
-		border: 1px solid currentColor;
-		border-radius: 0.5rem;
-		background: none;
-		color: inherit;
+	.primary {
+		height: 2.25rem;
+		padding: 0 1rem;
+		border: 0;
+		border-radius: 5px;
+		background: $blue;
+		color: #fff;
+		font-weight: 500;
 		cursor: pointer;
+
+		&:hover:not(:disabled) {
+			background: color-mix(in srgb, $blue 85%, #000);
+		}
 
 		&:disabled {
 			opacity: 0.5;
@@ -257,18 +337,48 @@
 		flex-wrap: wrap;
 		gap: 1rem;
 		margin-block: 1.5rem 0.5rem;
+		padding: 1rem 1.25rem;
+		border: 1px solid $border;
+		border-radius: 5px;
+		background: #fff;
 
 		label {
 			display: flex;
 			flex-direction: column;
 			gap: 0.25rem;
-			font-size: 0.875rem;
+			font-size: 0.75rem;
+			font-weight: 500;
+			text-transform: uppercase;
+			letter-spacing: 0.02em;
+			color: $muted;
 		}
 
 		input,
 		select {
 			min-width: 10rem;
-			padding: 0.5rem;
+			height: 2.25rem;
+			padding: 0 0.75rem;
+			border: 1px solid $border;
+			border-radius: 5px;
+			background: #fff;
+			color: $text;
+			font-size: 0.875rem;
+			text-transform: none;
+			letter-spacing: 0;
+
+			&:focus-visible {
+				outline: 2px solid $blue;
+				outline-offset: 1px;
+			}
+		}
+
+		select {
+			appearance: none;
+			padding-inline-end: 2.25rem;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23798291' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+			background-repeat: no-repeat;
+			background-position: right 0.75rem center;
+			background-size: 1rem;
 		}
 	}
 
@@ -286,11 +396,16 @@
 		justify-content: space-between;
 		gap: 1.5rem;
 		padding: 1rem 1.25rem;
-		border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-		border-radius: 0.75rem;
+		border: 1px solid $border;
+		border-left: 4px solid $border;
+		border-radius: 5px;
+		background: #fff;
+		box-shadow:
+			0 2px 6px 0 rgba(68, 74, 87, 0.05),
+			0 1px 3px 0 rgba(68, 74, 87, 0.1);
 
 		&.on {
-			border-color: currentColor;
+			border-left-color: $blue;
 		}
 	}
 
@@ -320,8 +435,9 @@
 		height: 1.75rem;
 		border: 0;
 		border-radius: 1rem;
-		background: color-mix(in srgb, currentColor 25%, transparent);
+		background: #c9ccd3;
 		cursor: pointer;
+		transition: background 0.15s;
 
 		&::after {
 			content: '';
@@ -331,16 +447,20 @@
 			width: 1.25rem;
 			height: 1.25rem;
 			border-radius: 50%;
-			background: Canvas;
+			background: #fff;
 			transition: translate 0.15s;
+		}
 
-			@media (prefers-reduced-motion: reduce) {
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+
+			&::after {
 				transition: none;
 			}
 		}
 
 		&[aria-checked='true'] {
-			background: currentColor;
+			background: $blue;
 
 			&::after {
 				translate: 1.25rem 0;
@@ -353,7 +473,7 @@
 		}
 
 		&:focus-visible {
-			outline: 2px solid currentColor;
+			outline: 2px solid $blue;
 			outline-offset: 3px;
 		}
 	}

@@ -5,6 +5,7 @@
 	import site from '$lib/content/meta/site.json';
 	import { loadIdentity } from '$lib/utils/identity';
 	import { cardThumbnails } from './card-thumbnails';
+	import { reviewsLink } from './reviews-link';
 	import { sideToggleControls } from './view-controls';
 
 	type Cms = {
@@ -43,6 +44,7 @@
 		document.body.setAttribute('data-sveltekit-reload', '');
 		const stopControls = sideToggleControls();
 		const stopThumbnails = cardThumbnails();
+		const stopReviewsLink = reviewsLink();
 
 		loadIdentity().then((identity) => {
 			// Decap's fallback re-init would create a second widget iframe.
@@ -72,6 +74,7 @@
 			document.body.removeAttribute('data-sveltekit-reload');
 			stopControls();
 			stopThumbnails();
+			stopReviewsLink();
 		};
 	});
 </script>
