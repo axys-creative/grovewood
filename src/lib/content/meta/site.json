@@ -1,11 +1,11 @@
 {
 	"siteName": "Grovewood Mental Health",
-	"url": "https://grovewood.netlify.app",
+	"url": "https://grovewoodutah.com",
 	"author": "Grovewood Mental Health",
 	"contactEmail": "info@grovewoodutah.com",
 	"themeColor": "#e9f4ea",
 	"faviconLight": "/images/favicon-dark.svg",
 	"faviconDark": "/images/favicon-light.svg",
-	"description": "Open Graph Description Here",
+	"description": "Compassionate mental health care in Utah, including talk therapy, medication management, NeuroStar TMS and psychological assessment.",
 	"ogImage": "/images/og-image.png"
 }

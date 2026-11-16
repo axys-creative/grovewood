@@ -17,7 +17,7 @@
 		{
 			"label": "Phone",
 			"text": "(801) 785-4622",
-			"url": "tel:+8017854622",
+			"url": "tel:+18017854622",
 			"newTab": false
 		},
 		{
@@ -70,16 +70,6 @@
 		}
 	],
 	"legalLinks": [
-		{
-			"text": "Privacy Policy",
-			"url": "https://google.com",
-			"newTab": false
-		},
-		{
-			"text": "Terms & Conditions",
-			"url": "https://google.com",
-			"newTab": false
-		},
 		{
 			"text": "Admin Log In",
 			"url": "/admin",

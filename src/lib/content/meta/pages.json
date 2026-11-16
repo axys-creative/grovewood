@@ -3,35 +3,35 @@
 		{
 			"path": "/",
 			"title": "Home",
-			"description": "Home page description",
+			"description": "Grovewood Mental Health offers compassionate, personalized mental health care in Utah, from talk therapy to medication management and NeuroStar TMS.",
 			"ogImage": "/images/og-image.png",
 			"crawlPage": true
 		},
 		{
 			"path": "/talk-therapy",
 			"title": "Talk Therapy",
-			"description": "Talk therapy page description",
+			"description": "Talk therapy with caring, experienced clinicians at Grovewood Mental Health, tailored to your goals and your pace.",
 			"ogImage": "/images/og-image.png",
 			"crawlPage": true
 		},
 		{
 			"path": "/medication-management",
 			"title": "Medication Management",
-			"description": "Medication management page description",
+			"description": "Thoughtful medication management at Grovewood Mental Health, with ongoing support to help you find what works for you.",
 			"ogImage": "/images/og-image.png",
 			"crawlPage": true
 		},
 		{
 			"path": "/neurostar-tms",
 			"title": "NeuroStar TMS",
-			"description": "NeuroStar TMS page description",
+			"description": "NeuroStar TMS at Grovewood Mental Health, a non-invasive treatment option for depression when medication has not been enough.",
 			"ogImage": "/images/og-image.png",
 			"crawlPage": true
 		},
 		{
 			"path": "/assessment",
 			"title": "Psychological Assessment",
-			"description": "Psychological assessment page description",
+			"description": "Comprehensive psychological assessments at Grovewood Mental Health to bring clarity and guide your next steps in care.",
 			"ogImage": "/images/og-image.png",
 			"crawlPage": true
 		},
