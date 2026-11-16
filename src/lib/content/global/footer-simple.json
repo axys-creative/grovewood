@@ -71,6 +71,11 @@
 	],
 	"legalLinks": [
 		{
+			"text": "Privacy Policy",
+			"url": "/privacy",
+			"newTab": false
+		},
+		{
 			"text": "Admin Log In",
 			"url": "/admin",
 			"newTab": true
