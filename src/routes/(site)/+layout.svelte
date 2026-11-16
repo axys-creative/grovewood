@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '../../styles/styles.scss';
-	import { page } from '$app/state';
 	import AlertStack from '$lib/components/alert-stack.svelte';
 	import CalendarBooking, {
 		type CalendarBookingProps
@@ -27,7 +26,6 @@
 		{...navigation as HeaderSimpleProps}
 		{...header as HeaderSimpleProps}
 		{logo}
-		logoHandoff={page.url.pathname === '/'}
 		socialLinks={social.links}
 	/>
 	<main id="main" tabindex="-1">
