@@ -1,39 +1,39 @@
 {
-	"hidden": false,
-	"eyebrowText": "TMS FAQ",
-	"title": "Answers to your top 5 TMS questions",
-	"description": "If you have more questions, reach out for a direct answer.",
-	"cta": {
-		"primary": {
-			"text": "Call us with your questions",
-			"textDescription": "Call us with your TMS questions",
-			"url": "tel:8017854622",
-			"newTab": false,
-			"iconStart": "/uploads/phone.svg"
-		}
-	},
-	"plus": true,
-	"singleOpen": true,
-	"items": [
-		{
-			"title": "Does TMS hurt?",
-			"content": "You will feel a tapping sensation on your scalp during the session. Most patients find it tolerable, and any discomfort typically fades within the first few treatments."
-		},
-		{
-			"title": "How long does a single TMS session take?",
-			"content": "Each session lasts about 20 minutes. You sit in a chair and a magnetic coil is placed against your head. You can drive yourself home afterward."
-		},
-		{
-			"title": "How many sessions will I need?",
-			"content": "A standard course is 36 sessions, typically once daily, five days a week. Your clinician will create a schedule that fits your needs and monitor progress throughout."
-		},
-		{
-			"title": "Will TMS interfere with my medications?",
-			"content": "TMS is often used alongside medication. It does not interact with most drugs, but we review your full history during the initial assessment to make sure it is a safe fit."
-		},
-		{
-			"title": "Does insurance cover TMS?",
-			"content": "Many major insurers cover TMS for treatment-resistant depression. Our team can verify your benefits before you start and walk you through any out-of-pocket costs."
-		}
-	]
+  "hidden": false,
+  "eyebrowText": "TMS FAQ's",
+  "title": "The top 5 questions about TMS",
+  "description": "If you have more questions, reach out for a direct answer.",
+  "cta": {
+    "primary": {
+      "text": "Call us with your questions",
+      "textDescription": "Call us with your TMS questions",
+      "url": "tel:8017854622",
+      "newTab": false,
+      "iconStart": "/uploads/phone.svg"
+    }
+  },
+  "plus": true,
+  "singleOpen": true,
+  "items": [
+    {
+      "title": "Does insurance cover TMS?",
+      "content": "Many major insurers cover TMS for treatment-resistant depression. Our team can verify your benefits before you start and walk you through any out-of-pocket costs."
+    },
+    {
+      "title": "What does TMS feel like?",
+      "content": "You will feel a slight tapping sensation on your scalp during the session. Most patients find it tolerable, and any discomfort typically fades within the first few treatments. Our team has designed the process with the utmost care and comfort. "
+    },
+    {
+      "title": "How long does TMS take?",
+      "content": "A single session lasts about 20 minutes, and a standard course is 36 sessions long - typically once daily, five days a week. You can drive yourself home afterward. Your clinician will create a schedule that fits your needs."
+    },
+    {
+      "title": "How many sessions will I need?",
+      "content": "A standard course is 36 sessions, typically once daily, five days a week. Your clinician will create a schedule that fits your needs and monitor progress throughout."
+    },
+    {
+      "title": "Does TMS have any side-effects?",
+      "content": "TMS has little to no side-effects - you can drive yourself home after each session. \nFor those who use medications, TMS is often used alongside medication. It does not interact with most drugs, but we review your full history during the initial assessment to make sure it is a safe fit."
+    }
+  ]
 }
