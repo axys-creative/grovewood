@@ -16,6 +16,17 @@
 		prefersReducedMotion
 	} from '$lib/utils/page-transition';
 
+	// `navigation.complete` can stall until Chrome's 4s transition timeout, since frames are paused while the page swaps.
+	const nextSwap = (root: HTMLElement | null) =>
+		new Promise<void>((done) => {
+			if (!root) return done();
+			const observer = new MutationObserver(() => {
+				observer.disconnect();
+				setTimeout(done, 50);
+			});
+			observer.observe(root, { childList: true, subtree: true });
+		});
+
 	let { name = 'fade', preserveHeader = false, ...options }: PageTransitionProps = $props();
 
 	// SvelteKit waits for the promise this returns before it swaps the page.
@@ -42,8 +53,9 @@
 			// Only on during the change: a view-transition name would otherwise break the header's backdrop blur.
 			if (preserveHeader) document.documentElement.setAttribute('data-keep-header', '');
 			const transition = document.startViewTransition(async () => {
+				const swapped = nextSwap(document.getElementById('main'));
 				resolve();
-				await navigation.complete;
+				await Promise.race([swapped, navigation.complete]);
 			});
 			if (preserveHeader)
 				transition.finished.finally(() =>
