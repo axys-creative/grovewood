@@ -21,12 +21,12 @@
 </script>
 
 <div class="cta-group {justify}">
-	<Button {...primary} type={primary.type ?? 'solid'} {@attach textRoll()} {@attach pull()} />
+	<Button {...primary} type={primary.type ?? 'solid'} {@attach textRoll({ key: primary.text })} {@attach pull()} />
 	{#if secondary}
 		<Button
 			{...secondary}
 			type={secondary.type ?? 'outline'}
-			{@attach textRoll()}
+			{@attach textRoll({ key: secondary.text })}
 			{@attach pull()}
 		/>
 	{/if}

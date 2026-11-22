@@ -8,6 +8,8 @@ export type TextRollOptions = {
 	duration?: number;
 	/** The element that holds the text: a selector inside, or an element. Defaults to a `.label` (as in Button), else the element itself. */
 	target?: string | HTMLElement;
+	/** Pass the text so the roll is rebuilt when it changes (the attachment re-runs on a new value). */
+	key?: unknown;
 };
 
 /** Rolls each letter up and out as the pointer or keyboard focus arrives, replaced by a copy from below. */
