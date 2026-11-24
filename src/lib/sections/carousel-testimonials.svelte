@@ -92,8 +92,9 @@
 	}
 
 	onMount(() => {
+		if (!track) return;
 		const observer = new ResizeObserver(update);
-		observer.observe(track!);
+		observer.observe(track);
 		update();
 		return () => {
 			observer.disconnect();
